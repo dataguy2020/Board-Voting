@@ -27,7 +27,7 @@ header('location: index.php');
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container"> <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span
-                    class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span> </a><a class="brand" href="index.php">Bootstrap Admin Template </a>
+                    class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span> </a><a class="brand" href="index.html">Bootstrap Admin Template </a>
       
       <!--/.nav-collapse --> 
     </div>
@@ -40,11 +40,11 @@ header('location: index.php');
   <div class="subnavbar-inner">
     <div class="container">
       <ul class="mainnav">
-        <li class="active"><a href="dashboard.php"><i class="icon-dashboard"></i><span>Dashboard</span> </a> </li>
-	<li> <a href ="add.php"><i class ="icon-dashboard"></i><span>Add Motion</span></a></li>
-	<li><a href="vote.php"><i class ="icon-dashboard"></i><span>Vote</span></a></li>
-	<li><a href="userprefs.php"><i class ="icon-dashboard"></i><span>Prefences</span></a></li>
-         <li><a href="logout.php"><i class="icon-dashboard"></i><span>Logout</span></a> </li>
+        <li><a href="dashboard.php"><i class="icon-dashboard"></i><span>Dashboard</span> </a> </li>
+	<li> <a href ="add.php"><i class ="icon-dashboard"></i><span>Add Motion</span>_</a></li>
+	<li><a href="vote.php"><i class ="icon-dashboard"></i><span>Vote</span>_</a></li>
+	<li class="active"><a href="userprefs.php"><i class="icon-dashboard"></i><span>Preferences</span>_</a></li>
+         <li><a href="logout.php"><i class="icon-dashboard"></i><span>Logout</span> </a> </li>
 
       </ul>
     </div>
