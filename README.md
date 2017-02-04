@@ -1,5 +1,1 @@
-# Ajax Login form using PHP MySQL and PDO.
-
-You can get full implementaion from following link
-
-#http://phpclicks.com/ajax-login-form-using-php-mysql-and-pdo/
+Ths is a system built for the Tanyard Springs Homeowners Association to handle electronic votes. This is based off of the phpclicks.com ajax login form using php mysql and pdo
