@@ -25,8 +25,7 @@ header('location: index.php');
 </head>
 <body>
 <?php
-	$userid=$_SESSION['user_id'];
-	echo $userid;
+	include_once('db-config.php');
 ?>
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
@@ -62,10 +61,7 @@ header('location: index.php');
     <div class="container">
       <div class="row">
         <h1>I am login now....</h1>
-	<?php
-		echo $_SESSION['fname'];
-		echo "Welcome " . $_SESSION['fname'] . $_SESSION['lname'];
-	?>
+	<p>This is the main page. This will have information moving forward</p>
         <!-- /span6 -->
         
         <!-- /span6 --> 

@@ -33,6 +33,9 @@
 		{
 		  session_start();
 		  $_SESSION['user_id'] = $row[0]['users_id'];
+		  $_SESSION['username'] = $row[1]['username'];
+		  $_SESSION['fname'] = $row[3]['first_name'];
+		  $_SESSION['lname'] = $row[4]['last_name'];
 		  $resp['redirect']    = "dashboard.php";
 		  $resp['status']      = true;	
 		  echo json_encode($resp);
