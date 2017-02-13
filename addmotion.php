@@ -14,7 +14,7 @@
 <body>
 
 	<?php
-		include_once('./include/db-config.php');
+		include_once('db-config.php');
 
 		$motionname=$_POST['motionname'];
 		$motiontext=$_POST['motiontext'];
@@ -38,15 +38,19 @@
 				$motionstatement -> bindParam(':motion',$motiontext);
 				$motionstatement->execute();
 				echo "Added motion to the database .... ";
+				echo "<br />";
 
 				$searchmotion = $db_con->prepare ("SELECT * from motions where motion_name = :name AND motion_description = :description;");
 				$searchmotion -> bindParam(':name',$motionname);
 				$searchmotion -> bindParam(':description',$motiontext);
 				$searchmotion->execute();
 				$searchrows = $searchmotion->fetchAll(PDO::FETCH_ASSOC);
-				if (count($searchrows) == 1)
+
+				echo (count($searchrows));
+				echo "<br />";
+				if (count($searchrows) == "1")
 				{
-					$votesmotionid=$row[0]['motion_id'];
+					$votesmotionid=$searchrows[0]['motion_id'];
 					$vote = "YES";
 					$votestatement = $db_con->prepare ("INSERT into votes (users_id,motions_id,vote) VALUES (:users_id, :motion_id, :vote)");
 					$votestatement -> bindParam(':users_id', $_SESSION['user_id']);
