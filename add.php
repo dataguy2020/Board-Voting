@@ -8,7 +8,7 @@ header('location: index.php');
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Main Dashboard</title>
+<title>Add Motion</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -43,8 +43,8 @@ header('location: index.php');
   <div class="subnavbar-inner">
     <div class="container">
       <ul class="mainnav">
-        <li class="active"><a href="dashboard.php"><i class="icon-dashboard"></i><span>Dashboard</span> </a> </li>
-	<li> <a href ="add.php"><i class ="icon-dashboard"></i><span>Add Motion</span></a></li>
+        <li><a href="dashboard.php"><i class="icon-dashboard"></i><span>Dashboard</span> </a> </li>
+	<li class="active"> <a href ="add.php"><i class ="icon-dashboard"></i><span>Add Motion</span></a></li>
 	<li><a href="vote.php"><i class ="icon-dashboard"></i><span>Vote</span></a></li>
 	<li><a href="userprefs.php"><i class ="icon-dashboard"></i><span>Prefences</span></a></li>
          <li><a href="logout.php"><i class="icon-dashboard"></i><span>Logout</span></a> </li>
@@ -59,10 +59,20 @@ header('location: index.php');
 <div class="main">
   <div class="main-inner">
     <div class="container">
-      <div class="row">
-        <h1>I am login now....</h1>
-	<p>This is the main page. This will have information moving forward</p>
-        <!-- /span6 -->
+	<form action="addmotion.php"  method="post">
+		<FIELDSET>
+			<LEGEND><b>Submit a Motion</b></LEGEND>
+			<p><label>Motion Name: </label><input type="text" name="motionname" id="motionname" /></p>
+			<p><label>Motion Text: </label><textarea name="motiontext" id="motiontext" style="width: 1136px; height: 122px;"></textarea>
+			<br /><input type="submit" value="Submit" name="Submit" />
+			<input type="reset" value="Reset" name="Reset" />
+		</FIELDSET>
+	</form>
+			
+			
+			
+
+<!-- /span6 -->
         
         <!-- /span6 --> 
       </div>

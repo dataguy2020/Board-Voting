@@ -8,7 +8,7 @@ header('location: index.php');
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Main Dashboard</title>
+<title>User Preferences</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -22,6 +22,23 @@ header('location: index.php');
 <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+<style>
+	fieldset {
+  font:80%/1 sans-serif;
+ border-color: red;
+ border-style: solid;
+  }
+label {
+  float:left;
+  width:25%;
+  margin-right:0.5em;
+  padding-top:0.2em;
+  text-align:right;
+  font-weight:bold;
+  }
+
+
+</style>
 </head>
 <body>
 <div class="navbar navbar-fixed-top">
@@ -40,11 +57,11 @@ header('location: index.php');
   <div class="subnavbar-inner">
     <div class="container">
       <ul class="mainnav">
-        <li><a href="dashboard.php"><i class="icon-dashboard"></i><span>Dashboard</span> </a> </li>
-	<li> <a href ="add.php"><i class ="icon-dashboard"></i><span>Add Motion</span>_</a></li>
-	<li><a href="vote.php"><i class ="icon-dashboard"></i><span>Vote</span>_</a></li>
+        <li><a href="dashboard.php"><i class="icon-dashboard"></i><span>Dashboard</span></a> </li>
+	<li> <a href ="add.php"><i class ="icon-dashboard"></i><span>Add Motion</span></a></li>
+	<li><a href="vote.php"><i class ="icon-dashboard"></i><span>Vote</span></a></li>
 	<li class="active"><a href="userprefs.php"><i class="icon-dashboard"></i><span>Preferences</span>_</a></li>
-         <li><a href="logout.php"><i class="icon-dashboard"></i><span>Logout</span> </a> </li>
+         <li><a href="logout.php"><i class="icon-dashboard"></i><span>Logout</span></a> </li>
 
       </ul>
     </div>
@@ -57,9 +74,25 @@ header('location: index.php');
   <div class="main-inner">
     <div class="container">
       <div class="row">
-        <h1>I am login now....</h1>
-	<p>This is the main page. This will have information moving forward</p>
-        <!-- /span6 -->
+        
+		<form action="changepw.php" method="post">
+  			<fieldset>
+  				<legend>Change Password</legend>
+    					<label for="currentpassword">Current Password:</label>
+    					<input type="password" name="currentpassword" id="currentpassword" />
+    					<br />
+    					<label for="newpassword">New Password:</label>
+    					<input type="password" name="newpassword" id="newpassword" />
+    					<br />
+    					<label for="confirmpassword">Confirm Password:</label>
+    					<input type="password" name="confirmpassword" id="confirmpassword"  />
+					<br /><input type="submit" value="Sumbit">
+					<input type="reset" value="Reset">
+  			</fieldset>
+		</form>
+
+
+	<!-- /span6 -->
         
         <!-- /span6 --> 
       </div>

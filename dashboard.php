@@ -26,7 +26,7 @@ header('location: index.php');
 <body>
 <?php
 	$userid=$_SESSION['user_id'];
-	echo $userid;
+	$username
 ?>
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
@@ -61,10 +61,9 @@ header('location: index.php');
   <div class="main-inner">
     <div class="container">
       <div class="row">
-        <h1>I am login now....</h1>
-	<?php
-		echo $_SESSION['fname'];
-		echo "Welcome " . $_SESSION['fname'] . $_SESSION['lname'];
+        <?php
+		echo "<h1>I am login now....</h1>";
+		echo "$userid";	
 	?>
         <!-- /span6 -->
         
