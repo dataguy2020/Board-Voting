@@ -125,7 +125,7 @@ header('location: dashboard.php');
 <script src="js/bootstrap.js"></script>
 
 <script src="js/login.js"></script>
-
+<a href="http://www.beyondsecurity.com/vulnerability-scanner-verification/board.tanyardspringshoa.com"><img src="https://seal.beyondsecurity.com/verification-images/board.tanyardspringshoa.com/vulnerability-scanner-2.gif" alt="Website Security Test" border="0" /></a>
 </body>
 
 </html>

@@ -37,6 +37,11 @@
 		  $_SESSION['fname'] = $row[3]['first_name'];
 		  $_SESSION['lname'] = $row[4]['last_name'];
 		  $_SESSION['email'] = $row[5]['email'];
+
+		$today= date("Y-m-d H:i:s");   
+		$lastlogin=$db_con->prepare("update users set lastlogin= :today where users_id = :usersid");
+		$lastlogin->execute(array(':today' => $today, 'usersid' => $_SESSION['user_id']));
+
 		  $resp['redirect']    = "dashboard.php";
 		  $resp['status']      = true;	
 		  echo json_encode($resp);
