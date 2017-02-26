@@ -44,7 +44,7 @@ label {
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container"> <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span
-                    class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span> </a><a class="brand" href="index.html">Bootstrap Admin Template </a>
+                    class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span> </a><a class="brand" href="index.html">User Preferences</a>
       
       <!--/.nav-collapse --> 
     </div>
@@ -86,7 +86,7 @@ label {
     					<br />
     					<label for="confirmpassword">Confirm Password:</label>
     					<input type="password" name="confirmpassword" id="confirmpassword"  />
-					<br /><input type="submit" value="Sumbit">
+					<br /><input type="submit" value="Submit">
 					<input type="reset" value="Reset">
   			</fieldset>
 		</form>
