@@ -8,7 +8,7 @@ header('location: index.php');
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Main Dashboard</title>
+<title>Vote</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -44,9 +44,9 @@ header('location: index.php');
   <div class="subnavbar-inner">
     <div class="container">
       <ul class="mainnav">
-        <li class="active"><a href="dashboard.php"><i class="icon-dashboard"></i><span>Dashboard</span> </a> </li>
+        <li><a href="dashboard.php"><i class="icon-dashboard"></i><span>Dashboard</span> </a> </li>
 	<li> <a href ="add.php"><i class ="icon-dashboard"></i><span>Add Motion</span></a></li>
-	<li><a href="vote.php"><i class ="icon-dashboard"></i><span>Vote</span></a></li>
+	<li class="active"><a href="vote.php"><i class ="icon-dashboard"></i><span>Vote</span></a></li>
 	<li><a href="userprefs.php"><i class ="icon-dashboard"></i><span>Prefences</span></a></li>
          <li><a href="logout.php"><i class="icon-dashboard"></i><span>Logout</span></a> </li>
 
@@ -61,28 +61,37 @@ header('location: index.php');
   <div class="main-inner">
     <div class="container">
       <div class="row">
-	<table border="1" width="100%">
-		<tr>
-			<th>Motion Name</th>
-			<th>Motion Text</th>
-			<th>Date Added</th>
-			<th>Status</th>
-		</tr>
+	<p>Please choose a motion to vote on. Only one motion can be voted
+		on at a time</p>
+		<table border="1" width="100%">
+                <tr>
+                        <th>Motion ID</th>
+                        <th>Motion Name</th>
+                        <th>Date Added</th>
+			<th>Action</th>
+                </tr>
         <?php
-		include_once ('include/db-config.php');
-		$motions=$db_con->prepare(
-			"select * from motions");
-		$motions->execute();
-		while ( $row = $motions->fetch(PDO::FETCH_ASSOC))
-		{ ?>
-		<tr>
-			<td><?php echo $row['motion_name']; ?> </td>
-			<td><?php echo $row['motion_description']; ?> </td>
-			<td><?php echo $row['dateadded']; ?> </td>
-			<td><?php echo $row['motion_disposition']; ?> </td>
-		</tr>
-		<?php }//end of while ?>
-	</table>
+                include_once ('include/db-config.php');
+                $motions=$db_con->prepare(
+                        "select * from motions where motion_disposition is NULL");
+                $motions->execute(); 
+		echo '<form id="vote" action="voting.php" method="post">';
+                while ( $row = $motions->fetch(PDO::FETCH_ASSOC))
+                { 
+			$motionid=$row['motion_id'];
+			$motionname=$row['motion_name'];
+			$dateadded=$row['dateadded'];		
+
+		echo '<tr>
+                        	<td><input type="text" name="motionid" readonly value="'.$motionid. '" /> </td>
+				<td>' . $row['motion_name'].'</td>
+				<td>' . $row['dateadded'] . '</td>
+				<td><input type=Submit value="Submit"> 
+                </tr>';
+                }//end of while
+		echo '</form>
+        	</table>';
+	?>
 
         <!-- /span6 -->
         

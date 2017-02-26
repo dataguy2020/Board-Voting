@@ -80,5 +80,5 @@
 
 	?>
 <br />
-<a href="index.php">Main DashBboard</a>
+<a href="index.php">Main Dashboard</a>
 </body>

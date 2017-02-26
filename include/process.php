@@ -42,6 +42,12 @@
 		$lastlogin=$db_con->prepare("update users set lastlogin= :today where users_id = :usersid");
 		$lastlogin->execute(array(':today' => $today, 'usersid' => $_SESSION['user_id']));
 
+		$useraudit=$db_con->prepare("insert into audit (user_id,action) VALUES (:userid, :action)");
+		$action = $_SESSION['username'] . "logged in";
+		$useraudit -> bindParam(':userid', $_SESSION['user_id']);
+		$useraudit -> bindParam(':action', $action);
+		$useraudit->execute();
+		
 		  $resp['redirect']    = "dashboard.php";
 		  $resp['status']      = true;	
 		  echo json_encode($resp);
