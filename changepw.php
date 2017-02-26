@@ -21,8 +21,6 @@
 		{
 			$newpassword=$_POST['newpassword'];
 			$confirmpassword=$_POST['confirmpassword'];
-			echo "New Password: " . $newpassword;
-			echo "<br />Confirm Pw  : " . $confirmpassword . "<br />";
 			if ( sha1($newpassword) == sha1($confirmpassword) )
 			{
             			$statement = $db_con->prepare("select * from users where users_id = :usersid AND password = :password;" );
@@ -42,6 +40,7 @@
 						$passwordUpdatestatement->execute(array(':password' => sha1($confirmpassword),
 							':usersid'=>$_SESSION['user_id']));
 					#}
+					echo "<br />Your password has been changed";
 				}
 				else
 				{
@@ -50,12 +49,14 @@
 			}
 			else
 			{
-				echo "Please enter the same new password";
+				echo "<br />Please enter the same new password";
 			}
 		}
 		else
 		{
-			echo "You have not entered your current password";
+			echo "<br />You have not entered your current password";
 		}
+
+		echo "<br /><a href='dashboard.php'>Main Dashboard</a>";
 	?>
 </body>
