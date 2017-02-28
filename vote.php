@@ -147,13 +147,15 @@ header('location: index.php');
         <br />
 	<h2>Your Decision</h2>
 		
-        <form id="voting" name="voting" method="POST" action="voting.php">
-                <input type="hidden" name="motionid" value=<?php $motionid ?>>
+        <?php echo '<form id="voting" name="voting" method="POST" action="voting.php">
+                <input type="hidden" name="motionid" value="' . $motionid . '">
 		<input type="radio" name="vote" value="Yes">Vote for Motion<br />
                 <input type="radio" name="vote" value="No">Vote against Motion<br />
                 <input type="Submit" name="Submit" value="Submit">
                 <input type="Reset" name="Reset" value="Reset">
-        </form>
+        </form>';
+
+	?>
 
 		<?php			
 		}//end of if statement

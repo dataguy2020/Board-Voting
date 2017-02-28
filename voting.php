@@ -62,12 +62,21 @@ header('location: index.php');
       <div class="row">
 	
 			<?php
+				include_once ('include/db-config.php');
 				#Debug: echo $_SERVER['HTTP_REFERER'];
 				$decision=$_POST['vote'];
 				$motionid=$_POST['motionid'];
 				echo $motionid;
 				#Debug: echo $decision;
-				$userid=$_SESSION['user_id'];
+
+				$addvote=$db_con->prepare(
+					"SELECT * FROM votes WHERE users_id=:userid AND motions_id=:motionsid;");
+				$addvote->execute(array(':userid' => $userid,':motionsid' => $motionid));
+				$row=$addvote->fetchAll(PDO::FETCH_ASSOC);
+				if (count($row) == 1)
+				{
+					echo "You have all ready voted";
+				}//end of if statement
 
 				
 				
