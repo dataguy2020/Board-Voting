@@ -60,6 +60,7 @@ label {
         <li><a href="dashboard.php"><i class="icon-dashboard"></i><span>Dashboard</span></a> </li>
 	<li> <a href ="add.php"><i class ="icon-dashboard"></i><span>Add Motion</span></a></li>
 	<li><a href="vote.php"><i class ="icon-dashboard"></i><span>Vote</span></a></li>
+	 <li><a href="discussions.php"><i class ="icon-dashboard"></i><span>Discussions</span></a></li>
 	<li class="active"><a href="userprefs.php"><i class="icon-dashboard"></i><span>Preferences</span>_</a></li>
          <li><a href="logout.php"><i class="icon-dashboard"></i><span>Logout</span></a> </li>
 
