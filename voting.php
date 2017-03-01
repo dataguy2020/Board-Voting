@@ -66,21 +66,57 @@ header('location: index.php');
 				#Debug: echo $_SERVER['HTTP_REFERER'];
 				$decision=$_POST['vote'];
 				$motionid=$_POST['motionid'];
-				echo $motionid;
-				#Debug: echo $decision;
 
-				$addvote=$db_con->prepare(
-					"SELECT * FROM votes WHERE users_id=:userid AND motions_id=:motionsid;");
-				$addvote->execute(array(':userid' => $userid,':motionsid' => $motionid));
-				$row=$addvote->fetchAll(PDO::FETCH_ASSOC);
-				if (count($row) == 1)
+				if (isset($_POST['revote']))
 				{
-					echo "You have all ready voted";
-				}//end of if statement
+					//allready have userid
+					$revoteoption=$_POST['revote1'];
+					$vote=$_POST['vote'];
+					if ( $revoteoption == "Yes" )
+					{
+						$updateVote=$db_con->prepare(
+						"UPDATE votes set vote=:updatedvote where motions_id=:motionid AND users_id=:userid;");
+						$updateVote->execute(array(':updatedvote'=>$vote,':motionid' =>$motionid, ':userid' => $userid));
+						echo "Updated your vote";
+					}// if ( $revoteoption == "Yes"
+					else
+					{
+						echo "You decided not to revote";
+					}//end of else if ( $revoteoption == "Yes"	
+				}// if (isset($_POST['revote']))
 
-				
-				
-			
+				else
+				{
+					$addvote=$db_con->prepare(
+						"SELECT * FROM votes WHERE users_id=:userid AND motions_id=:motionsid;");
+					$addvote->execute(array(':userid' => $userid,':motionsid' => $motionid));
+					$row=$addvote->fetchAll(PDO::FETCH_ASSOC);
+					#Debug: echo count($row);
+					if (count($row) == 1)
+					{
+						echo 	'<form id="voting" name="voting" method="POST" action="voting.php">
+                					<input type="hidden" name="motionid" value="' . $motionid . '">
+							<input type="hidden" name="revote" value="revote">
+							<input type="hidden" name="vote" value="' . $_POST['vote'] . '">
+                					<input type="radio" name="revote1" value="Yes">Yes<br />
+                					<input type="radio" name="revote1" value="No">No<br />
+                					<input type="Submit" name="Submit" value="Submit">
+               						<input type="Reset" name="Reset" value="Reset">
+        						</form>';
+					}// if (count($row) == 1)
+					else
+					{
+						#Debug: echo "Vote: " . $vote . "<br />";
+						#Debug: echo "Decision: " . $decision . "<br />";
+						$initialVote=$db_con->prepare(
+						"INSERT INTO votes (users_id,motions_id,vote) VALUE (:users_id, :motions_id, :vote)");
+						$initialVote->bindParam(':users_id',$userid);
+						$initialVote->bindParam(':motions_id',$motionid);
+						$initialVote->bindParam(':vote',$decision);
+						$initialVote->execute();
+						echo "Voted";
+					}//end of else if (count($row) == 1)
+				}//end of else  if (isset($_POST['revote']))
 			?>
         <!-- /span6 -->
         
