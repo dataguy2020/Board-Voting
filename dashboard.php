@@ -1,3 +1,4 @@
+p
 <?php
 session_start();
 if(empty($_SESSION['user_id'])){
@@ -26,7 +27,6 @@ header('location: index.php');
 <body>
 <?php
 	$userid=$_SESSION['user_id'];
-	$username
 ?>
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
@@ -68,20 +68,26 @@ header('location: index.php');
 			<th>Motion Text</th>
 			<th>Date Added</th>
 			<th>Status</th>
+			<th>Report</th>
 		</tr>
         <?php
 		include_once ('include/db-config.php');
 		$motions=$db_con->prepare(
-			"select * from motions");
+			"select * from motions ORDER BY dateadded desc;");
 		$motions->execute();
 		while ( $row = $motions->fetch(PDO::FETCH_ASSOC))
 		{ ?>
+		<form id="report" name="report" action="report.php" method="POST">
+		 <?php $motionid=$row['motion_id']; ?>
 		<tr>
 			<td><?php echo $row['motion_name']; ?> </td>
 			<td><?php echo $row['motion_description']; ?> </td>
 			<td><?php echo $row['dateadded']; ?> </td>
 			<td><?php echo $row['motion_disposition']; ?> </td>
+		<?php echo '<input type="hidden" id="motionid" name="motionid" value="' . $motionid . '">'; ?>
+			<td><input type="Submit" name="Submit" value="Report"></td>
 		</tr>
+		</form>
 		<?php }//end of while ?>
 	</table>
 

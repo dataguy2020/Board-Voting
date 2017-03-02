@@ -149,8 +149,8 @@ header('location: index.php');
 		
         <?php echo '<form id="voting" name="voting" method="POST" action="voting.php">
                 <input type="hidden" name="motionid" value="' . $motionid . '">
-		<input type="radio" name="vote" value="Yes">Vote for Motion<br />
-                <input type="radio" name="vote" value="No">Vote against Motion<br />
+		<input type="radio" name="vote" value="YES">Vote for Motion<br />
+                <input type="radio" name="vote" value="NO">Vote against Motion<br />
                 <input type="Submit" name="Submit" value="Submit">
                 <input type="Reset" name="Reset" value="Reset">
         </form>';
