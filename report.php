@@ -46,7 +46,7 @@ header('location: index.php');
 				</tr>
 				<?php
 					$votes=$db_con->prepare(
-						"SELECT u.first_name, u.last_name, v.time, v.vote from votes v inner join motions m on m.motion_id=v.motions_id INNER join users u on u.users_id=v.users_id where m.motion_id=:motionid");
+						"SELECT u.first_name, u.last_name, v.time, v.vote from votes v inner join motions m on m.motion_id=v.motions_id INNER join users u on u.users_id=v.users_id where m.motion_id=:motionid ORDER BY v.time ASC;");
 					$votes->bindParam(':motionid',$motionid);
 					$votes->execute();
 					while ($row=$votes->fetch(PDO::FETCH_ASSOC))

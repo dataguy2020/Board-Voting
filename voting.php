@@ -115,6 +115,51 @@ header('location: index.php');
 						$initialVote->bindParam(':vote',$decision);
 						$initialVote->execute();
 						echo "Voted";
+
+						#$enabledCount=$db_con->prepare(
+						#"SELECT * FROM users where enabled=1;");
+						#$enabledCount->execute();
+						#$row=$enabledCount->fetchAll(PDO::FETCH_ASSOC);
+						#$usercount=count($row);
+
+
+						#$votecount=$db_con->prepare(
+						#"SELECT * FROM votes where motions_id=:motionid");
+						#$votecount->bindParam(':motionid',$motionid);
+						#$votecount->execute();
+						#$voterow=$votecount->fetch(PDO::FETCH_ASSOC);
+						#$votecount=count($voterow);
+
+						#echo "<br />User Count: " . $usercount . "<br />";
+						#echo "Vote Count: " . $votecount;
+						#if ($usercount == $votecount)
+						#{
+						#	$disposition="PASSED";
+						#	$motiondep=$db_con->prepare(
+                                                #		"UPDATE motions set motion_disposition =:disposition WHERE motion_id=:motion_id");
+                                                #	$motiondep->bindParam(':disposition',$disposition);
+                                                #	$motiondep->bindParam(':motion_id',$motionid);
+                                                #	$motiondep->execute();
+						#	echo "<br /> Updated the final disposition of the motion";
+						#}
+						#else
+						#{
+						#	echo "";	
+						#}
+
+						if ($decision=="NO")
+						{						
+							$disposition="FAILED";
+							$motiondep=$db_con->prepare(
+								"UPDATE motions set motion_disposition =:disposition WHERE motion_id=:motion_id");
+							$motiondep->bindParam(':disposition',$disposition);
+							$motiondep->bindParam(':motion_id',$motionid);
+							$motiondep->execute();
+						}
+						else
+						{
+						 	echo "";
+						}
 					}//end of else if (count($row) == 1)
 				}//end of else  if (isset($_POST['revote']))
 			?>

@@ -11,7 +11,8 @@ header('location: dashboard.php');
 <head>
     <meta charset="utf-8">
     <title>Tanyard Springs HOA Board Portal</title>
-
+	<meta name="detectify-verification"
+content="7d5cea67efa74a6200b4a875969ce64d" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes"> 
     
