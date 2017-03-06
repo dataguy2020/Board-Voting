@@ -8,7 +8,7 @@ header('location: index.php');
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Vote</title>
+<title>Report for Motion</title>
 </head>
 <body>
 <?php
@@ -17,7 +17,6 @@ header('location: index.php');
 
 		include_once ('include/db-config.php');
 
-			#echo "Debug: " . $motionid;
 			$motion=$db_con->prepare ("SELECT * from motions where motion_id = :motionid");
 			$motion->bindParam(':motionid',$motionid);
 			$motion->execute();
@@ -27,12 +26,15 @@ header('location: index.php');
 				$motionname=$row['motion_name'];
 				$dateadded=$row['dateadded'];
 				$motiondesc=$row['motion_description'];
-			
+				$disposition=$row[' motion_disposition'];
 			
 				echo "<h1>" . $motionname . "</h1>";
 				echo "<h2>Date Added:</h2>" . $dateadded . "<br />";
 				echo "<h2>Motion Text</h2>";
 				echo $motiondesc;
+				echo "<h2>Disposition:</h2>";
+				echo $disposition;
+				
 			}//end of while ($row=$motion->fetch(PDO::FETCH_ASSOC))
 
 			?>
