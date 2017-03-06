@@ -106,8 +106,6 @@ header('location: index.php');
 					}// if (count($row) == 1)
 					else
 					{
-						#Debug: echo "Vote: " . $vote . "<br />";
-						#Debug: echo "Decision: " . $decision . "<br />";
 						$initialVote=$db_con->prepare(
 						"INSERT INTO votes (users_id,motions_id,vote) VALUE (:users_id, :motions_id, :vote)");
 						$initialVote->bindParam(':users_id',$userid);
@@ -129,8 +127,6 @@ header('location: index.php');
 						$votesCount= $votecount->rowCount();
 
 
-						echo "<br />User Count: " . $enabledUserCount . "<br />";
-						echo "Vote Count: " . $votesCount;
 						if ($votesCount == $enabledUserCount)
 						{
 							$disposition="PASSED";
