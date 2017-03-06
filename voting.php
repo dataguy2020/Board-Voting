@@ -116,36 +116,35 @@ header('location: index.php');
 						$initialVote->execute();
 						echo "Voted";
 
-						#$enabledCount=$db_con->prepare(
-						#"SELECT * FROM users where enabled=1;");
-						#$enabledCount->execute();
-						#$row=$enabledCount->fetchAll(PDO::FETCH_ASSOC);
-						#$usercount=count($row);
+						$enabledCount=$db_con->prepare(
+						"SELECT * FROM users where enabled=1;");
+						$enabledCount->execute();
+						$enabledUserCount = $enabledCount->rowCount();
 
 
-						#$votecount=$db_con->prepare(
-						#"SELECT * FROM votes where motions_id=:motionid");
-						#$votecount->bindParam(':motionid',$motionid);
-						#$votecount->execute();
-						#$voterow=$votecount->fetch(PDO::FETCH_ASSOC);
-						#$votecount=count($voterow);
+						$votecount=$db_con->prepare(
+						"SELECT * FROM votes where motions_id=:motionid");
+						$votecount->bindParam(':motionid',$motionid);
+						$votecount->execute();
+						$votesCount= $votecount->rowCount();
 
-						#echo "<br />User Count: " . $usercount . "<br />";
-						#echo "Vote Count: " . $votecount;
-						#if ($usercount == $votecount)
-						#{
-						#	$disposition="PASSED";
-						#	$motiondep=$db_con->prepare(
-                                                #		"UPDATE motions set motion_disposition =:disposition WHERE motion_id=:motion_id");
-                                                #	$motiondep->bindParam(':disposition',$disposition);
-                                                #	$motiondep->bindParam(':motion_id',$motionid);
-                                                #	$motiondep->execute();
-						#	echo "<br /> Updated the final disposition of the motion";
-						#}
-						#else
-						#{
-						#	echo "";	
-						#}
+
+						echo "<br />User Count: " . $enabledUserCount . "<br />";
+						echo "Vote Count: " . $votesCount;
+						if ($votesCount == $enabledUserCount)
+						{
+							$disposition="PASSED";
+							$motiondep=$db_con->prepare(
+                                                		"UPDATE motions set motion_disposition =:disposition WHERE motion_id=:motion_id");
+                                                	$motiondep->bindParam(':disposition',$disposition);
+                                                	$motiondep->bindParam(':motion_id',$motionid);
+                                                	$motiondep->execute();
+							echo "<br /> Updated the final disposition of the motion";
+						}
+						else
+						{
+							echo "";	
+						}
 
 						if ($decision=="NO")
 						{						
