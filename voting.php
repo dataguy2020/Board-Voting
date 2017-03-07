@@ -106,19 +106,37 @@ header('location: index.php');
 					}// if (count($row) == 1)
 					else
 					{
-						$initialVote=$db_con->prepare(
-						"INSERT INTO votes (users_id,motions_id,vote) VALUE (:users_id, :motions_id, :vote)");
-						$initialVote->bindParam(':users_id',$userid);
-						$initialVote->bindParam(':motions_id',$motionid);
-						$initialVote->bindParam(':vote',$decision);
-						$initialVote->execute();
-						echo "Voted";
+						$secondedVote=$db_con->prepare(
+							"SELECT * FROM votes where motions_id=:motionid;");
+						$secondedVote->bindParam(':motionid',$motionid);
+						$secondedVote->execute();
+						$secondedCount=$secondedVote->rowCount();
+						if ($secondcount == 2)
+						{
+							$decision="SECONDED";
+							$initialVote=$db_con->prepare(
+								"INSERT INTO votes (users_id,motions_id,vote) VALUE (:users_id, :motions_id, :vote)");
+							$initialVote->bindParam(':users_id',$userid);
+							$initialVote->bindParam(':motions_id',$motionid);
+							$initialVote->bindParam(':vote',$decision);
+							$initialVote->execute();
+							echo "Voted";
+						}
+						else
+						{
+							$initialVote=$db_con->prepare(
+								"INSERT INTO votes (users_id,motions_id,vote) VALUE (:users_id, :motions_id, :vote)");
+							$initialVote->bindParam(':users_id',$userid);
+							$initialVote->bindParam(':motions_id',$motionid);
+							$initialVote->bindParam(':vote',$decision);
+							$initialVote->execute();
+							echo "Voted";
+						}
 
 						$enabledCount=$db_con->prepare(
 						"SELECT * FROM users where enabled=1;");
 						$enabledCount->execute();
 						$enabledUserCount = $enabledCount->rowCount();
-
 
 						$votecount=$db_con->prepare(
 						"SELECT * FROM votes where motions_id=:motionid");
