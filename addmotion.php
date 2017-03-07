@@ -52,13 +52,13 @@
 				if (count($searchrows) == "1")
 				{
 					$votesmotionid=$searchrows[0]['motion_id'];
-					$vote = "YES";
+					$vote = "MOTIONED";
 
 					$auditMotionAdd = $db_con->prepare 
 						("INSERT into audit (user_id, action) VALUE (:users_id, :action)");
 					$auditMotionAdd -> bindParam(':users_id',$_SESSION['user_id']);
 					$action="Added motion id " . $votesmotionid;
-					$auditMotionAdd -> bindParam(':action',$action);
+					$auditMotionAdd -> bindParam(':action',$vote);
 					$auditMotionAdd -> execute();
 					
 

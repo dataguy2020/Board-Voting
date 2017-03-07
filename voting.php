@@ -111,8 +111,10 @@ header('location: index.php');
 						$secondedVote->bindParam(':motionid',$motionid);
 						$secondedVote->execute();
 						$secondedCount=$secondedVote->rowCount();
-						if ($secondcount == 2)
+						echo "User Count: " . $secondedCount . "<br />";
+						if ($secondedCount == 1)
 						{
+							echo "In the IF statement <br />";
 							$decision="SECONDED";
 							$initialVote=$db_con->prepare(
 								"INSERT INTO votes (users_id,motions_id,vote) VALUE (:users_id, :motions_id, :vote)");
