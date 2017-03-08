@@ -156,7 +156,6 @@ header('location: index.php');
                                                 	$motiondep->bindParam(':motion_id',$motionid);
                                                 	$motiondep->execute();
 							echo "<br /> Updated the final disposition of the motion";
-							//Mail
 							mailing($motionid);
 						}
 						else
@@ -172,6 +171,7 @@ header('location: index.php');
 							$motiondep->bindParam(':disposition',$disposition);
 							$motiondep->bindParam(':motion_id',$motionid);
 							$motiondep->execute();
+							mailing($motionid);
 						}
 						else
 						{

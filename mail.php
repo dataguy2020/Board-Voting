@@ -1,11 +1,11 @@
 <?php
 	function mailing($motionid)
 	{
-		$$motionArray = array($motionid);
+		$motionArray = array($motionid);
 		foreach ($motionArray as $motion)
 		{
 			//Database Connection
-			include_once ('include/db-config.php');
+			include_once ('db-config.php');
 			$motion=$db_con->prepare ("SELECT * from motions where motion_id = :motionid");
                         $motion->bindParam(':motionid',$motionid);
                         $motion->execute();
