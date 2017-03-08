@@ -1,7 +1,6 @@
 <?php
 	function mailing($motionid)
 	{
-		globa $body = "";
 		$$motionArray = array($motionid);
 		foreach ($motionArray as $motion)
 		{
