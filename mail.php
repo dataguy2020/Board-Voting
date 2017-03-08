@@ -11,7 +11,7 @@
                         $motion->execute();
 			$body="<html>
 					<head>
-						<title>Status of Motion ID" . $motionid "</title>
+						<title>Status of Motion</title>
 					</head>
 					<body>";
                         while ($row=$motion->fetch(PDO::FETCH_ASSOC))
