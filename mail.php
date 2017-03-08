@@ -1,7 +1,8 @@
 <?php
 	function mailing($motionid)
 	{
-		$motionArray = array($motionid);
+		globa $body = "";
+		$$motionArray = array($motionid);
 		foreach ($motionArray as $motion)
 		{
 			//Database Connection
@@ -25,12 +26,12 @@
                                 global $body .= "<h1>" . $motionname . "</h1>
                                 	<h2>Date Added:</h2>" . $dateadded . "<br />
                                 	<h2>Motion Text</h2>" .
-                                	$motiondesc;
+                                	$motiondesc
                                 	"<h2>Disposition:</h2>" .
                                 	$disposition;
 			}//End of while
 
-			global $body .= "<br /><br />
+			$body .= "<br /><br />
 					<h2>Current Votes</h2>
 					<table border=\"1\" width=\"100%\">
 					<tr>
@@ -52,14 +53,14 @@
                                 $lastname=$row['last_name'];
                                 $votetime=$row['time'];
                                 $votecast=$row['vote'];
-                                global $body .= "<tr>
+                                $body .= "<tr>
 					<td>" . $firstname . " " . $lastname . "</td>
                                         <td>" . $votetime . "</td>
                                         <td>" . $votecast . "</td>
                                         </tr>";
                         }// while ($row=$votes->fetch(PDO::FETCH_ASSOC))
-    			global $body .= "</table>";
-			global $body .= "<br /><br />
+    			$body .= "</table>";
+			$body .= "<br /><br />
 					<h2>Discussions</h2>
 					<table border=\"1\" width=\"1\">
 					<tr>
@@ -79,15 +80,15 @@
 				$lastname=$row['last_name'];
                                 $discussiontime=$row['dateadded'];
                                 $discussiontext=$row['discussion_text'];
-				global $body .= "<tr>
+				$body .= "<tr>
 							<td>" . $firstname . " " . $lastname . "</td>
 							<td>" . $discussiontime . "</td>
 							<td>" . $discussiontext . "</td>
 						</tr>";
 			}//end of while
-			global $body .= "</table>";
+			$body .= "</table>";
 
-			global $body .= "</body>
+			$body .= "</body>
 				</html>";
 		}//end of foreach
 
