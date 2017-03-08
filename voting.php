@@ -63,6 +63,7 @@ header('location: index.php');
 	
 			<?php
 				include_once ('include/db-config.php');
+				include "mail.php";
 				#Debug: echo $_SERVER['HTTP_REFERER'];
 				$decision=$_POST['vote'];
 				$motionid=$_POST['motionid'];
@@ -156,6 +157,8 @@ header('location: index.php');
                                                 	$motiondep->bindParam(':motion_id',$motionid);
                                                 	$motiondep->execute();
 							echo "<br /> Updated the final disposition of the motion";
+							//Mail
+							mailing($motiond);
 						}
 						else
 						{
