@@ -26,7 +26,7 @@
                                 global $body .= "<h1>" . $motionname . "</h1>
                                 	<h2>Date Added:</h2>" . $dateadded . "<br />
                                 	<h2>Motion Text</h2>" .
-                                	$motiondesc
+                                	$motiondesc .
                                 	"<h2>Disposition:</h2>" .
                                 	$disposition;
 			}//End of while
