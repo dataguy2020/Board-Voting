@@ -112,6 +112,7 @@ header('location: index.php');
 						$secondedVote->bindParam(':motionid',$motionid);
 						$secondedVote->execute();
 						$secondedCount=$secondedVote->rowCount();
+						echo "User Count: " . $secondedCount . "<br />";
 						if ($secondedCount == 1)
 						{
 							echo "In the IF statement <br />";
