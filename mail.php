@@ -98,6 +98,7 @@
 		$headers[] = 'MIME-Version: 1.0';
 		$headers[] = 'Content-type: text/html; charset=iso-8859-1';
 		$headers[] = 'To: Michael Brown <michaelbrown.tsbod@gmail.com>';
+		$headers[] = 'To: Mike Brown <mike.a.brown09@gmail.com>';
 		$headers[]= 'From: Tanyard Springs Votes <noreply@tanyardspringshoa.com>';
 		
 		//mailing
