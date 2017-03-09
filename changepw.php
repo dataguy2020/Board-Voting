@@ -29,17 +29,9 @@
 		
 				if(count($row)>0)
 				{
-					#$regex='/(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/';
-					#if (! preg_match ($regex,$confimpassword))
-					#{
-					#	echo "<br >Your password is does not meet our minimum requirements";
-					#}
-					#else
-					#{
-						$passwordUpdatestatement = $db_con->prepare("update users set password = :password where users_id = :usersid;");
-						$passwordUpdatestatement->execute(array(':password' => sha1($confirmpassword),
-							':usersid'=>$_SESSION['user_id']));
-					#}
+					$passwordUpdatestatement = $db_con->prepare("update users set password = :password where users_id = :usersid;");
+					$passwordUpdatestatement->execute(array(':password' => sha1($confirmpassword),
+						':usersid'=>$_SESSION['user_id']));
 					echo "<br />Your password has been changed";
 				}
 				else
