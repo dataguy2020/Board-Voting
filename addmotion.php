@@ -119,12 +119,7 @@
 
                 //mailing
                 $to="";
-                $managementSearch=$db_con->prepare("SELECT email from management;");
-                $managementSearch->execute();
-                while ($row=$managementSearch->fetch(PDO::FETCH_ASSOC))
-                {
-                        $to .= $row['email'] . ", ";
-                }
+                $to=$boardEmail;
                 mail($to,$subject,$message, implode("\r\n", $headers));
 					 
 				}
