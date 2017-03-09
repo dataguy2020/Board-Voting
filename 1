@@ -112,6 +112,7 @@ header('location: index.php');
 						$secondedVote->bindParam(':motionid',$motionid);
 						$secondedVote->execute();
 						$secondedCount=$secondedVote->rowCount();
+						echo "User Count: " . $secondedCount . "<br />";
 						if ($secondedCount == 1)
 						{
 							echo "In the IF statement <br />";
@@ -156,6 +157,7 @@ header('location: index.php');
                                                 	$motiondep->bindParam(':motion_id',$motionid);
                                                 	$motiondep->execute();
 							echo "<br /> Updated the final disposition of the motion";
+							//Mail
 							mailing($motionid);
 						}
 						else
@@ -171,7 +173,6 @@ header('location: index.php');
 							$motiondep->bindParam(':disposition',$disposition);
 							$motiondep->bindParam(':motion_id',$motionid);
 							$motiondep->execute();
-							mailing($motionid);
 						}
 						else
 						{
