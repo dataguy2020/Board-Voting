@@ -6,7 +6,6 @@
         }
 ?>
 
-
 <html>
 <head>
 	<title>Adding Motion</title>
@@ -19,11 +18,11 @@
 		$motionname=$_POST['motionname'];
 		$motiontext=$_POST['motiontext'];
 
-
 		if ( $motionname == "" )
 		{
 			echo "Motion Name is blank";
 		}
+	
 		else
 		{
 			if ( $motiontext == "" )
@@ -46,23 +45,16 @@
 				$searchmotion -> bindParam(':description',$motiontext);
 				$searchmotion->execute();
 				$searchrows = $searchmotion->fetchAll(PDO::FETCH_ASSOC);
-
-				#Debugging: echo (count($searchrows));
-				#Debugging: echo "<br />";
 				if (count($searchrows) == "1")
 				{
 					$votesmotionid=$searchrows[0]['motion_id'];
 					$vote = "MOTIONED";
-
 					$auditMotionAdd = $db_con->prepare 
 						("INSERT into audit (user_id, action) VALUE (:users_id, :action)");
 					$auditMotionAdd -> bindParam(':users_id',$_SESSION['user_id']);
 					$action="Added motion id " . $votesmotionid;
 					$auditMotionAdd -> bindParam(':action',$vote);
 					$auditMotionAdd -> execute();
-					
-
-
 					$votestatement = $db_con->prepare ("INSERT into votes (users_id,motions_id,vote) VALUES (:users_id, :motion_id, :vote)");
 					$votestatement -> bindParam(':users_id', $_SESSION['user_id']);
 					$votestatement -> bindParam(':motion_id', $votesmotionid);
@@ -77,7 +69,6 @@
 				}
 			}
 	}
-
 	?>
 <br />
 <a href="index.php">Main Dashboard</a>
