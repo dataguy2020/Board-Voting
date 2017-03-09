@@ -91,17 +91,30 @@
 				</html>";
 		}//end of foreach
 
-		$email="michaelbrown.tsbod@gmail.com";
-		$to="michaelbrown.tsbod@gmail.com";
+		//$to="michaelbrown.tsbod@gmail.com";
+		
+		$boardEmail="";
+		$emailSearch=$db_con->prepare("SELECT email from users where enabled=1;");
+		$emailSearch->execute();
+		while ($row=$emailSearch->fetch(PDO::FETCH_ASSOC))
+		{
+			$boardEmail .= $row['email'] .",";
+		}
 		$subject = "Summary for Motion " . $motionid;
 		$message = $body;
 		$headers[] = 'MIME-Version: 1.0';
 		$headers[] = 'Content-type: text/html; charset=iso-8859-1';
-		$headers[] = 'To: Michael Brown <michaelbrown.tsbod@gmail.com>';
-		$headers[] = 'To: Mike Brown <mike.a.brown09@gmail.com>';
+		$headers[] = "Cc: $boardEmail";
 		$headers[]= 'From: Tanyard Springs Votes <noreply@tanyardspringshoa.com>';
 		
 		//mailing
+		$to="";
+		$managementSearch=$db_con->prepare("SELECT email from management;");
+		$managementSearch->execute();
+		while ($row=$managementSearch->fetch(PDO::FETCH_ASSOC))
+		{
+			$to .= $row['email'] . ", ";
+		}
 		mail($to,$subject,$message, implode("\r\n", $headers));
 	}//end of function
 ?>
