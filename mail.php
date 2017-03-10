@@ -122,12 +122,13 @@
 	{
 		global $db_con;
 		$motionArray = array($votesmotionid);
-                foreach ($motionArray as $motion)
+                foreach ($motionArray as $motionid)
                 {
                         //Database Connection
                         $motion=$db_con->prepare ("SELECT * from motions where motion_id = :motionid");
                         $motion->bindParam(':motionid',$motionid);
-                        $motion->execute();
+                        #$motion->execute();
+			if (!$motion->execute()) var_dump($motion->errorinfo());
                         $body="<html>
                                         <head>
                                                 <title>New Motion Addded</title>
@@ -162,7 +163,8 @@
                 $message = $body;
                 $headers[] = 'MIME-Version: 1.0';
                 $headers[] = 'Content-type: text/html; charset=iso-8859-1';
-                $headers[] = "Cc: $boardEmail";
+                #$headers[] = "Cc: $boardEmail";
+		$headers[] = "To: michaelbrown.tsbod@gmail.com";
                 $headers[]= 'From: Tanyard Springs Votes <noreply@tanyardspringshoa.com>';
                 //mailing
                 mail($boardEmail,$subject,$message, implode("\r\n", $headers));
