@@ -1,11 +1,11 @@
 <?php
+	include_once ('db-config.php');
 	function mailing($motionid)
 	{
+		global $db_con;
 		$motionArray = array($motionid);
 		foreach ($motionArray as $motion)
 		{
-			//Database Connection
-			include_once ('db-config.php');
 			$motion=$db_con->prepare ("SELECT * from motions where motion_id = :motionid");
                         $motion->bindParam(':motionid',$motionid);
                         $motion->execute();
@@ -120,11 +120,11 @@
 
 	function addmailing($votesmotionid)
 	{
+		global $db_con;
 		$motionArray = array($votesmotionid);
                 foreach ($motionArray as $motion)
                 {
                         //Database Connection
-			include_once ('db-config.php');
                         $motion=$db_con->prepare ("SELECT * from motions where motion_id = :motionid");
                         $motion->bindParam(':motionid',$motionid);
                         $motion->execute();
