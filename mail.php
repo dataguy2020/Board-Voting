@@ -100,7 +100,7 @@
 		{
 			$boardEmail .= $row['email'] .",";
 		}
-		$subject = "Summary for Motion " . $motionid;
+		$subject = "New Motion Added; Motion ID# " . $motionid;
 		$message = $body;
 		$headers[] = 'MIME-Version: 1.0';
 		$headers[] = 'Content-type: text/html; charset=iso-8859-1';
@@ -163,8 +163,7 @@
                 $message = $body;
                 $headers[] = 'MIME-Version: 1.0';
                 $headers[] = 'Content-type: text/html; charset=iso-8859-1';
-                #$headers[] = "Cc: $boardEmail";
-		$headers[] = "To: michaelbrown.tsbod@gmail.com";
+                $headers[] = "Cc: $boardEmail";
                 $headers[]= 'From: Tanyard Springs Votes <noreply@tanyardspringshoa.com>';
                 //mailing
                 mail($boardEmail,$subject,$message, implode("\r\n", $headers));
