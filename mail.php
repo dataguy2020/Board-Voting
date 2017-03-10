@@ -165,9 +165,7 @@
                 $headers[] = "Cc: $boardEmail";
                 $headers[]= 'From: Tanyard Springs Votes <noreply@tanyardspringshoa.com>';
                 //mailing
-                $to="";
-                $to=$boardEmail;
-                mail($to,$subject,$message, implode("\r\n", $headers));
+                mail($boardEmail,$subject,$message, implode("\r\n", $headers));
 	}//end of function
 
 
