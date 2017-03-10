@@ -91,8 +91,6 @@
 				</html>";
 		}//end of foreach
 
-		//$to="michaelbrown.tsbod@gmail.com";
-		
 		$boardEmail="";
 		$emailSearch=$db_con->prepare("SELECT email from users where enabled=1;");
 		$emailSearch->execute();
@@ -109,7 +107,7 @@
 		
 		//mailing
 		$to="";
-		$managementSearch=$db_con->prepare("SELECT email from management;");
+		$managementSearch=$db_con->prepare("SELECT email from management where fenabled=1;");
 		$managementSearch->execute();
 		while ($row=$managementSearch->fetch(PDO::FETCH_ASSOC))
 		{
