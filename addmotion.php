@@ -14,7 +14,7 @@
 
 	<?php
 		include_once('db-config.php');
-		include "mail.php";
+		include_once('mail.php');
 		$motionname=$_POST['motionname'];
 		$motiontext=$_POST['motiontext'];
 
@@ -61,6 +61,7 @@
 					$votestatement -> bindParam(':vote', $vote);
 					$votestatement->execute();
 					echo "Added your vote as you created the motion";
+					echo "<br />Motion ID: " . $votesmotionid;
 					addmailing($votesmotionid);	 
 				}
 				else

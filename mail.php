@@ -118,7 +118,7 @@
 		mail($to,$subject,$message, implode("\r\n", $headers));
 	}//end of function
 
-	function addmailing($motionid)
+	function addmailing($votesmotionid)
 	{
 		$motionArray = array($votesmotionid);
                 foreach ($motionArray as $motion)
