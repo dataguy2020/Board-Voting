@@ -65,7 +65,7 @@
 					$updatepw->bindParam('temppw',1);
 					$updatepw->execute();
 					$name="";
-					temppassword($temppassword,$email,$name);
+					temppassword($temppassword,$email);
 
 				}
 				else
