@@ -21,7 +21,7 @@
 <?php
 	include_once ('include/db-config.php');
         include "passwords.php";
-	include "mail.php";
+	include "forgotmail.php";
 
 ?>
 <div class="navbar navbar-fixed-top">
@@ -59,14 +59,15 @@
 				if ( $userCount == 1)
 				{
 					$temppassword=randomPassword();
+					$temppassword1=sha1($temppassword);
+					$temppw=1;
 					$updatepw = $db_con->prepare("update users set password = :password, temppw=:temppw where email = :email;");
-					$updatepw->bindParam(':password',$temppassword);
+					$updatepw->bindParam(':password',$temppassword1);
 					$updatepw->bindParam(':email',$_POST['email']);
-					$updatepw->bindParam('temppw',1);
+					$updatepw->bindParam('temppw',$temppw);
 					$updatepw->execute();
-					$name="";
-					temppassword($temppassword,$email);
-
+					temppassword($temppassword,$_POST['email']);
+					echo "E-mail sent";
 				}
 				else
 				{
