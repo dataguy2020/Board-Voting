@@ -113,6 +113,7 @@ content="7d5cea67efa74a6200b4a875969ce64d" />
 			
 			
 		</form>
+		<p><a href="forgotpw.php">Forgot Password?</a></p>
 		
 	</div> <!-- /content -->
 	
@@ -126,7 +127,6 @@ content="7d5cea67efa74a6200b4a875969ce64d" />
 <script src="js/bootstrap.js"></script>
 
 <script src="js/login.js"></script>
-<a href="http://www.beyondsecurity.com/vulnerability-scanner-verification/board.tanyardspringshoa.com"><img src="https://seal.beyondsecurity.com/verification-images/board.tanyardspringshoa.com/vulnerability-scanner-2.gif" alt="Website Security Test" border="0" /></a>
 </body>
 
 </html>
