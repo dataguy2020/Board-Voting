@@ -1,15 +1,5 @@
 -- phpMyAdmin SQL Dump
 -- version 4.6.5.2
--- https://www.phpmyadmin.net/
---
--- Host: localhost
--- Generation Time: Mar 10, 2017 at 05:51 PM
--- Server version: 5.7.17-0ubuntu0.16.10.1-log
--- PHP Version: 7.0.15-0ubuntu0.16.10.4
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -37,8 +27,6 @@ CREATE TABLE `audit` (
 -- Dumping data for table `audit`
 --
 
-
-
 -- --------------------------------------------------------
 
 --
@@ -48,12 +36,19 @@ CREATE TABLE `audit` (
 CREATE TABLE `banned` (
   `banned_id` int(11) NOT NULL,
   `banned_by` int(11) NOT NULL,
-  `first_name` int(11) NOT NULL,
-  `last_name` int(11) NOT NULL,
+  `first_name` varchar(20) NOT NULL,
+  `last_name` varchar(20) NOT NULL,
   `description` varchar(500) NOT NULL,
   `location` varchar(200) NOT NULL,
-  `datebanned` date NOT NULL
+  `datebanned` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `banned`
+--
+
+INSERT INTO `banned` (`banned_id`, `banned_by`, `first_name`, `last_name`, `description`, `location`, `datebanned`) VALUES
+(1, 7, 'Test', 'User', '5\'10\" Male, ', 'Basketball Court', '2017-03-10 21:00:00');
 
 -- --------------------------------------------------------
 
@@ -92,7 +87,7 @@ CREATE TABLE `management` (
 --
 
 INSERT INTO `management` (`managementID`, `first_name`, `last_name`, `email`, `fenabled`) VALUES
-(1, 'First', 'Last', 'email@domain.com', 1);
+(1, 'FirstName', 'LastName', 'manager1@management.com', 1);
 
 -- --------------------------------------------------------
 
@@ -144,6 +139,7 @@ CREATE TABLE `motions` (
 -- Dumping data for table `motions`
 --
 
+
 -- --------------------------------------------------------
 
 --
@@ -189,6 +185,8 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
+INSERT INTO `users` (`users_id`, `username`, `password`, `first_name`, `last_name`, `email`, `position_id`, `enabled`, `temppw`, `lastlogin`) VALUES
+(6, 'jwalters', 'bab4b75fe3a410ba39cee1493bdc79ecf5f1c739', 'FirstName', 'LastName', 'user@email.com', 6, 1, 0, '2017-03-10 14:11:53'),
 
 
 -- --------------------------------------------------------
@@ -225,10 +223,7 @@ CREATE TABLE `votes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `votes`
---
-
-
+-- Dumping data for table `votes
 --
 -- Indexes for dumped tables
 --
@@ -319,17 +314,17 @@ ALTER TABLE `votes`
 -- AUTO_INCREMENT for table `audit`
 --
 ALTER TABLE `audit`
-  MODIFY `audit_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
+  MODIFY `audit_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
 --
 -- AUTO_INCREMENT for table `banned`
 --
 ALTER TABLE `banned`
-  MODIFY `banned_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `banned_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `discussion`
 --
 ALTER TABLE `discussion`
-  MODIFY `discussion_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `discussion_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `management`
 --
