@@ -31,7 +31,7 @@
 		$row = $statement->fetchAll(PDO::FETCH_ASSOC);
 		if(count($row)>0)
 		{
-		  session_start();
+			session_start();
 		  $_SESSION['user_id'] = $row[0]['users_id'];
 		  $_SESSION['username'] = $row[1]['username'];
 		  $_SESSION['fname'] = $row[3]['first_name'];
