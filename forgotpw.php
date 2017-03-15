@@ -21,6 +21,7 @@
 <?php
 	include_once ('include/db-config.php');
         include "passwords.php";
+	include "mail.php";
 
 ?>
 <div class="navbar navbar-fixed-top">
@@ -48,18 +49,24 @@
 	<?php 
 		if ($_POST['submit'])
 		{
-			print_r($_POST);
 			try
 			{
-				echo "E-mail:" . $_POST['email'] . "<br />";
 				$userfind=$db_con->prepare("SELECT * FROM users where email=:email;");
 				$userfind->bindParam(':email',$_POST['email']);
 				$userfind->execute();
 				$userCount=$userfind->rowCount();
+				$email=$_POST['email'];
 				if ( $userCount == 1)
 				{
 					$temppassword=randomPassword();
-					echo $temppassword;
+					$updatepw = $db_con->prepare("update users set password = :password, temppw=:temppw where email = :email;");
+					$updatepw->bindParam(':password',$temppassword);
+					$updatepw->bindParam(':email',$_POST['email']);
+					$updatepw->bindParam('temppw',1);
+					$updatepw->execute();
+					$name="";
+					temppassword($temppassword,$email,$name);
+
 				}
 				else
 				{
@@ -80,9 +87,11 @@
 	?>
 
 	<form action="forgotpw.php" method="POST">
-		<input type="text" name="usrname">
-		<input type="submit" id="submit" name="submit" value="Submit">
+		<fieldset>
+		<legend>Change Password?</legend>E-mail: <input type="text" name="email" id="email">
+		<br /><input type="submit" id="submit" name="submit" value="Submit">
 		<input type="reset" id="reset" name="reset" value="Reset">
+		<fieldset>
 	</form>
 	<?php
 		}
