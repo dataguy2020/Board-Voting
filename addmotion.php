@@ -13,7 +13,7 @@
 <body>
 
 	<?php
-		include_once('db-config.php');
+		include_once('includes/db-config.php');
 		include_once('mail.php');
 		$motionname=$_POST['motionname'];
 		$motiontext=$_POST['motiontext'];
