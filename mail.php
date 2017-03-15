@@ -1,5 +1,5 @@
 <?php
-	include_once ('db-config.php');
+	include_once ('include/db-config.php');
 	function mailing($motionid)
 	{
 		global $db_con;
