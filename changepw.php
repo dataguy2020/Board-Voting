@@ -33,9 +33,11 @@
 					$passwordUpdatestatement->execute(array(':password' => sha1($confirmpassword),
 						':usersid'=>$_SESSION['user_id']));
 					echo "<br />Your password has been changed";
+					$passwordUpdatestatement->closeCursor();
 				}
 				else
 				{
+					$statement->closeCursor();
 					echo "<br />Your speecified password does not match your current password";
 				}
 			}
