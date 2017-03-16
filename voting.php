@@ -79,6 +79,7 @@ header('location: index.php');
 						"UPDATE votes set vote=:updatedvote where motions_id=:motionid AND users_id=:userid;");
 						$updateVote->execute(array(':updatedvote'=>$vote,':motionid' =>$motionid, ':userid' => $userid));
 						echo "Updated your vote";
+						$updateVote->closeCursor();
 					}// if ( $revoteoption == "Yes"
 					else
 					{
@@ -105,6 +106,7 @@ header('location: index.php');
                						<input type="Reset" name="Reset" value="Reset">
         						</form>';
 					}// if (count($row) == 1)
+					$addvote->closeCursor();
 					else
 					{
 						$secondedVote=$db_con->prepare(
@@ -122,7 +124,9 @@ header('location: index.php');
 							$initialVote->bindParam(':motions_id',$motionid);
 							$initialVote->bindParam(':vote',$decision);
 							$initialVote->execute();
+							$initialVote->closeCursor();
 							echo "Voted";
+							
 						}
 						else
 						{
@@ -133,7 +137,9 @@ header('location: index.php');
 							$initialVote->bindParam(':vote',$decision);
 							$initialVote->execute();
 							echo "Voted";
+							$initialVote->closeCursor();
 						}
+						$secondedVote->closeCursor();
 
 						$enabledCount=$db_con->prepare(
 						"SELECT * FROM users where enabled=1;");
@@ -157,6 +163,7 @@ header('location: index.php');
                                                 	$motiondep->execute();
 							echo "<br /> Updated the final disposition of the motion";
 							mailing($motionid);
+							$motiondep->closeCursor();
 						}
 						else
 						{
@@ -172,11 +179,14 @@ header('location: index.php');
 							$motiondep->bindParam(':motion_id',$motionid);
 							$motiondep->execute();
 							mailing($motionid);
+							$motiondep->closeCursor();
 						}
 						else
 						{
 						 	echo "";
 						}
+						$votecount->closeCursor();
+						$enabledCount->closeCursor();
 					}//end of else if (count($row) == 1)
 				}//end of else  if (isset($_POST['revote']))
 			?>
