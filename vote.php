@@ -85,6 +85,7 @@ header('location: index.php');
 				echo "<h2>Motion Text</h2>";
 				echo $motiondesc;
 			}
+			$motion->closeCursor();
 
 			?>
 			<br /><br />
@@ -112,6 +113,7 @@ header('location: index.php');
 					echo "<td>" . $votecast . "</td>";
 				echo "</tr>";
 			}
+			$votes->closeCursor();
 			echo "</table>";
 		?>
 
@@ -140,6 +142,7 @@ header('location: index.php');
 					echo "<td>" . $discussiontext . "</td>";
 				echo "</tr>";
 			}//end of while
+			$motiondiscussions->closeCursor();
 			echo "</table>";
 
 		?>
@@ -192,6 +195,7 @@ header('location: index.php');
                 </tr>
 		</form>';
                 }//end of while
+			$motions->closeCursor();
 		echo '
         	</table>';
 	?>
