@@ -87,7 +87,7 @@ header('location: index.php');
 			<td><input type="Submit" name="Submit" value="Report"></td>
 		</tr>
 		</form>
-		<?php }//end of while ?>
+		<?php $motions->closeCursor(); }//end of while ?>
 	</table>
 
         <!-- /span6 -->
