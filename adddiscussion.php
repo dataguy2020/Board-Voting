@@ -67,7 +67,6 @@ header('location: index.php');
 				$motionid=$_POST['motionid'];
 				$userid=$_POST['userid'];
 				$text=$_POST['discussiontext'];
-				#echo "Motion ID: " . $motionid . "<br />User ID: " . $userid . "<br />Text: " . $text . "<br />";
 				if ( strlen($text) == 0 )
 				{
 					echo "You have not entered any text";
@@ -79,6 +78,7 @@ header('location: index.php');
 					$addDiscussion->bindParam(':motionid',$motionid);
 					$addDiscussion->bindParam(':text',$text);
 					$addDiscussion->execute();
+					$addDiscussion->closeCursor();
 					echo "Added Discussion Text";
 				}
 			?>

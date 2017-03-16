@@ -36,7 +36,7 @@ header('location: index.php');
 				echo $disposition;
 				
 			}//end of while ($row=$motion->fetch(PDO::FETCH_ASSOC))
-
+			$motion->closeCursor();
 			?>
 			<br /><br />
 			<h2>Current Votes</h2>
@@ -63,6 +63,7 @@ header('location: index.php');
 							echo "<td>" . $votecast . "</td>";
 						echo "</tr>";
 					}// while ($row=$votes->fetch(PDO::FETCH_ASSOC))
+					$votes->closeCursor();
 					echo "</table>";
 				?>
 
@@ -91,6 +92,7 @@ header('location: index.php');
 						echo "<td>" . $discussiontext . "</td>";
 					echo "</tr>";
 				}//end of while
+			$motiondiscussions->closeCursor();
 				echo "</table>";
 			?>
 

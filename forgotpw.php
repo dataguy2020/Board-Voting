@@ -68,9 +68,11 @@
 					$updatepw->execute();
 					temppassword($temppassword,$_POST['email']);
 					echo "E-mail sent";
+					$updatepw->closeCursor();
 				}
 				else
 				{
+					$userfind->closeCursor();
 					echo "Your e-mail is not found in our database";
 				}
 			}

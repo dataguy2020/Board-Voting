@@ -85,6 +85,7 @@ header('location: index.php');
 				echo "<h2>Motion Text</h2>";
 				echo $motiondesc;
 			}
+			$motions->closeCursor();
 
 			?>
 			<br /><br />
@@ -112,6 +113,7 @@ header('location: index.php');
 					echo "<td>" . $votecast . "</td>";
 				echo "</tr>";
 			}
+			$votes->closeCursor();
 			echo "</table>";
 		?>
 
@@ -140,12 +142,13 @@ header('location: index.php');
 					echo "<td>" . $discussiontext . "</td>";
 				echo "</tr>";
 			}//end of while
+			$motiondiscussions->closeCursor();
 			echo "</table>";
 
 		?>
 		 <br />
         <br />
-	<h2>Your Decision</h2>
+	<h2>Your Discussion:</h2>
 		
         <?php echo '<form id="discussion" name="discussion" method="POST" action="adddiscussion.php">
                 <input type="hidden" name="motionid" value="' . $motionid . '">
@@ -194,6 +197,7 @@ header('location: index.php');
                 }//end of while
 		echo '
         	</table>';
+		$motions->closeCursor();
 	?>
         <!-- /span6 -->
         
