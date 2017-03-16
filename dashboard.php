@@ -89,7 +89,7 @@ header('location: index.php');
 		</form>
 		<?php }//end of while ?>
 	</table>
-
+	<?php $motions->closeCursor(); ?>
         <!-- /span6 -->
         
         <!-- /span6 --> 
