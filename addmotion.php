@@ -38,6 +38,7 @@
 				$motionstatement -> bindParam(':motion',$motiontext);
 				$motionstatement -> bindParam(':dateadded',$today);
 				$motionstatement->execute();
+				$motionstatement->closeCursor();
 				echo "Added motion to the database .... ";
 				echo "<br />";				
 				$searchmotion = $db_con->prepare ("SELECT * from motions where motion_name = :name AND motion_description = :description;");
@@ -55,6 +56,8 @@
 					$action="Added motion id " . $votesmotionid;
 					$auditMotionAdd -> bindParam(':action',$vote);
 					$auditMotionAdd -> execute();
+					$auditMotionAdd ->closeCursor();
+					
 					$votestatement = $db_con->prepare ("INSERT into votes (users_id,motions_id,vote) VALUES (:users_id, :motion_id, :vote)");
 					$votestatement -> bindParam(':users_id', $_SESSION['user_id']);
 					$votestatement -> bindParam(':motion_id', $votesmotionid);
@@ -62,10 +65,13 @@
 					$votestatement->execute();
 					echo "Added your vote as you created the motion";
 					echo "<br />Motion ID: " . $votesmotionid;
-					addmailing($votesmotionid);	 
+					addmailing($votesmotionid);
+					$votestatement ->closeCursor();
+					
 				}
 				else
 				{
+					$searchmotion->closeCursor();
 					echo "Can not insert a record indicating that you created this motion";
 				}
 			}
