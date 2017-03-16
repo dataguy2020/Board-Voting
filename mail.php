@@ -29,6 +29,7 @@
                                 	"<h2>Disposition:</h2>" .
                                 	$disposition;
 			}//End of while
+			 $motion->closeCursor();
 
 			$body .= "<br /><br />
 					<h2>Current Votes</h2>
@@ -58,6 +59,7 @@
                                         <td>" . $votecast . "</td>
                                         </tr>";
                         }// while ($row=$votes->fetch(PDO::FETCH_ASSOC))
+			$votes->closeCursor();
     			$body .= "</table>";
 			$body .= "<br /><br />
 					<h2>Discussions</h2>
@@ -85,6 +87,7 @@
 							<td>" . $discussiontext . "</td>
 						</tr>";
 			}//end of while
+			$motiondiscussions->closeCursor();
 			$body .= "</table>";
 
 			$body .= "</body>
@@ -114,6 +117,8 @@
 			$to .= $row['email'] . ", ";
 		}
 		mail($to,$subject,$message, implode("\r\n", $headers));
+		$emailSearch->closeCursor();
+		$managementSearch->closeCursor();
 	}//end of function
 
 	function addmailing($votesmotionid)
@@ -173,6 +178,8 @@
                 $headers[]= 'From: Tanyard Springs Votes <noreply@tanyardspringshoa.com>';
                 //mailing
                 mail($boardEmail,$subject,$message, implode("\r\n", $headers));
+		$userSearch->closeCursor();
+		$motion->closeCursor();
 	}//end of function
 function temppassword($temppassword, $email)
         {
