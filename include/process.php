@@ -36,26 +36,39 @@
 	if(count($row)>0)
 	{
 		session_start();
-		$_SESSION['user_id'] = $row[0]['users_id'];
-		$_SESSION['username'] = $row[0]['username'];
-		$_SESSION['fname'] = $row[0]['first_name'];
-		$_SESSION['lname'] = $row[0]['last_name'];
-		$_SESSION['email'] = $row[0]['email'];
-		$_SESSION['temppw'] = $row[0]['temppw'];
-		$today= date("Y-m-d H:i:s");   
-		$lastlogin=$db_con->prepare("update users set lastlogin= :today where users_id = :usersid");
-		$lastlogin->execute(array(':today' => $today, 'usersid' => $_SESSION['user_id']));
-		$lastlogin->closeCursor();
-		$useraudit=$db_con->prepare("insert into audit (user_id,action) VALUES (:userid, :action)");
-		$action = $_SESSION['username'] . "logged in";
-		$useraudit -> bindParam(':userid', $_SESSION['user_id']);
-		$useraudit -> bindParam(':action', $action);
-		$useraudit->execute();
-		$useraudit->closeCursor();
-		$resp['redirect']    = "dashboard.php";
-		$resp['status']      = true;
-		echo json_encode($resp);
-		exit;	
+		if ($_SESSION['temppw'] == 1)
+		{
+			$resp['temppw'] = true;
+			$resp['redirect'] = "changetemppw.php";
+			echo json_encode($resp);
+			exit;
+		}
+		elseif ($_SESSION['temppw'] == 0)
+		{
+			$_SESSION['user_id'] = $row[0]['users_id'];
+			$_SESSION['username'] = $row[0]['username'];
+			$_SESSION['fname'] = $row[0]['first_name'];
+			$_SESSION['lname'] = $row[0]['last_name'];
+			$_SESSION['email'] = $row[0]['email'];
+			$today= date("Y-m-d H:i:s");   
+			$lastlogin=$db_con->prepare("update users set lastlogin= :today where users_id = :usersid");
+			$lastlogin->execute(array(':today' => $today, 'usersid' => $_SESSION['user_id']));
+			$lastlogin->closeCursor();
+			$useraudit=$db_con->prepare("insert into audit (user_id,action) VALUES (:userid, :action)");
+			$action = $_SESSION['username'] . "logged in";
+			$useraudit -> bindParam(':userid', $_SESSION['user_id']);
+			$useraudit -> bindParam(':action', $action);
+			$useraudit->execute();
+			$useraudit->closeCursor();
+			$resp['redirect']    = "dashboard.php";
+			$resp['status']      = true;
+			echo json_encode($resp);
+			exit;
+		}
+		else
+		{
+			exit;
+		}
 	}
 	else
 	{
