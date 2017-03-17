@@ -1,10 +1,10 @@
 $(function()
 {
-	$('#log-in').click(function(event){
+	$('#log-in').click(function(event)
+			   {
 		event.preventDefault();
-
 		$.post('include/process.php',$('#log-in-form').serialize(),function(resp)
-		{
+		       {
 			if (resp['status'] == true)
 			{
 				location.href = "dashboard.php";
