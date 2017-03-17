@@ -45,6 +45,7 @@
 		$today= date("Y-m-d H:i:s");   
 		$lastlogin=$db_con->prepare("update users set lastlogin= :today where users_id = :usersid");
 		$lastlogin->execute(array(':today' => $today, 'usersid' => $_SESSION['user_id']));
+		$lastlogin->closeCursor();
 		$useraudit=$db_con->prepare("insert into audit (user_id,action) VALUES (:userid, :action)");
 		$action = $_SESSION['username'] . "logged in";
 		$useraudit -> bindParam(':userid', $_SESSION['user_id']);
