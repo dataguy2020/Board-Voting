@@ -1,11 +1,15 @@
 $(function()
 {
 	$('#log-in').click(function(event)
-			   {
+	{
 		event.preventDefault();
 		$.post('include/process.php',$('#log-in-form').serialize(),function(resp)
-		       {
-			if (resp['status'] == true)
+		{
+			if (resp['temppw' == true)
+			{
+				 location.href="changetemppw.php";
+			}	 
+			else if (resp['status'] == true)
 			{
 				location.href = "dashboard.php";
 			}
@@ -22,7 +26,3 @@ $(function()
 		},'json');
 	});
 });
-
-
-
-
