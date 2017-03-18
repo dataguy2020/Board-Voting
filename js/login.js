@@ -5,7 +5,7 @@ $(function()
 		event.preventDefault();
 		$.post('include/process.php',$('#log-in-form').serialize(),function(resp)
 		{
-			if (resp['temppw' == true)
+			if (resp['temppw'] == true)
 			{
 				 location.href="changetemppw.php";
 			}	 
