@@ -33,23 +33,26 @@
 	$statement = $db_con->prepare("select * from users where email = :email AND password = :password" );
         $statement->execute(array(':email' => $_POST['email'],'password'=> sha1($_POST['password'])));
 	$row = $statement->fetchAll(PDO::FETCH_ASSOC);
+	$temppw=$row[0]['temppw'];
 	if(count($row)>0)
 	{
 		session_start();
-		if ($_SESSION['temppw'] == 1)
+		$_SESSION['temppw'] = $temppw;
+		$_SESSION['user_id'] = $row[0]['users_id'];
+                $_SESSION['username'] = $row[0]['username'];
+                $_SESSION['fname'] = $row[0]['first_name'];
+                $_SESSION['lname'] = $row[0]['last_name'];
+                $_SESSION['email'] = $row[0]['email'];
+
+		if ($_SESSION['temppw'] == "1")
 		{
 			$resp['temppw'] = true;
 			$resp['redirect'] = "changetemppw.php";
 			echo json_encode($resp);
 			exit;
 		}
-		elseif ($_SESSION['temppw'] == 0)
+		elseif ($_SESSION['temppw'] == "0")
 		{
-			$_SESSION['user_id'] = $row[0]['users_id'];
-			$_SESSION['username'] = $row[0]['username'];
-			$_SESSION['fname'] = $row[0]['first_name'];
-			$_SESSION['lname'] = $row[0]['last_name'];
-			$_SESSION['email'] = $row[0]['email'];
 			$today= date("Y-m-d H:i:s");   
 			$lastlogin=$db_con->prepare("update users set lastlogin= :today where users_id = :usersid");
 			$lastlogin->execute(array(':today' => $today, 'usersid' => $_SESSION['user_id']));
