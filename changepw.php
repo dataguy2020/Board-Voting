@@ -5,14 +5,11 @@
 		header('location: index.php');
         }
 ?>
-
-
 <html>
 <head>
 	<title>Change Password</title>
 </head>
 <body>
-
 	<?php
 		include_once('./include/db-config.php');
 		$currentpassword=$_POST['currentpassword'];
@@ -26,7 +23,6 @@
             			$statement = $db_con->prepare("select * from users where users_id = :usersid AND password = :password;" );
         			$statement->execute(array(':usersid' => $_SESSION['user_id'],'password'=> sha1($_POST['currentpassword'])));
                 		$row = $statement->fetchAll(PDO::FETCH_ASSOC);
-		
 				if(count($row)>0)
 				{
 					$passwordUpdatestatement = $db_con->prepare("update users set password = :password where 
