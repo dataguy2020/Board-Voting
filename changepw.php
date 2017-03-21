@@ -5,14 +5,11 @@
 		header('location: index.php');
         }
 ?>
-
-
 <html>
 <head>
 	<title>Change Password</title>
 </head>
 <body>
-
 	<?php
 		include_once('./include/db-config.php');
 		$currentpassword=$_POST['currentpassword'];
@@ -26,20 +23,24 @@
             			$statement = $db_con->prepare("select * from users where users_id = :usersid AND password = :password;" );
         			$statement->execute(array(':usersid' => $_SESSION['user_id'],'password'=> sha1($_POST['currentpassword'])));
                 		$row = $statement->fetchAll(PDO::FETCH_ASSOC);
-		
 				if(count($row)>0)
 				{
-					$passwordUpdatestatement = $db_con->prepare("update users set password = :password where users_id = :usersid;");
+					$passwordUpdatestatement = $db_con->prepare("update users set password = :password where 
+									users_id =:usersid;");
 					$passwordUpdatestatement->execute(array(':password' => sha1($confirmpassword),
 						':usersid'=>$_SESSION['user_id']));
 					echo "<br />Your password has been changed";
 					$passwordUpdatestatement->closeCursor();
+					$temppwUpdate=$db_con->prepare("update users set temppw= 1 where users_id=:usersid");
+					$temppwUpdate=$db_con->execute(array(':usersid'=>$_SESSION['user_id']));
+					echo "<br />Change status back to non-temp password";
+					$temppwUpdate->closeCursor();
 				}
 				else
-				{
-					$statement->closeCursor();
+				{	
 					echo "<br />Your speecified password does not match your current password";
 				}
+				$statement->closeCursor();
 			}
 			else
 			{

@@ -114,7 +114,6 @@ content="7d5cea67efa74a6200b4a875969ce64d" />
 			
 		</form>
 		<p><a href="forgotpw.php">Forgot Password?</a></p>
-		
 	</div> <!-- /content -->
 	
 </div> <!-- /account-container -->
