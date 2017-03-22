@@ -24,34 +24,40 @@
 		$confirmpassword=$_POST['confirmpassword'];
 		$confirmpassword=sha1($confirmpassword);
 		
-		if ($currentpassword != $row[0]['password'])
+		
+		$getCurrentPassword=$db_con->prepare("SELECT * FROM users where users_id=:userid;");
+		$getCurrentPassword->bindParam(':userid',$_SESSION['users_id']);
+		$getCurrentPassword->execute();
+		while ($row=$getCurrentPassword->fetch(PDO::FETCH_ASSOC))
 		{
-			echo "Your password is not correct";
-		}
-		else
-		{
-			if ($newpassword==$confirmpassword)
+			if ($currentpassword != $row[0]['password'])
 			{
-				$updatepassword=$db_con->prepare(
-					"UPDATE users set password=:password where userid=:userid;");
-				$updatepassword->bindParam(':password',$confirmpassword);
-				$updatepassword->bindParam(':userid',$_SESSION['user_id']);
-				$updatepassword->execute();
-				$updatepassword->closeCursor();
-				$temppw=$db_con->prepare(
-					"UPDATE users set temppw=:temppw where userid=:userid;");
-				$temppw->bindParam(':temppw', 1);
-				$temppw->bindParam(':userid',$_SESSION['user_id']);
-				$temppw->execute();
-				$temppw->closeCursor();
+				echo "Your password is not correct";
 			}
 			else
 			{
-				echo "Your new passwords are not the same";
+				if ($newpassword==$confirmpassword)
+				{
+					$updatepassword=$db_con->prepare(
+						"UPDATE users set password=:password where userid=:userid;");
+					$updatepassword->bindParam(':password',$confirmpassword);
+					$updatepassword->bindParam(':userid',$_SESSION['user_id']);
+					$updatepassword->execute();
+					$updatepassword->closeCursor();
+					$temppw=$db_con->prepare(
+						"UPDATE users set temppw=:temppw where userid=:userid;");
+					$temppw->bindParam(':temppw', 1);
+					$temppw->bindParam(':userid',$_SESSION['user_id']);
+					$temppw->execute();
+					$temppw->closeCursor();
+				}
+				else
+				{
+					echo "Your new passwords are not the same";
+				}//end of else
 			}//end of else
-		}
-	
-	}
+		}//end of while
+	}//end of if
 	else
 	{
 		echo '<pre>';
