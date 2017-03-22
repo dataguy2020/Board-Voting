@@ -28,9 +28,9 @@
 		$getCurrentPassword=$db_con->prepare("SELECT * FROM users where users_id=:userid;");
 		$getCurrentPassword->bindParam(':userid',$_SESSION['users_id']);
 		$getCurrentPassword->execute();
-		while ($row=$getCurrentPassword->fetch(PDO::FETCH_ASSOC))
+		while ($getCurrentPasswordRow=$getCurrentPassword->fetch(PDO::FETCH_ASSOC))
 		{
-			if ($currentpassword != $row[0]['password'])
+			if ($currentpassword != $getCurrentPasswordRow[0]['password'])
 			{
 				echo "Your password is not correct";
 			}
@@ -44,7 +44,6 @@
 					$updatepassword->bindParam(':password',$confirmpassword);
 					$updatepassword->bindParam(':userid',$_SESSION['user_id']);
 					$updatepassword->execute();
-					$updatepassword->closeCursor();
 					
 					//TODO: Try/catch
 					$temppw=$db_con->prepare(
@@ -52,10 +51,8 @@
 					$temppw->bindParam(':temppw', 0);
 					$temppw->bindParam(':userid',$_SESSION['user_id']);
 					$temppw->execute();
-					$temppw->closeCursor();
 					echo "We have updated your password";
 					echo '<a href="index.php">Homepage</a>';
-					session_destroy();
 				}
 				else
 				{
