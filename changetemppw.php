@@ -13,7 +13,7 @@ echo '</pre>';
 		<fieldset>
 			<legend>Change Temporary Password</legend>
 			Current Password:<input type="password" name="currentpassword" id="currentpassword">
-			<br />New Password: <input type="passwrod" name="newpassword" id="newpassword">
+			<br />New Password: <input type="password" name="newpassword" id="newpassword">
 			<br />Confirm Password: <input type="password" name="confirmpassword" id="confirmpassword">
 			<br /><input type="submit" name="submit" value="Submit"> <input type="Reset" name="Reset" value="Reset">
 		</fieldset>
