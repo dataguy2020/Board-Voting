@@ -51,7 +51,6 @@
 					$temppw->execute();
 					$temppw->closeCursor();
 					echo "We have updated your password";
-					session_destroy();
 					echo '<a href="index.php">Homepage</a>';
 				}
 				else
