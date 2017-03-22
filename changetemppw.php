@@ -54,15 +54,14 @@ echo '</pre>';
 			else
 			{
 				echo "Your new passwords are not the same";
-			}
+			}//end of else
 		}
 	
 	}
-	else
+	if (!isset($_POST))
 	{
 		var_dump($_SESSION);
-?>
-		 <form id="changetemppw" name="changetemppw" action="changetemppw.php" method="POST">
+		echo '<form id="changetemppw" name="changetemppw" action="changetemppw.php" method="POST">
                 <fieldset>
                         <legend>Change Temporary Password</legend>
                         Current Password:<input type="password" name="currentpassword" id="currentpassword">
@@ -70,8 +69,9 @@ echo '</pre>';
                         <br />Confirm Password: <input type="password" name="confirmpassword" id="confirmpassword">
                         <br /><input type="submit" name="submit" value="Submit"> <input type="Reset" name="Reset" value="Reset">
                 </fieldset>
-        </form>
-	<?php } ?>
+        </form>';
+	}
+?>
 
 	
 </body>
