@@ -24,7 +24,7 @@
 		$confirmpassword=$_POST['confirmpassword'];
 		$confirmpassword=sha1($confirmpassword);
 		
-		
+		//TODO: Try/Catch
 		$getCurrentPassword=$db_con->prepare("SELECT * FROM users where users_id=:userid;");
 		$getCurrentPassword->bindParam(':userid',$_SESSION['users_id']);
 		$getCurrentPassword->execute();
@@ -38,20 +38,24 @@
 			{
 				if ($newpassword==$confirmpassword)
 				{
+					//TODO: Try/catch
 					$updatepassword=$db_con->prepare(
-						"UPDATE users set password=:password where userid=:userid;");
+						"UPDATE users set password=:password where users_id=:userid;");
 					$updatepassword->bindParam(':password',$confirmpassword);
 					$updatepassword->bindParam(':userid',$_SESSION['user_id']);
 					$updatepassword->execute();
 					$updatepassword->closeCursor();
+					
+					//TODO: Try/catch
 					$temppw=$db_con->prepare(
-						"UPDATE users set temppw=:temppw where userid=:userid;");
+						"UPDATE users set temppw=:temppw where users_id=:userid;");
 					$temppw->bindParam(':temppw', 0);
 					$temppw->bindParam(':userid',$_SESSION['user_id']);
 					$temppw->execute();
 					$temppw->closeCursor();
 					echo "We have updated your password";
 					echo '<a href="index.php">Homepage</a>';
+					session_destroy();
 				}
 				else
 				{
