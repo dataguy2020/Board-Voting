@@ -7,9 +7,9 @@
 		foreach ($motionArray as $motion)
 		{
 			$motion=$db_con->prepare ("SELECT * from motions where motion_id = :motionid");
-			 $motion->bindParam(':motionid',$motionid);
-			 $motion->execute();
-			 $body="<html>
+			$motion->bindParam(':motionid',$motionid);
+			$motion->execute();
+			$body="<html>
 					<head>
 						<title>Status of Motion</title>
 					</head>
@@ -17,17 +17,17 @@
 			 while ($row=$motion->fetch(PDO::FETCH_ASSOC))
 			 {
 			 	$motionid=$row['motion_id'];
-			 	 $motionname=$row['motion_name'];
-			 	 $dateadded=$row['dateadded'];
-			 	 $motiondesc=$row['motion_description'];
-			 	 $disposition=$row['motion_disposition'];
+			 	$motionname=$row['motion_name'];
+			 	$dateadded=$row['dateadded'];
+			 	$motiondesc=$row['motion_description'];
+			 	$disposition=$row['motion_disposition'];
 
 			 	 $body .= "<h1>" . $motionname . "</h1>
-                                	<h2>Date Added:</h2>" . $dateadded . "<br />
-                                	<h2>Motion Text</h2>" .
-                                	$motiondesc .
-                                	"<h2>Disposition:</h2>" .
-                                	$disposition;
+                                	   <h2>Date Added:</h2>" . $dateadded . "<br />
+                                	   <h2>Motion Text</h2>" .
+                                	   $motiondesc .
+                                	   "<h2>Disposition:</h2>" .
+                                	   $disposition;
 			}//End of while
 
 			$body .= "<br /><br />
@@ -105,7 +105,7 @@
 		$headers[] = "Cc: $boardEmail";
 		$headers[]= 'From: Tanyard Springs Votes <noreply@tanyardspringshoa.com>';
 		
-		//mailing
+		
 		$to="";
 		$managementSearch=$db_con->prepare("SELECT email from management where fenabled=1;");
 		$managementSearch->execute();
@@ -119,33 +119,33 @@
 	
 function temppassword($temppassword, $email)
         {
-			$body = "<html><head><title>New Password Generated</title></head><body>";
-			$body .="Your temporary password has been set. Your new password is $temppassword";
-			$body .="</body></html>";
-            $subject = "New Password";
-            $message = $body;
-            $headers[] = 'MIME-Version: 1.0';
-            $headers[] = 'Content-type: text/html; charset=iso-8859-1';
-            $headers[] = "To: $email";
-            $headers[]= 'From: Tanyard Springs Votes <noreply@tanyardspringshoa.com>';
-            mail($email,$subject,$message, implode("\r\n", $headers));
+		$body = "<html><head><title>New Password Generated</title></head><body>";
+		$body .="Your temporary password has been set. Your new password is $temppassword";
+		$body .="</body></html>";
+            	$subject = "New Password";
+            	$message = $body;
+            	$headers[] = 'MIME-Version: 1.0';
+            	$headers[] = 'Content-type: text/html; charset=iso-8859-1';
+            	$headers[] = "To: $email";
+            	$headers[]= 'From: Tanyard Springs Votes <noreply@tanyardspringshoa.com>';
+            	mail($email,$subject,$message, implode("\r\n", $headers));
         }//end of function
 function addmailing($votesmotionid)
 	{
 		global $db_con;
 		$motionArray = array($votesmotionid);
 		$userSearch=$db_con->prepare("SELECT * from users where enabled=1;");
-        $userSearch->execute();
+        	$userSearch->execute();
 		foreach ($motionArray as $motionid)
-        {
+        	{
 			while ($row=$userSearch->fetch(PDO::FETCH_ASSOC))
 			{
-					$firstName = $row['first_name'] .",";
-					$lastName = $row['last_name'] .",";
-					$name="$firstName $lastName";
-				}
+				$firstName = $row['first_name'] .",";
+				$lastName = $row['last_name'] .",";
+				$name="$firstName $lastName";
+			}
 				
-				$motion=$db_con->prepare ("SELECT * from motions where motion_id = :motionid");
+			$motion=$db_con->prepare ("SELECT * from motions where motion_id = :motionid");
                         $motion->bindParam(':motionid',$motionid);
 			if (!$motion->execute()) var_dump($motion->errorinfo());
 			
@@ -172,7 +172,6 @@ function addmailing($votesmotionid)
                         $body .= "</body>
                                 </html>";
                 }//end of foreach
-                //$to="michaelbrown.tsbod@gmail.com";
                 $boardEmail="";
                 while ($row=$userSearch->fetch(PDO::FETCH_ASSOC))
                 {
