@@ -80,7 +80,6 @@
     <!-- /container --> 
   </div>
   <!-- /main-inner --> 
-</div>
 <!-- /main -->
 
 <!-- /extra -->
