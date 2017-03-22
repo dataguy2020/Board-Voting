@@ -116,7 +116,6 @@
 		mail($to,$subject,$message, implode("\r\n", $headers));
 	}//end of function
 
-	
 function temppassword($temppassword, $email)
         {
 		$body = "<html><head><title>New Password Generated</title></head><body>";
@@ -130,6 +129,7 @@ function temppassword($temppassword, $email)
             	$headers[]= 'From: Tanyard Springs Votes <noreply@tanyardspringshoa.com>';
             	mail($email,$subject,$message, implode("\r\n", $headers));
         }//end of function
+
 function addmailing($votesmotionid)
 	{
 		global $db_con;
