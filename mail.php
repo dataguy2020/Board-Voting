@@ -7,29 +7,28 @@
 		foreach ($motionArray as $motion)
 		{
 			$motion=$db_con->prepare ("SELECT * from motions where motion_id = :motionid");
-                        $motion->bindParam(':motionid',$motionid);
-                        $motion->execute();
-			$body="<html>
+			 $motion->bindParam(':motionid',$motionid);
+			 $motion->execute();
+			 $body="<html>
 					<head>
 						<title>Status of Motion</title>
 					</head>
 					<body>";
-                        while ($row=$motion->fetch(PDO::FETCH_ASSOC))
-                        {
-                                $motionid=$row['motion_id'];
-                                $motionname=$row['motion_name'];
-                                $dateadded=$row['dateadded'];
-                                $motiondesc=$row['motion_description'];
-                                $disposition=$row['motion_disposition'];
+			 while ($row=$motion->fetch(PDO::FETCH_ASSOC))
+			 {
+			 	$motionid=$row['motion_id'];
+			 	 $motionname=$row['motion_name'];
+			 	 $dateadded=$row['dateadded'];
+			 	 $motiondesc=$row['motion_description'];
+			 	 $disposition=$row['motion_disposition'];
 
-                               $body .= "<h1>" . $motionname . "</h1>
+			 	 $body .= "<h1>" . $motionname . "</h1>
                                 	<h2>Date Added:</h2>" . $dateadded . "<br />
                                 	<h2>Motion Text</h2>" .
                                 	$motiondesc .
                                 	"<h2>Disposition:</h2>" .
                                 	$disposition;
 			}//End of while
-			 $motion->closeCursor();
 
 			$body .= "<br /><br />
 					<h2>Current Votes</h2>
@@ -59,7 +58,6 @@
                                         <td>" . $votecast . "</td>
                                         </tr>";
                         }// while ($row=$votes->fetch(PDO::FETCH_ASSOC))
-			$votes->closeCursor();
     			$body .= "</table>";
 			$body .= "<br /><br />
 					<h2>Discussions</h2>
@@ -87,7 +85,6 @@
 							<td>" . $discussiontext . "</td>
 						</tr>";
 			}//end of while
-			$motiondiscussions->closeCursor();
 			$body .= "</table>";
 
 			$body .= "</body>
@@ -117,8 +114,6 @@
 			$to .= $row['email'] . ", ";
 		}
 		mail($to,$subject,$message, implode("\r\n", $headers));
-		$emailSearch->closeCursor();
-		$managementSearch->closeCursor();
 	}//end of function
 
 	
@@ -143,14 +138,14 @@ function addmailing($votesmotionid)
         $userSearch->execute();
 		foreach ($motionArray as $motionid)
         {
-		while ($row=$userSearch->fetch(PDO::FETCH_ASSOC))
+			while ($row=$userSearch->fetch(PDO::FETCH_ASSOC))
 			{
-				$firstName = $row['first_name'] .",";
-				$lastName = $row['last_name'] .",";
-				$name="$firstName $lastName";
-			}
-			
-                        $motion=$db_con->prepare ("SELECT * from motions where motion_id = :motionid");
+					$firstName = $row['first_name'] .",";
+					$lastName = $row['last_name'] .",";
+					$name="$firstName $lastName";
+				}
+				
+				$motion=$db_con->prepare ("SELECT * from motions where motion_id = :motionid");
                         $motion->bindParam(':motionid',$motionid);
 			if (!$motion->execute()) var_dump($motion->errorinfo());
 			
@@ -191,7 +186,5 @@ function addmailing($votesmotionid)
                 $headers[]= 'From: Tanyard Springs Votes <noreply@tanyardspringshoa.com>';
                 //mailing
                 mail($boardEmail,$subject,$message, implode("\r\n", $headers));
-		$userSearch->closeCursor();
-		$motion->closeCursor();
 	}//end of function
 ?>
