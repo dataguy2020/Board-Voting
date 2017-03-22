@@ -3,7 +3,7 @@
 	if(empty($_SESSION['user_id']))
 	{
 		header('location: index.php');
-        }
+	}
 ?>
 
 <html>
@@ -14,7 +14,7 @@
 
 	<?php
 		include_once('include/db-config.php');
-		include_once('mail.php');
+		//include_once('mail.php');
 		$motionname=$_POST['motionname'];
 		$motiontext=$_POST['motiontext'];
 
@@ -65,7 +65,7 @@
 					$votestatement->execute();
 					echo "Added your vote as you created the motion";
 					echo "<br />Motion ID: " . $votesmotionid;
-					addmailing($votesmotionid);
+					//addmailing($votesmotionid);
 					$votestatement ->closeCursor();
 					
 				}

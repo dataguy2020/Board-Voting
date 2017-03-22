@@ -106,7 +106,6 @@ header('location: index.php');
                						<input type="Reset" name="Reset" value="Reset">
         						</form>';
 					}// if (count($row) == 1)
-					$addvote->closeCursor();
 					else
 					{
 						$secondedVote=$db_con->prepare(
