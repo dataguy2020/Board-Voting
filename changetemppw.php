@@ -73,8 +73,6 @@
                 </fieldset>
         </form>';
 	}
-?>
-
-	
+?>	
 </body>
 </html>
