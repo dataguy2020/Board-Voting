@@ -15,7 +15,7 @@
 <body>
 <?php
 	include_once('include/db-config.php');
-	if ($_POST)
+	if (count($_POST) > 0)
 	{
 		$currentpassword=$_POST['currentpassword'];
 		$currentpassword=sha1($currentpassword);
@@ -52,7 +52,7 @@
 		}
 	
 	}
-	if (!isset($_POST))
+	else
 	{
 		var_dump($_SESSION);
 		echo '<form id="changetemppw" name="changetemppw" action="changetemppw.php" method="POST">
