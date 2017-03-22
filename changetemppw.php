@@ -1,11 +1,9 @@
 <?php
 	session_start();
-	echo "SESSION ARRAY"<br />";
 	echo '<pre>';
 	var_dump($_SESSION);
 	echo '</pre>';
-
-	echo "POST ARRAY <br />";
+	echo '<br />';
 	echo "<pre>";
 	var_dump($_POST);
 	echo "<pre>";
