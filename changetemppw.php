@@ -3,7 +3,6 @@
 	echo '<pre>';
 	var_dump($_SESSION);
 	echo '</pre>';
-	echo '<br />';
 	echo "<pre>";
 	var_dump($_POST);
 	echo "<pre>";
@@ -16,7 +15,7 @@
 <body>
 <?php
 	include_once('include/db-config.php');
-	if ( isset ($_POST))
+	if ($_POST)
 	{
 		$currentpassword=$_POST['currentpassword'];
 		$currentpassword=sha1($currentpassword);
