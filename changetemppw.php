@@ -54,7 +54,9 @@
 	}
 	else
 	{
+		echo '<pre>';
 		var_dump($_SESSION);
+		echo '</pre>';
 		echo '<form id="changetemppw" name="changetemppw" action="changetemppw.php" method="POST">
                 <fieldset>
                         <legend>Change Temporary Password</legend>
