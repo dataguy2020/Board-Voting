@@ -7,29 +7,28 @@
 		foreach ($motionArray as $motion)
 		{
 			$motion=$db_con->prepare ("SELECT * from motions where motion_id = :motionid");
-                        $motion->bindParam(':motionid',$motionid);
-                        $motion->execute();
+			$motion->bindParam(':motionid',$motionid);
+			$motion->execute();
 			$body="<html>
 					<head>
 						<title>Status of Motion</title>
 					</head>
 					<body>";
-                        while ($row=$motion->fetch(PDO::FETCH_ASSOC))
-                        {
-                                $motionid=$row['motion_id'];
-                                $motionname=$row['motion_name'];
-                                $dateadded=$row['dateadded'];
-                                $motiondesc=$row['motion_description'];
-                                $disposition=$row['motion_disposition'];
+			 while ($row=$motion->fetch(PDO::FETCH_ASSOC))
+			 {
+			 	$motionid=$row['motion_id'];
+			 	$motionname=$row['motion_name'];
+			 	$dateadded=$row['dateadded'];
+			 	$motiondesc=$row['motion_description'];
+			 	$disposition=$row['motion_disposition'];
 
-                               $body .= "<h1>" . $motionname . "</h1>
-                                	<h2>Date Added:</h2>" . $dateadded . "<br />
-                                	<h2>Motion Text</h2>" .
-                                	$motiondesc .
-                                	"<h2>Disposition:</h2>" .
-                                	$disposition;
+			 	 $body .= "<h1>" . $motionname . "</h1>
+                                	   <h2>Date Added:</h2>" . $dateadded . "<br />
+                                	   <h2>Motion Text</h2>" .
+                                	   $motiondesc .
+                                	   "<h2>Disposition:</h2>" .
+                                	   $disposition;
 			}//End of while
-			 $motion->closeCursor();
 
 			$body .= "<br /><br />
 					<h2>Current Votes</h2>
@@ -59,7 +58,6 @@
                                         <td>" . $votecast . "</td>
                                         </tr>";
                         }// while ($row=$votes->fetch(PDO::FETCH_ASSOC))
-			$votes->closeCursor();
     			$body .= "</table>";
 			$body .= "<br /><br />
 					<h2>Discussions</h2>
@@ -87,7 +85,6 @@
 							<td>" . $discussiontext . "</td>
 						</tr>";
 			}//end of while
-			$motiondiscussions->closeCursor();
 			$body .= "</table>";
 
 			$body .= "</body>
@@ -108,7 +105,7 @@
 		$headers[] = "Cc: $boardEmail";
 		$headers[]= 'From: Tanyard Springs Votes <noreply@tanyardspringshoa.com>';
 		
-		//mailing
+		
 		$to="";
 		$managementSearch=$db_con->prepare("SELECT email from management where fenabled=1;");
 		$managementSearch->execute();
@@ -117,85 +114,77 @@
 			$to .= $row['email'] . ", ";
 		}
 		mail($to,$subject,$message, implode("\r\n", $headers));
-		$emailSearch->closeCursor();
-		$managementSearch->closeCursor();
 	}//end of function
+
+	function temppassword($temppassword, $email)
+		{
+			$body = "<html><head><title>New Password Generated</title></head><body>";
+			$body .="Your temporary password has been set. Your new password is $temppassword";
+			$body .="</body></html>";
+			$subject = "New Password";
+			$message = $body;
+			$headers[] = 'MIME-Version: 1.0';
+			$headers[] = 'Content-type: text/html; charset=iso-8859-1';
+			$headers[] = "To: $email";
+			$headers[]= 'From: Tanyard Springs Votes <noreply@tanyardspringshoa.com>';
+			mail($email,$subject,$message, implode("\r\n", $headers));
+		}//end of function
 
 	function addmailing($votesmotionid)
-	{
-		global $db_con;
-		$motionArray = array($votesmotionid);
-		$userSearch=$db_con->prepare("SELECT * from users where enabled=1;");
-                $userSearch->execute();
-		
-                foreach ($motionArray as $motionid)
-                {
+		{
+			global $db_con;
+			$motionArray = array($votesmotionid);
+			$userSearch=$db_con->prepare("SELECT * from users where enabled=1;");
+			$userSearch->execute();
+			foreach ($motionArray as $motionid)
+			{
+				while ($row=$userSearch->fetch(PDO::FETCH_ASSOC))
+				{
+					$firstName = $row['first_name'] .",";
+					$lastName = $row['last_name'] .",";
+					$name="$firstName $lastName";
+				}
+
+				$motion=$db_con->prepare ("SELECT * from motions where motion_id = :motionid");
+				$motion->bindParam(':motionid',$motionid);
+				if (!$motion->execute()) var_dump($motion->errorinfo());
+
+
+				$body="<html>
+						<head>
+							<title>New Motion Addded</title>
+						</head>
+						<body>";
+				$body .= "Dear $name <br /><br />";
+				$body .= "A new electronic vote has been created, please review it as soon as possible. The information
+					is below.";
+				while ($row=$motion->fetch(PDO::FETCH_ASSOC))
+				{
+					$motionid=$row['motion_id'];
+					$motionname=$row['motion_name'];
+					$dateadded=$row['dateadded'];
+					$motiondesc=$row['motion_description'];
+					$body .= "<br ><br />Motion ID: " . $motionid;
+					$body .= "<br />Motion Name: " . $motionname;
+					$body .= "<br />Date Added: " . $dateadded;
+					$body .= "<br />Motion Text: " . $motiondesc;
+				}//End of while
+				$body .= "</body>
+					</html>";
+			}//end of foreach
+			$boardEmail="";
 			while ($row=$userSearch->fetch(PDO::FETCH_ASSOC))
 			{
-				$firstName = $row['first_name'] .",";
-				$lastName .= $row['last_name'] .",";
-				$name=$firstName . " " . $lastname;
+				$boardEmail .= $row['email'] .",";
 			}
-			
-                        $motion=$db_con->prepare ("SELECT * from motions where motion_id = :motionid");
-                        $motion->bindParam(':motionid',$motionid);
-			if (!$motion->execute()) var_dump($motion->errorinfo());
-			
+			$subject = "New Motion " . $motionid;
+			$message = $body;
+			$headers[] = 'MIME-Version: 1.0';
+			$headers[] = 'Content-type: text/html; charset=iso-8859-1';
+			$headers[] = "To: $boardEmail";
+			$headers[]= 'From: Tanyard Springs Votes <noreply@tanyardspringshoa.com>';
+			//mailing
+			mail($boardEmail,$subject,$message, implode("\r\n", $headers));
 		
-                        $body="<html>
-                                        <head>
-                                                <title>New Motion Addded</title>
-                                        </head>
-                                        <body>";
-                        $body .= "Dear " $name . "<br /><br />";
-                        $body .= "A new electronic vote has been created, please review it as soon as possible. The information
-                                is below.";
-                        while ($row=$motion->fetch(PDO::FETCH_ASSOC))
-                        {
-                                $motionid=$row['motion_id'];
-                                $motionname=$row['motion_name'];
-                                $dateadded=$row['dateadded'];
-                                $motiondesc=$row['motion_description'];
-                                $body .= "<br ><br />Motion ID: " . $motionid;
-                                $body .= "<br />Motion Name: " . $motionname;
-                                $body .= "<br />Date Added: " . $dateadded;
-                                $body .= "<br />Motion Text: " . $motiondesc;
-                        }//End of while
-                        $body .= "</body>
-                                </html>";
-                }//end of foreach
-                //$to="michaelbrown.tsbod@gmail.com";
-                $boardEmail="";
-                while ($row=$userSearch->fetch(PDO::FETCH_ASSOC))
-                {
-                        $boardEmail .= $row['email'] .",";
-		}
-                $subject = "New Motion " . $motionid;
-                $message = $body;
-                $headers[] = 'MIME-Version: 1.0';
-                $headers[] = 'Content-type: text/html; charset=iso-8859-1';
-                $headers[] = "To: $boardEmail";
-                $headers[]= 'From: Tanyard Springs Votes <noreply@tanyardspringshoa.com>';
-                //mailing
-                mail($boardEmail,$subject,$message, implode("\r\n", $headers));
-		$userSearch->closeCursor();
-		$motion->closeCursor();
-	}//end of function
-function temppassword($temppassword, $email)
-        {
-		$body = "<html><head><title>New Password Generated</title></head><body>"
-		$body .="Your temporary password has been set. Your new password is " . $temppassword;
-		$body .="</body></html>";
-                $subject = "New Password";
-                $message = $body;
-                $headers[] = 'MIME-Version: 1.0';
-                $headers[] = 'Content-type: text/html; charset=iso-8859-1';
-                $headers[] = "To: $email";
-                $headers[]= 'From: Tanyard Springs Votes <noreply@tanyardspringshoa.com>';
-                //mailing
-                mail($email,$subject,$message, implode("\r\n", $headers));
-        }//end of function
-
-
-
+		}//end of function
 ?>

@@ -94,7 +94,7 @@
 		<legend>Change Password?</legend>E-mail: <input type="text" name="email" id="email">
 		<br /><input type="submit" id="submit" name="submit" value="Submit">
 		<input type="reset" id="reset" name="reset" value="Reset">
-		<fieldset>
+		</fieldset>
 	</form>
 	<?php
 		}

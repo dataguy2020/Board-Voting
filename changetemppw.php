@@ -1,27 +1,21 @@
 <?php
 	session_start();
 	echo '<pre>';
-var_dump($_SESSION);
-echo '</pre>';
+	var_dump($_SESSION);
+	echo '</pre>';
+	echo "<pre>";
+	var_dump($_POST);
+	echo "</pre>";
+
 ?>
 <html>
 <head>
 	<title>Change Temporary Password</title>
 </head>
 <body>
-	<form id="changetemppw" name="changetemppw" action="changetemppw.php" method="POST">
-		<fieldset>
-			<legend>Change Temporary Password</legend>
-			Current Password:<input type="password" name="currentpassword" id="currentpassword">
-			<br />New Password: <input type="passwrod" name="newpassword" id="newpassword">
-			<br />Confirm Password: <input type="password" name="confirmpassword" id="confirmpassword">
-			<br /><input type="submit" name="submit" value="Submit"> <input type="Reset" name="Reset" value="Reset">
-		</fieldset>
-	</form>
-
 <?php
 	include_once('include/db-config.php');
-	if ( isset ($_POST))
+	if (count($_POST) > 0)
 	{
 		$currentpassword=$_POST['currentpassword'];
 		$currentpassword=sha1($currentpassword);
@@ -30,38 +24,49 @@ echo '</pre>';
 		$confirmpassword=$_POST['confirmpassword'];
 		$confirmpassword=sha1($confirmpassword);
 		
-		if ($currentpasswrod != $row[0]['password'])
+		//TODO: Try/Catch
+		$getCurrentPassword=$db_con->prepare("SELECT * FROM users where users_id=:userid;");
+		$getCurrentPassword->bindParam(':userid',$_SESSION['users_id']);
+		$getCurrentPassword->execute();
+		while ($getCurrentPasswordRow=$getCurrentPassword->fetch(PDO::FETCH_ASSOC))
 		{
-			echo "Your password is not correct";
-		}
-		else
-		{
-			if ($newpassword==$confirmpassword)
+			if ($currentpassword != $getCurrentPasswordRow[0]['password'])
 			{
-				$updatepassword=$db_con->prepare(
-					"UPDATE users set password=:password where userid=:userid;");
-				$updatepassword->bindParam(':password',$confirmpassword);
-				$updatepassword->bindParam(':userid',$_SESSION['user_id']);
-				$updatepassword->execute();
-				$updatepassword->closeCursor();
-				$temppw=$db_con->prepare(
-					"UPDATE users set temppw=1 where userid=:userid;");
-				$temppw->bindParam(':userid',$_SESSION['user_id']);
-				$temppw->execute();
-				$temppw->closeCursor();
+				echo "Your password is not correct";
 			}
 			else
 			{
-				echo "Your new passwords are not the same";
-			}
-		}
-	
-	}
+				if ($newpassword==$confirmpassword)
+				{
+					//TODO: Try/catch
+					$updatepassword=$db_con->prepare(
+						"UPDATE users set password=:password where users_id=:userid;");
+					$updatepassword->bindParam(':password',$confirmpassword);
+					$updatepassword->bindParam(':userid',$_SESSION['user_id']);
+					$updatepassword->execute();
+					
+					//TODO: Try/catch
+					$temppw=$db_con->prepare(
+						"UPDATE users set temppw=:temppw where users_id=:userid;");
+					$temppw->bindParam(':temppw', 0);
+					$temppw->bindParam(':userid',$_SESSION['user_id']);
+					$temppw->execute();
+					echo "We have updated your password";
+					echo '<a href="index.php">Homepage</a>';
+				}
+				else
+				{
+					echo "Your new passwords are not the same";
+				}//end of else
+			}//end of else
+		}//end of while
+	}//end of if
 	else
 	{
+		echo '<pre>';
 		var_dump($_SESSION);
-?>
-		 <form id="changetemppw" name="changetemppw" action="changetemppw.php" method="POST">
+		echo '</pre>';
+		echo '<form id="changetemppw" name="changetemppw" action="changetemppw.php" method="POST">
                 <fieldset>
                         <legend>Change Temporary Password</legend>
                         Current Password:<input type="password" name="currentpassword" id="currentpassword">
@@ -69,9 +74,8 @@ echo '</pre>';
                         <br />Confirm Password: <input type="password" name="confirmpassword" id="confirmpassword">
                         <br /><input type="submit" name="submit" value="Submit"> <input type="Reset" name="Reset" value="Reset">
                 </fieldset>
-        </form>
-	<?php } ?>
-
-	
+        </form>';
+	}
+?>	
 </body>
 </html>

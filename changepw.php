@@ -31,7 +31,7 @@
 						':usersid'=>$_SESSION['user_id']));
 					echo "<br />Your password has been changed";
 					$passwordUpdatestatement->closeCursor();
-					$temppwUpdate=$db_con->prepare("update users set temppw= 1 where users_id=:usersid");
+					$temppwUpdate=$db_con->prepare("update users set temppw= 0 where users_id=:usersid");
 					$temppwUpdate=$db_con->execute(array(':usersid'=>$_SESSION['user_id']));
 					echo "<br />Change status back to non-temp password";
 					$temppwUpdate->closeCursor();

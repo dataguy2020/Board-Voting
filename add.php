@@ -1,7 +1,8 @@
 <?php
-session_start();
-if(empty($_SESSION['user_id'])){
-header('location: index.php');	
+	session_start();
+	if(empty($_SESSION['user_id']))
+	{
+		header('location: index.php');	
 	}
 ?>
 <!DOCTYPE html>
@@ -69,9 +70,6 @@ header('location: index.php');
 			<input type="reset" value="Reset" name="Reset" />
 		</FIELDSET>
 	</form>
-			
-			
-			
 
 <!-- /span6 -->
         
@@ -82,7 +80,6 @@ header('location: index.php');
     <!-- /container --> 
   </div>
   <!-- /main-inner --> 
-</div>
 <!-- /main -->
 
 <!-- /extra -->
