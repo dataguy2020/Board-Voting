@@ -46,10 +46,13 @@
 					$updatepassword->closeCursor();
 					$temppw=$db_con->prepare(
 						"UPDATE users set temppw=:temppw where userid=:userid;");
-					$temppw->bindParam(':temppw', 1);
+					$temppw->bindParam(':temppw', 0);
 					$temppw->bindParam(':userid',$_SESSION['user_id']);
 					$temppw->execute();
 					$temppw->closeCursor();
+					echo "We have updated your password";
+					session_destroy();
+					echo '<a href="index.php">Homepage</a>';
 				}
 				else
 				{
