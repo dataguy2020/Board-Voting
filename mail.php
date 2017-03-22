@@ -143,18 +143,20 @@ function addmailing($votesmotionid)
         $userSearch->execute();
 		foreach ($motionArray as $motionid)
         {
-			while ($row=$userSearch->fetch(PDO::FETCH_ASSOC))
+		while ($row=$userSearch->fetch(PDO::FETCH_ASSOC))
 			{
 				$firstName = $row['first_name'] .",";
-				$lastName .= $row['last_name'] .",";
+				$lastName = $row['last_name'] .",";
 				$name="$firstName $lastName";
 			}
-			$motion=$db_con->prepare ("SELECT * from motions where motion_id = :motionid");
-            $motion->bindParam(':motionid',$motionid);
-			if (!$motion->execute()) 
-				var_dump($motion->errorinfo());
-			$body="<html>
-					<head>
+			
+                        $motion=$db_con->prepare ("SELECT * from motions where motion_id = :motionid");
+                        $motion->bindParam(':motionid',$motionid);
+			if (!$motion->execute()) var_dump($motion->errorinfo());
+			
+		
+                        $body="<html>
+                                        <head>
                                                 <title>New Motion Addded</title>
                                         </head>
                                         <body>";
