@@ -30,7 +30,7 @@ echo '</pre>';
 		$confirmpassword=$_POST['confirmpassword'];
 		$confirmpassword=sha1($confirmpassword);
 		
-		if ($currentpasswrod != $row[0]['password'])
+		if ($currentpassword != $row[0]['password'])
 		{
 			echo "Your password is not correct";
 		}
@@ -45,7 +45,8 @@ echo '</pre>';
 				$updatepassword->execute();
 				$updatepassword->closeCursor();
 				$temppw=$db_con->prepare(
-					"UPDATE users set temppw=1 where userid=:userid;");
+					"UPDATE users set temppw=:temppw where userid=:userid;");
+				$temppw->bindParam(':temppw', 1);
 				$temppw->bindParam(':userid',$_SESSION['user_id']);
 				$temppw->execute();
 				$temppw->closeCursor();
