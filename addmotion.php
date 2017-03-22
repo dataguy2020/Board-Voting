@@ -65,9 +65,7 @@
 					$votestatement->execute();
 					echo "Added your vote as you created the motion";
 					echo "<br />Motion ID: " . $votesmotionid;
-					addmailing($votesmotionid);
-					$votestatement ->closeCursor();
-					
+					addmailing($votesmotionid);					
 				}
 				else
 				{
