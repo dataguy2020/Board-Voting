@@ -124,41 +124,37 @@
 	
 function temppassword($temppassword, $email)
         {
-		$body = "<html><head><title>New Password Generated</title></head><body>";
-		$body .="Your temporary password has been set. Your new password is $temppassword";
-		$body .="</body></html>";
-                $subject = "New Password";
-                $message = $body;
-                $headers[] = 'MIME-Version: 1.0';
-                $headers[] = 'Content-type: text/html; charset=iso-8859-1';
-                $headers[] = "To: $email";
-                $headers[]= 'From: Tanyard Springs Votes <noreply@tanyardspringshoa.com>';
-                //mailing
-                mail($email,$subject,$message, implode("\r\n", $headers));
+			$body = "<html><head><title>New Password Generated</title></head><body>";
+			$body .="Your temporary password has been set. Your new password is $temppassword";
+			$body .="</body></html>";
+            $subject = "New Password";
+            $message = $body;
+            $headers[] = 'MIME-Version: 1.0';
+            $headers[] = 'Content-type: text/html; charset=iso-8859-1';
+            $headers[] = "To: $email";
+            $headers[]= 'From: Tanyard Springs Votes <noreply@tanyardspringshoa.com>';
+            mail($email,$subject,$message, implode("\r\n", $headers));
         }//end of function
-        function addmailing($votesmotionid)
+function addmailing($votesmotionid)
 	{
 		global $db_con;
 		$motionArray = array($votesmotionid);
 		$userSearch=$db_con->prepare("SELECT * from users where enabled=1;");
-                $userSearch->execute();
-		
-                foreach ($motionArray as $motionid)
-                {
+        $userSearch->execute();
+		foreach ($motionArray as $motionid)
+        {
 			while ($row=$userSearch->fetch(PDO::FETCH_ASSOC))
 			{
 				$firstName = $row['first_name'] .",";
 				$lastName .= $row['last_name'] .",";
 				$name="$firstName $lastName";
 			}
-			
-                        $motion=$db_con->prepare ("SELECT * from motions where motion_id = :motionid");
-                        $motion->bindParam(':motionid',$motionid);
-			if (!$motion->execute()) var_dump($motion->errorinfo());
-			
-		
-                        $body="<html>
-                                        <head>
+			$motion=$db_con->prepare ("SELECT * from motions where motion_id = :motionid");
+            $motion->bindParam(':motionid',$motionid);
+			if (!$motion->execute()) 
+				var_dump($motion->errorinfo());
+			$body="<html>
+					<head>
                                                 <title>New Motion Addded</title>
                                         </head>
                                         <body>";
@@ -196,7 +192,4 @@ function temppassword($temppassword, $email)
 		$userSearch->closeCursor();
 		$motion->closeCursor();
 	}//end of function
-
-
-
 ?>
