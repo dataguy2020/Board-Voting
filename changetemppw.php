@@ -9,16 +9,6 @@ echo '</pre>';
 	<title>Change Temporary Password</title>
 </head>
 <body>
-	<form id="changetemppw" name="changetemppw" action="changetemppw.php" method="POST">
-		<fieldset>
-			<legend>Change Temporary Password</legend>
-			Current Password:<input type="password" name="currentpassword" id="currentpassword">
-			<br />New Password: <input type="password" name="newpassword" id="newpassword">
-			<br />Confirm Password: <input type="password" name="confirmpassword" id="confirmpassword">
-			<br /><input type="submit" name="submit" value="Submit"> <input type="Reset" name="Reset" value="Reset">
-		</fieldset>
-	</form>
-
 <?php
 	include_once('include/db-config.php');
 	if ( isset ($_POST))
