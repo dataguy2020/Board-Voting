@@ -14,7 +14,6 @@
 
 	<?php
 		include_once('include/db-config.php');
-		//include_once('mail.php');
 		$motionname=$_POST['motionname'];
 		$motiontext=$_POST['motiontext'];
 
@@ -65,7 +64,8 @@
 					$votestatement->execute();
 					echo "Added your vote as you created the motion";
 					echo "<br />Motion ID: " . $votesmotionid;
-					//addmailing($votesmotionid);
+					include_once('addmail.php');
+					addmailing($votesmotionid);
 					$votestatement ->closeCursor();
 					
 				}
