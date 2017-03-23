@@ -10,8 +10,8 @@
 		{
 			while ($row=$userSearch->fetch(PDO::FETCH_ASSOC))
 			{
-				$firstName = $row['first_name'] .",";
-				$lastName = $row['last_name'] .",";
+				$firstName = $row['first_name'];
+				$lastName = $row['last_name'] ;
 				$name="$firstName $lastName";
 			}
 
@@ -48,7 +48,13 @@
 			$boardEmail .= $row['email'] .",";
 		}
 		$subject = "New Motion " . $motionid;
+		echo "Board Email: " . $boardEmail;
+		echo "<br />";
+		echo "Subject: " . $subject;
+		echo "<br />";
 		$message = $body;
+		echo "Message: " . $message;
+		echo "<br />";
 		$headers[] = 'MIME-Version: 1.0';
 		$headers[] = 'Content-type: text/html; charset=iso-8859-1';
 		$headers[] = "To: $boardEmail";
