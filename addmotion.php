@@ -69,8 +69,10 @@
 			$headers[] = "To: $boardEmail";
 			$headers[]= 'From: Tanyard Springs Votes <noreply@tanyardspringshoa.com>';
 			//mailing
-			mail($boardEmail,$subject,$message, implode("\r\n", $headers));
-		
+			if (mail($boardEmail,$subject,$message, implode("\r\n", $headers)))
+				print "Email successfully sent";
+			else
+				print "An error occured";
 		}//end of function
 		$motionname=$_POST['motionname'];
 		$motiontext=$_POST['motiontext'];
