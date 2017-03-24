@@ -113,7 +113,10 @@
 		{
 			$to .= $row['email'] . ", ";
 		}
-		mail($to,$subject,$message, implode("\r\n", $headers));
+		if(mail($to,$subject,$message, implode("\r\n", $headers)))
+			print "Email successfully sent";
+		else
+			print "An error occured";	
 	}//end of function
 
 	function temppassword($temppassword, $email)
@@ -127,7 +130,10 @@
 			$headers[] = 'Content-type: text/html; charset=iso-8859-1';
 			$headers[] = "To: $email";
 			$headers[]= 'From: Tanyard Springs Votes <noreply@tanyardspringshoa.com>';
-			mail($email,$subject,$message, implode("\r\n", $headers));
+			if(mail($email,$subject,$message, implode("\r\n", $headers)))
+				print "Email successfully sent";
+			else
+				print "An error occured";
 		}//end of function
 
 	function addmailing($votesmotionid)
@@ -172,8 +178,10 @@
 				$body .= "</body>
 					</html>";
 			}//end of foreach
-			$boardEmail="";
-			while ($row=$userSearch->fetch(PDO::FETCH_ASSOC))
+			boardEmail = "";
+			$emailSearch=$db_con->prepare("SELECT * FROM users where enabled=1");
+			$emailSearch->execute();
+			while ($row=$emailSearch->fetch(PDO::FETCH_ASSOC))
 			{
 				$boardEmail .= $row['email'] .",";
 			}
@@ -184,7 +192,9 @@
 			$headers[] = "To: $boardEmail";
 			$headers[]= 'From: Tanyard Springs Votes <noreply@tanyardspringshoa.com>';
 			//mailing
-			mail($boardEmail,$subject,$message, implode("\r\n", $headers));
-		
+			if (mail($boardEmail,$subject,$message, implode("\r\n", $headers)))
+				print "Email successfully sent";
+			else
+				print "An error occured";
 		}//end of function
 ?>
