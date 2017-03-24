@@ -23,7 +23,8 @@
 						<head>
 							<title>New Motion Addded</title>
 						</head>
-						<body>";
+						<body>
+							<strong>This is a test</strong>";
 			$body .= "Dear $name <br /><br />";
 			$body .= "A new electronic vote has been created, please review it as soon as possible. The information
 					is below.";
@@ -42,25 +43,26 @@
 			$body .= "</body>
 					</html>";
 		}//end of foreach
-		$boardEmail="";
-		while ($row=$userSearch->fetch(PDO::FETCH_ASSOC))
+		$boardEmail = "";
+		$emailSearch=$db_con->prepare("SELECT * FROM users where enabled=1");
+		$emailSearch->execute();
+		while ($row=$emailSearch->fetch(PDO::FETCH_ASSOC))
 		{
 			$boardEmail .= $row['email'] .",";
 		}
+		$boardEmail="michaelbrown.tsbod@gmail.com";
 		$subject = "New Motion " . $motionid;
-		echo "Board Email: " . $boardEmail;
-		echo "<br />";
-		echo "Subject: " . $subject;
-		echo "<br />";
 		$message = $body;
-		echo "Message: " . $message;
-		echo "<br />";
-		$headers[] = 'MIME-Version: 1.0';
-		$headers[] = 'Content-type: text/html; charset=iso-8859-1';
-		$headers[] = "To: $boardEmail";
-		$headers[]= 'From: Tanyard Springs Votes <noreply@tanyardspringshoa.com>';
+		$headers = "";
+		$headers .= "MIME-Version: 1.0\r\n";
+		$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+		$headers .= "To: $boardEmail\r\n";
+		$headers .= "From: Tanyard Springs Votes <noreply@tanyardspringshoa.com>\r\n";
 		//mailing
-		mail($boardEmail,$subject,$message, implode("\r\n", $headers));
+		if (mail($boardEmail,$subject,$message,$headers))
+			print "Email successfully sent";
+		else
+			print "An error occured";
 	}//end of function
 	
 	addmailing(52);
