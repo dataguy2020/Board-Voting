@@ -178,8 +178,10 @@
 				$body .= "</body>
 					</html>";
 			}//end of foreach
-			$boardEmail="";
-			while ($row=$userSearch->fetch(PDO::FETCH_ASSOC))
+			boardEmail = "";
+			$emailSearch=$db_con->prepare("SELECT * FROM users where enabled=1");
+			$emailSearch->execute();
+			while ($row=$emailSearch->fetch(PDO::FETCH_ASSOC))
 			{
 				$boardEmail .= $row['email'] .",";
 			}
