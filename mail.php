@@ -113,7 +113,10 @@
 		{
 			$to .= $row['email'] . ", ";
 		}
-		mail($to,$subject,$message, implode("\r\n", $headers));
+		if(mail($to,$subject,$message, implode("\r\n", $headers)))
+			print "Email successfully sent";
+		else
+			print "An error occured";	
 	}//end of function
 
 	function temppassword($temppassword, $email)
@@ -127,7 +130,10 @@
 			$headers[] = 'Content-type: text/html; charset=iso-8859-1';
 			$headers[] = "To: $email";
 			$headers[]= 'From: Tanyard Springs Votes <noreply@tanyardspringshoa.com>';
-			mail($email,$subject,$message, implode("\r\n", $headers));
+			if(mail($email,$subject,$message, implode("\r\n", $headers)))
+				print "Email successfully sent";
+			else
+				print "An error occured";
 		}//end of function
 
 	function addmailing($votesmotionid)
@@ -184,7 +190,9 @@
 			$headers[] = "To: $boardEmail";
 			$headers[]= 'From: Tanyard Springs Votes <noreply@tanyardspringshoa.com>';
 			//mailing
-			mail($boardEmail,$subject,$message, implode("\r\n", $headers));
-		
+			if (mail($boardEmail,$subject,$message, implode("\r\n", $headers)))
+				print "Email successfully sent";
+			else
+				print "An error occured";
 		}//end of function
 ?>
