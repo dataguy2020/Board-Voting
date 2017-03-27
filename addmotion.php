@@ -21,13 +21,6 @@
 			$userSearch->execute();
 			foreach ($motionArray as $motionid)
 			{
-				while ($row=$userSearch->fetch(PDO::FETCH_ASSOC))
-				{
-					$firstName = $row['first_name'] .",";
-					$lastName = $row['last_name'] .",";
-					$name="$firstName $lastName";
-				}
-
 				$motion=$db_con->prepare ("SELECT * from motions where motion_id = :motionid");
 				$motion->bindParam(':motionid',$motionid);
 				if (!$motion->execute()) var_dump($motion->errorinfo());
@@ -38,7 +31,7 @@
 							<title>New Motion Addded</title>
 						</head>
 						<body>";
-				$body .= "Dear $name <br /><br />";
+				$body .= "Dear Board Member<br /><br />";
 				$body .= "A new electronic vote has been created, please review it as soon as possible. The information
 					is below.";
 				while ($row=$motion->fetch(PDO::FETCH_ASSOC))
@@ -60,13 +53,13 @@
 			$message = $body;
 			$headers[] = 'MIME-Version: 1.0';
 			$headers[] = 'Content-type: text/html; charset=iso-8859-1';
-			$headers[] = "To: $boardEmail";
+			#$headers[] = "To: $boardEmail";
 			$headers[]= 'From: Tanyard Springs Votes <noreply@tanyardspringshoa.com>';
 			//mailing
 			if (mail($boardEmail,$subject,$message, implode("\r\n", $headers)))
-				print "Email successfully sent";
+				print "<br />Email successfully sent";
 			else
-				print "An error occured";
+				print "<br />An error occured";
 		}//end of function
 		$motionname=$_POST['motionname'];
 		$motiontext=$_POST['motiontext'];
