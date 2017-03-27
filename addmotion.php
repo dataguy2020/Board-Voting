@@ -5,17 +5,15 @@
 		header('location: index.php');
 	}
 ?>
-
 <html>
 <head>
 	<title>Adding Motion</title>
 </head>
 <body>
-
 	<?php
 		include_once('include/db-config.php');
 		//include_once('mail.php');
-		function addmailing($votesmotionid)
+		function addmailing($votesmotionid, $boardEmail)
 		{
 			global $db_con;
 			$motionArray = array($votesmotionid);
@@ -57,11 +55,7 @@
 				$body .= "</body>
 					</html>";
 			}//end of foreach
-			$boardEmail="";
-			while ($row=$userSearch->fetch(PDO::FETCH_ASSOC))
-			{
-				$boardEmail .= $row['email'] .",";
-			}
+						
 			$subject = "New Motion " . $motionid;
 			$message = $body;
 			$headers[] = 'MIME-Version: 1.0';
@@ -123,8 +117,14 @@
 					echo "Added your vote as you created the motion";
 					echo "<br />Motion ID: " . $votesmotionid;
 					
-					addmailing($votesmotionid);
-										
+					$userSearch=$db_con->prepare("SELECT * from users where enabled=1;");
+					$userSearch->execute();
+					$boardEmail="";
+					while ($row=$userSearch->fetch(PDO::FETCH_ASSOC))
+					{
+						$boardEmail .= $row['email'] .",";
+					}
+					addmailing($votesmotionid,$boardEmail);										
 				}
 				else
 				{
