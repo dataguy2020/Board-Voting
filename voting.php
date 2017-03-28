@@ -67,6 +67,8 @@ header('location: index.php');
 				#Debug: echo $_SERVER['HTTP_REFERER'];
 				$decision=$_POST['vote'];
 				$motionid=$_POST['motionid'];
+	      			echo "Motion ID: " . $motionid;
+	      			echo "Decision: " . $decision;
 
 				if (isset($_POST['revote']))
 				{
