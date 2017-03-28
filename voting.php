@@ -62,14 +62,13 @@ header('location: index.php');
       <div class="row">
 	
 			<?php
-				include_once ('include/db-config.php');
-				include "mail.php";
-				#Debug: echo $_SERVER['HTTP_REFERER'];
 				$decision=$_POST['vote'];
 				$motionid=$_POST['motionid'];
 	      			echo "Motion ID: " . $motionid;
 	      			echo "Decision: " . $decision;
-
+	      			include_once ('include/db-config.php');
+				include "mail.php";
+			
 				if (isset($_POST['revote']))
 				{
 					//allready have userid
