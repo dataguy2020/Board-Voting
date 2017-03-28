@@ -245,12 +245,12 @@ header('location: index.php');
 		?>
 		 <br />
         <br />
-	<h2>Your Decision</h2>
+	<h2>Your Amendment</h2>
 		
-        <?php echo '<form id="voting" name="voting" method="POST" action="voting.php">
+        <?php echo '<form id="voting" name="voting" method="POST" action="amendMotion.php">
                 <input type="hidden" name="motionid" value="' . $motionid . '">
-		<input type="radio" name="vote" value="YES">Vote for Motion<br />
-                <input type="radio" name="vote" value="NO">Vote against Motion<br />
+		<input type="text" name="motionname" readonly id="motionname" value="'. $motionname . '">
+		<input type="text" name="motiondesc" id="motiondesc" value="'. $motiondesc . '">
                 <input type="Submit" name="Submit" value="Submit">
                 <input type="Reset" name="Reset" value="Reset">
         </form>';
