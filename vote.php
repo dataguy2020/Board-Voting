@@ -164,7 +164,7 @@ header('location: index.php');
 		}//end of if statement
 		elseif (isset($_POST['Amend']))
 		{
-			echo "Test";
+			echo "We are starting to work on Amend";
 		}
 		else
 		{
