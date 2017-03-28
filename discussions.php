@@ -8,7 +8,7 @@ header('location: index.php');
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Vote</title>
+<title>Add Discussion Items</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -84,9 +84,8 @@ header('location: index.php');
 				echo "<h2>Date Added:</h2>" . $dateadded . "<br /><br />";
 				echo "<h2>Motion Text</h2>";
 				echo $motiondesc;
-			}
-
-			?>
+			}//end of while ($row=$motion->fetch(PDO::FETCH_ASSOC))
+	      ?>
 			<br /><br />
 			<h2>Current Votes</h2>
 			<table border="1" width="100%">
@@ -111,8 +110,7 @@ header('location: index.php');
 					echo "<td>" . $votetime . "</td>";
 					echo "<td>" . $votecast . "</td>";
 				echo "</tr>";
-			}
-			$votes->closeCursor();
+			}//end of while ($row=$votes->fetch(PDO::FETCH_ASSOC))
 			echo "</table>";
 		?>
 
@@ -141,7 +139,6 @@ header('location: index.php');
 					echo "<td>" . $discussiontext . "</td>";
 				echo "</tr>";
 			}//end of while
-			$motiondiscussions->closeCursor();
 			echo "</table>";
 
 		?>
