@@ -114,9 +114,19 @@
 			$to .= $row['email'] . ", ";
 		}
 		if(mail($to,$subject,$message, implode("\r\n", $headers)))
+		{
 			print "Email successfully sent";
+			$motionSent=$db_con->prepare("UPDATE motions set sent=1 where motion_id=:motionid";);
+			$motionSent->bindParam(':motionid',$motionid);
+			$motionSent->execute();
+		}
 		else
+		{
 			print "An error occured";	
+			$motionSent=$db_con->prepare("UPDATE motions set sent=2 where motion_id=:motionid";);
+			$motionSent->bindParam(':motionid',$motionid);
+			$motionSent->execute();
+		}
 	}//end of function
 
 	function temppassword($temppassword, $email)
@@ -131,8 +141,18 @@
 			$headers[] = "To: $email";
 			$headers[]= 'From: Tanyard Springs Votes <noreply@tanyardspringshoa.com>';
 			if(mail($email,$subject,$message, implode("\r\n", $headers)))
+			{
 				print "Email successfully sent";
+				$motionSent=$db_con->prepare("UPDATE motions set sent=1 where motion_id=:motionid";);
+				$motionSent->bindParam(':motionid',$motionid);
+				$motionSent->execute();
+			}
 			else
+			{
 				print "An error occured";
+				$motionSent=$db_con->prepare("UPDATE motions set sent=2 where motion_id=:motionid";);
+				$motionSent->bindParam(':motionid',$motionid);
+				$motionSent->execute();
+			}
 		}//end of function
 ?>
