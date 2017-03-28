@@ -177,7 +177,7 @@ header('location: index.php');
                 </tr>
         <?php
                 $motions=$db_con->prepare(
-                        "select * from motions where motion_disposition is NULL");
+                        "select * from motions where motion_disposition NOT IN ('PASSED','FAILED','DEFERRED')");
                 $motions->execute(); 
                 while ( $row = $motions->fetch(PDO::FETCH_ASSOC))
                 { 
