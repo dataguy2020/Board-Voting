@@ -64,7 +64,7 @@ header('location: index.php');
 			<?php
 				
 	      			include_once ('include/db-config.php');
-				include "mail.php";
+				//include "mail.php";
 	      			$decision=$_POST['vote'];
 				$motionid=$_POST['motionid'];
 	      			echo "Motion ID: " . $motionid;
@@ -94,7 +94,6 @@ header('location: index.php');
 						"SELECT * FROM votes WHERE users_id=:userid AND motions_id=:motionsid;");
 					$addvote->execute(array(':userid' => $userid,':motionsid' => $motionid));
 					$row=$addvote->fetchAll(PDO::FETCH_ASSOC);
-					#Debug: echo count($row);
 					if (count($row) == 1)
 					{
 						echo 	'<form id="voting" name="voting" method="POST" action="voting.php">
@@ -173,7 +172,7 @@ header('location: index.php');
 							$motiondep->bindParam(':disposition',$disposition);
 							$motiondep->bindParam(':motion_id',$motionid);
 							$motiondep->execute();
-							mailing($motionid);
+							//mailing($motionid);
 						}
 						else
 						{
