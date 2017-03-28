@@ -73,7 +73,7 @@ header('location: index.php');
 				$motion->execute();
 				$body="<html>
 						<head>
-							<title>Status of Motion</title>
+							<title>Finalized Motion</title>
 						</head>
 						<body>";
 			 while ($row=$motion->fetch(PDO::FETCH_ASSOC))
