@@ -116,7 +116,6 @@ header('location: index.php');
 						$secondedCount=$secondedVote->rowCount();
 						if ($secondedCount == 1)
 						{
-							echo "In the IF statement <br />";
 							$decision="SECONDED";
 							$initialVote=$db_con->prepare(
 								"INSERT INTO votes (users_id,motions_id,vote) VALUE (:users_id, :motions_id, :vote)");
@@ -178,7 +177,7 @@ header('location: index.php');
 						}
 						else
 						{
-						 	echo "";
+						 	exit;
 						}
 					}//end of else if (count($row) == 1)
 				}//end of else  if (isset($_POST['revote']))
