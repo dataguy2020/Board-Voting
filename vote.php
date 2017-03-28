@@ -249,8 +249,8 @@ header('location: index.php');
 		
         <?php echo '<form id="voting" name="voting" method="POST" action="amendMotion.php">
                 <input type="hidden" name="motionid" value="' . $motionid . '">
-		<input type="text" name="motionname" readonly id="motionname" value="'. $motionname . '">
-		<input type="text" name="motiondesc" id="motiondesc" value="'. $motiondesc . '">
+		Motion Name: <input type="text" name="motionname" readonly id="motionname" value="'. $motionname . '">
+		<br />Motion Text: <textarea name="motiondesc" id="motiondesc" style="width:1136px; height: 122px;">' . $motiondesc . '</textarea>
                 <input type="Submit" name="Submit" value="Submit">
                 <input type="Reset" name="Reset" value="Reset">
         </form>';

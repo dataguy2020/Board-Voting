@@ -160,9 +160,9 @@ header('location: index.php');
 		
 		
 		if(mail($to,$subject,$message, implode("\r\n", $headers)))
-			print "Email successfully sent";
+			print "<br />Email successfully sent";
 		else
-			print "An error occured";	
+			print "<br />An error occured";	
 	}//end of function
 	?>
 			<?php
