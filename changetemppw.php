@@ -1,12 +1,5 @@
 <?php
 	session_start();
-	echo '<pre>';
-	var_dump($_SESSION);
-	echo '</pre>';
-	echo "<pre>";
-	var_dump($_POST);
-	echo "</pre>";
-
 ?>
 <html>
 <head>
@@ -64,7 +57,6 @@
 	else
 	{
 		echo '<pre>';
-		var_dump($_SESSION);
 		echo '</pre>';
 		echo '<form id="changetemppw" name="changetemppw" action="changetemppw.php" method="POST">
                 <fieldset>
