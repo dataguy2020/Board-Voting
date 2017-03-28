@@ -65,7 +65,7 @@ header('location: index.php');
 
 		include_once ('include/db-config.php');
 
-		if (!empty($_POST))
+		if (!empty($_POST) && !isset($_POST['Amend']))
 		{
 			$motionid=$_POST['motionid'];
 			#echo "Debug: " . $motionid;
@@ -162,7 +162,10 @@ header('location: index.php');
 
 		<?php			
 		}//end of if statement
-
+		elseif (isset($_POST['Amend']))
+		{
+			echo "Test";
+		}
 		else
 		{
 	?>
@@ -191,7 +194,7 @@ header('location: index.php');
                         	<td><input type="text" name="motionid" readonly value="'.$motionid. '" /> </td>
 				<td>' . $row['motion_name'].'</td>
 				<td>' . $row['dateadded'] . '</td>
-				<td><input type="submit" value="Submit"> 
+				<td><input type="submit" value="Submit">  <input type="submit" value="Amend" id="Amend" name="Amend"> 
                 </tr>
 		</form>';
                 }//end of while
