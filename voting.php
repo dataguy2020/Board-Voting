@@ -62,12 +62,13 @@ header('location: index.php');
       <div class="row">
 	
 			<?php
-				$decision=$_POST['vote'];
-				$motionid=$_POST['motionid'];
-	      			echo "Motion ID: " . $motionid;
-	      			echo "Decision: " . $decision;
+				
 	      			include_once ('include/db-config.php');
 				include "mail.php";
+	      			$decision=$_POST['vote'];
+				$motionid=$_POST['motionid'];
+	      			echo "Motion ID: " . $motionid;
+	      			echo "<br />Decision: " . $decision;
 			
 				if (isset($_POST['revote']))
 				{
