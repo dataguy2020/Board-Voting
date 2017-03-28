@@ -61,20 +61,21 @@ header('location: index.php');
     <div class="container">
       <div class="row">
 	<?php
-	      	function mailing($motionid,$boardEmail,$managementEmail)
-	{
-		global $db_con;
-		$motionArray = array($motionid);
-		foreach ($motionArray as $motion)
+	      include_once ('include/db-config.php');
+	      function mailing($motionid,$boardEmail,$managementEmail)
 		{
-			$motion=$db_con->prepare ("SELECT * from motions where motion_id = :motionid");
-			$motion->bindParam(':motionid',$motionid);
-			$motion->execute();
-			$body="<html>
-					<head>
-						<title>Status of Motion</title>
-					</head>
-					<body>";
+			global $db_con;
+			$motionArray = array($motionid);
+			foreach ($motionArray as $motion)
+			{
+				$motion=$db_con->prepare ("SELECT * from motions where motion_id = :motionid");
+				$motion->bindParam(':motionid',$motionid);
+				$motion->execute();
+				$body="<html>
+						<head>
+							<title>Status of Motion</title>
+						</head>
+						<body>";
 			 while ($row=$motion->fetch(PDO::FETCH_ASSOC))
 			 {
 			 	$motionid=$row['motion_id'];
@@ -164,7 +165,6 @@ header('location: index.php');
 	      ?>
 			<?php
 				
-	      			include_once ('include/db-config.php');
 				//include "mail.php";
 	      			$decision=$_POST['vote'];
 				$motionid=$_POST['motionid'];
@@ -316,7 +316,6 @@ header('location: index.php');
 				}//end of else  if (isset($_POST['revote']))
 			?>
         <!-- /span6 -->
-        
         <!-- /span6 --> 
       </div>
       <!-- /row --> 
@@ -326,7 +325,6 @@ header('location: index.php');
   <!-- /main-inner --> 
 </div>
 <!-- /main -->
-
 <!-- /extra -->
 <div class="footer">
   <div class="footer-inner">
@@ -346,9 +344,6 @@ header('location: index.php');
 ================================================== --> 
 <!-- Placed at the end of the document so the pages load faster --> 
 <script src="js/jquery-1.7.2.min.js"></script> 
-
 <script src="js/bootstrap.js"></script>
- 
-
-</body>
+ </body>
 </html>
