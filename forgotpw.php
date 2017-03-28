@@ -60,11 +60,9 @@
 				{
 					$temppassword=randomPassword();
 					$temppassword1=sha1($temppassword);
-					$temppw=1;
-					$updatepw = $db_con->prepare("update users set password = :password, temppw=:temppw where email = :email;");
+					$updatepw = $db_con->prepare("update users set password = :password where email = :email;");
 					$updatepw->bindParam(':password',$temppassword1);
 					$updatepw->bindParam(':email',$_POST['email']);
-					$updatepw->bindParam('temppw',$temppw);
 					$updatepw->execute();
 					temppassword($temppassword,$_POST['email']);
 					echo "E-mail sent";
