@@ -14,6 +14,7 @@ header('location: index.php');
 <?php
 	$userid=$_SESSION['user_id'];
 	$motionid=$_POST['motionid'];
+	echo "Motion ID: " . $motionid;
 		include_once ('include/db-config.php');
 			$motion=$db_con->prepare ("SELECT * from motions where motion_id = :motionid");
 			$motion->bindParam(':motionid',$motionid);
