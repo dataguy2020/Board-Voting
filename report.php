@@ -93,6 +93,39 @@ header('location: index.php');
 			$motiondiscussions->closeCursor();
 				echo "</table>";
 			?>
+			
+				<br /><br />
+		<h2>Change Log</h2>
+		<table border="1" width="100%">
+			<tr>
+				<th>User</th>
+				<th>Date</th>
+				<th>Field</th>
+				<th>Old Value</th>
+				<th>New Value</th>
+			</tr>
+			<?php
+				$motiondiscussions=$db_con->prepare(
+					"SELECT u.first_name,u.last_name,mcl.date, mcl.field,mcl.oldValue,mcl.newValue FROM users u inner join motionChangeLog mcl on mcl.userid=u.users_id WHERE mcl.motionid=55 );
+				$motiondiscussions->bindParam(':motionid',$motionid);
+				$motiondiscussions->execute();
+				while ($row=$motiondiscussions->fetch(PDO::FETCH_ASSOC))
+				{
+					$firstname=$row['first_name'];
+					$lastname=$row['last_name'];
+					$changeLogTime=$row['date'];
+					$field=$row['field'];
+					$oldValue=$row['oldValue'];
+					$newValue=$row['newValue'];
+					echo "<tr>";
+						echo "<td>" . $firstname . " " . $lastname . "</td>";
+						echo "<td>" . $changeLogTime . "</td>";
+						echo "<td>" . $field . "</td>";
+						echo "<td>" . $oldValue . "</td>";
+						echo "<td>" . $newValue . "</td>";
+					echo "</tr>";
+				}//end of while
+				echo "</table>";
 
  
 </body>
