@@ -111,25 +111,10 @@ header('location: index.php');
 			<th>New Value</th>
 		</tr>
 		<?php
-			try
-			{
-				$changeLogQuery=$db_con->prepare("SELECT u.first_name,u.last_name,mcl.field,mcl.oldValue,mcl.newValue FROM users u inner join motionChangeLog mcl on mcl.userid=u.users_id  WHERE mcl.motionid=:motionid;");
-				$changeLogQuery->bindParam(':motionid',$motionid);
-				$changeLogQuery->execute();
-				$results=$changeLogQuery->fetchAll();
-			}
-		
-			catch (PDOException $ex)
-			{
-				 echo  $ex->getMessage();
-    			}
-		
-			catch (Exception $Exception)
-			{
-				echo $Exception->getMessage();
-			}
-				
-		
+			$changeLogQuery=$db_con->prepare("SELECT u.first_name,u.last_name,mcl.field,mcl.oldValue,mcl.newValue FROM users u inner join motionChangeLog mcl on mcl.userid=u.users_id  WHERE mcl.motionid=:motionid;");
+			$changeLogQuery->bindParam(':motionid',$motionid);
+			$changeLogQuery->execute();
+			$results=$changeLogQuery->fetchAll();
 			foreach ($results as $row)
 			{
 				print_r( $row );
