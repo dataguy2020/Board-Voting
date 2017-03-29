@@ -102,7 +102,7 @@ header('location: index.php');
 				<th>Old Value</th>
 				<th>New Value</th>
 			</tr>
-			<?php
+			<!--<?php
 				$changeLog=$db_con->prepare(
 					"SELECT u.first_name,u.last_name,mcl.date, mcl.field,mcl.oldValue,mcl.newValue 
 					FROM users u 
@@ -127,6 +127,7 @@ header('location: index.php');
 					echo "</tr>";
 				}//end of while
 				echo "</table>";
+			?>
 
  
 </body>
