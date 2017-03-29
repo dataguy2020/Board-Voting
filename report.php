@@ -112,7 +112,7 @@ header('location: index.php');
 				inner join motionChangeLog mcl on mcl.userid=u.users_id  WHERE mcl.motionid=:motionid;");
 			$changeLogQuery->bindParam(':motionid',$motionid);
 			$changeLogQuery->execute();
-			while ($row=$changeLogQuery->fetch(PDOL::FETCH_ASSOC))
+			while ($row=$changeLogQuery->fetch(PDO::FETCH_ASSOC))
 			{
 				$firstname=$row['first_name'];
 				$lastname=$row['last_name'];
