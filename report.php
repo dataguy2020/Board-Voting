@@ -61,7 +61,6 @@ header('location: index.php');
 							echo "<td>" . $votecast . "</td>";
 						echo "</tr>";
 					}// while ($row=$votes->fetch(PDO::FETCH_ASSOC))
-					$votes->closeCursor();
 					echo "</table>";
 				?>
 
@@ -90,7 +89,6 @@ header('location: index.php');
 						echo "<td>" . $discussiontext . "</td>";
 					echo "</tr>";
 				}//end of while
-			$motiondiscussions->closeCursor();
 				echo "</table>";
 			?>
 			
@@ -105,11 +103,14 @@ header('location: index.php');
 				<th>New Value</th>
 			</tr>
 			<?php
-				$motiondiscussions=$db_con->prepare(
-					"SELECT u.first_name,u.last_name,mcl.date, mcl.field,mcl.oldValue,mcl.newValue FROM users u inner join motionChangeLog mcl on mcl.userid=u.users_id WHERE mcl.motionid=55 );
-				$motiondiscussions->bindParam(':motionid',$motionid);
-				$motiondiscussions->execute();
-				while ($row=$motiondiscussions->fetch(PDO::FETCH_ASSOC))
+				$changeLog=$db_con->prepare(
+					"SELECT u.first_name,u.last_name,mcl.date, mcl.field,mcl.oldValue,mcl.newValue 
+					FROM users u 
+					inner join motionChangeLog mcl on mcl.userid=u.users_id 
+					WHERE mcl.motionid=55;");
+				//$changeLog->bindParam(':motionid',$motionid);
+				$changeLog->execute();
+				while ($row=$changeLog->fetch(PDO::FETCH_ASSOC))
 				{
 					$firstname=$row['first_name'];
 					$lastname=$row['last_name'];
