@@ -98,7 +98,7 @@ header('location: index.php');
 			}//end of while
 		?>
 	</table>
-	<h2>Change LOg</h2>
+	<h2>Change Log</h2>
 	<table border="1" width="100%">
 		<tr>
 			<th>User</th>
@@ -128,7 +128,5 @@ header('location: index.php');
 			}
 		?>
 	</table>
-		
-	
 </body>
 </html>
