@@ -112,20 +112,25 @@ header('location: index.php');
 				inner join motionChangeLog mcl on mcl.userid=u.users_id  WHERE mcl.motionid=:motionid;");
 			$changeLogQuery->bindParam(':motionid',$motionid);
 			$changeLogQuery->execute();
-			while ($row=$changeLogQuery->fetch(PDO::FETCH_ASSOC))
+			$results=$changeLogQuery->fetchAll();
+			foreach ($results as $row)
 			{
-				$firstname=$row['first_name'];
-				$lastname=$row['last_name'];
-				$field=$row['field'];
-				$oldValue=$row['oldValue'];
-				$newValue=$row['newValue'];
-				echo "<tr>";
-					echo "<td>" . $firstname . " " . $lastname . "</td>";
-					echo "<td>" . $field . "</td>";
-					echo "<td>" . $oldValue . "</td>";
-					echo "<td>" . $newValue . "</td>";
-				echo "</td>";
+				print_r( $row );
 			}
+			//while ($row=$changeLogQuery->fetch(PDO::FETCH_ASSOC))
+			//{
+			//	$firstname=$row['first_name'];
+			//	$lastname=$row['last_name'];
+			//	$field=$row['field'];
+			//	$oldValue=$row['oldValue'];
+			//	$newValue=$row['newValue'];
+			//	echo "<tr>";
+			//		echo "<td>" . $firstname . " " . $lastname . "</td>";
+			//		echo "<td>" . $field . "</td>";
+			//		echo "<td>" . $oldValue . "</td>";
+			//		echo "<td>" . $newValue . "</td>";
+			//	echo "</td>";
+			//}
 		?>
 	</table>
 </body>
