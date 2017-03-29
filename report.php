@@ -98,5 +98,37 @@ header('location: index.php');
 			}//end of while
 		?>
 	</table>
+	<h2>Change LOg</h2>
+	<table border="1" width="100%">
+		<tr>
+			<th>User</th>
+			<th>Field</th>
+			<th>Old Value</th>
+			<th>New Value</th>
+		</tr>
+		<?php
+			$changeLogQuery=$db_con->prepare("
+				SELECT u.first_name,u.last_name,mcl.field,mcl.oldValue,mcl.newValue FROM users u 
+				inner join motionChangeLog mcl on mcl.userid=u.users_id  WHERE mcl.motionid=:motionid;");
+			$changeLogQuery->bindParam(':motionid',$motionid);
+			$changeLogQuery->execute();
+			while ($row=$changeLogQuery->fetch(PDOL::FETCH_ASSOC))
+			{
+				$firstname=$row['first_name'];
+				$lastname=$row['last_name'];
+				$field=$row['field'];
+				$oldValue=$row['oldValue'];
+				$newValue=$row['newValue'];
+				echo "<tr>";
+					echo "<td>" . $firstname . " " . $lastname . "</td>";
+					echo "<td>" . $field . "</td>";
+					echo "<td>" . $oldValue . "</td>";
+					echo "<td>" . $newValue . "</td>";
+				echo "</td>";
+			}
+		?>
+	</table>
+		
+	
 </body>
 </html>
