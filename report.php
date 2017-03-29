@@ -16,6 +16,10 @@ header('location: index.php');
 		$motionid=$_POST['motionid'];
 
 		include_once ('include/db-config.php');
+		
+		//Temporary, for testing right now
+	        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	
 		$motion=$db_con->prepare ("SELECT * from motions where motion_id = :motionid");
 		$motion->bindParam(':motionid',$motionid);
 		$motion->execute();
@@ -107,12 +111,25 @@ header('location: index.php');
 			<th>New Value</th>
 		</tr>
 		<?php
-			$changeLogQuery=$db_con->prepare("
-				SELECT u.first_name,u.last_name,mcl.field,mcl.oldValue,mcl.newValue FROM users u 
-				inner join motionChangeLog mcl on mcl.userid=u.users_id  WHERE mcl.motionid=:motionid;");
-			$changeLogQuery->bindParam(':motionid',$motionid);
-			$changeLogQuery->execute();
-			$results=$changeLogQuery->fetchAll();
+			try
+			{
+				$changeLogQuery=$db_con->prepare("SELECT u.first_name,u.last_name,mcl.field,mcl.oldValue,mcl.newValue FROM users u inner join motionChangeLog mcl on mcl.userid=u.users_id  WHERE mcl.motionid=:motionid;");
+				$changeLogQuery->bindParam(':motionid',$motionid);
+				$changeLogQuery->execute();
+				$results=$changeLogQuery->fetchAll();
+			}
+		
+			catch (PDOException $ex)
+			{
+				 echo  $ex->getMessage();
+    			}
+		
+			catch (Exception $Exception)
+			{
+				echo $Exception->getMessage();
+			}
+				
+		
 			foreach ($results as $row)
 			{
 				print_r( $row );
