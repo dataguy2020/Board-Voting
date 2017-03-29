@@ -145,6 +145,41 @@ header('location: index.php');
 						</tr>";
 			}//end of while
 			$body .= "</table>";
+			echo "<br />";
+			echo '<h2>Change Log</h2>
+		<table border="1" width="100%">
+			<tr>
+				<th>User</th>
+				<th>Date</th>
+				<th>Field</th>
+				<th>Old Value</th>
+				<th>New Value</th>
+			</tr>';
+			
+				$changeLog=$db_con->prepare(
+					"SELECT u.first_name,u.last_name,mcl.date, mcl.field,mcl.oldValue,mcl.newValue 
+					FROM users u 
+					inner join motionChangeLog mcl on mcl.userid=u.users_id 
+					WHERE mcl.motionid=:motionid;");
+				$changeLog->bindParam(':motionid',$motionid);
+				$changeLog->execute();
+				while ($row=$changeLog->fetch(PDO::FETCH_ASSOC))
+				{
+					$firstname=$row['first_name'];
+					$lastname=$row['last_name'];
+					$changeLogTime=$row['date'];
+					$field=$row['field'];
+					$oldValue=$row['oldValue'];
+					$newValue=$row['newValue'];
+					echo "<tr>";
+						echo "<td>" . $firstname . " " . $lastname . "</td>";
+						echo "<td>" . $changeLogTime . "</td>";
+						echo "<td>" . $field . "</td>";
+						echo "<td>" . $oldValue . "</td>";
+						echo "<td>" . $newValue . "</td>";
+					echo "</tr>";
+				}//end of while
+				echo "</table>";
 			$body .= "</body>
 				</html>";
 		}//end of foreach
