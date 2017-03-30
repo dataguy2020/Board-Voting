@@ -5,6 +5,12 @@
 	</head>
 	<body>
 		<?php
+			//Session
+			echo '<pre>' . var_dump($_SESSION) . '</pre>';
+			echo "<br /><br />";
+			echo '<pre>' . var_dump($_POST) . '</pre>';
+		
+		
 		$motionid=$_POST['motionid'];
 		echo "Motion ID: " . $motionid;
 		$motionname=$_POST['motionname'];
@@ -14,7 +20,7 @@
 		$existingmotiondec=$_POST['existingmotiondec'];
 		echo "<br />Existing Motion Desc: " . $existingmotiondec;
 		$userid=$_SESSION['userid'];
-		echo "<br />User ID: " . $userid . "<br /><br />";
+		echo "<br />User ID: " . $_SESSION['userid'] . "<br /><br />";
 		
 		include_once('include/db-config.php');
 	
