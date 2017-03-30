@@ -182,7 +182,6 @@ header('location: index.php');
 				echo "<h2>Motion Text</h2>";
 				echo $motiondesc;
 			}
-			$motion->closeCursor();
 
 			?>
 			<br /><br />
@@ -250,7 +249,8 @@ header('location: index.php');
         <?php echo '<form id="voting" name="voting" method="POST" action="amendMotion.php">
                 <input type="hidden" name="motionid" value="' . $motionid . '">
 		Motion Name: <input type="text" name="motionname" readonly id="motionname" value="'. $motionname . '">
-		<br />Motion Text: <textarea name="motiondesc" id="motiondesc" style="width:1136px; height: 122px;">' . $motiondesc . '</textarea>
+		<br />Existing Motion Text: <textarea name="existingmotiondec" id="existingmotiondec" style="width:1136px; height: 122px;">' . $motiondesc . '</textarea>
+		<br />Motion Text: <textarea name="newmotiondesc" id="newmotiondesc" style="width:1136px; height: 122px;"></textarea>
                 <input type="Submit" name="Submit" value="Submit">
                 <input type="Reset" name="Reset" value="Reset">
         </form>';
