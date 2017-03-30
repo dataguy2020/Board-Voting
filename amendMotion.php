@@ -42,15 +42,7 @@
 				$insertChange->bindParam(':field',$field);
 				$insertChange->bindParam(':oldValue',$existingmotiondec);
 				$insertChange->bindParam(':newValue',$newmotiondesc);
-				$insertChange->execute();
-				
-				$disposition="AMENDED";
-				$updateStatus=$db_con->prepare(
-					"UPDATE motions set motion_disposition = :motiondispo where motion_id=:motionid;");
-				$updateStatus->bindParam(':motiondispo',$disposition);
-				$updateStatus->bindParam(':motionid',$motionid);
-				$updateStatus->execute();
-				
+				$insertChange->execute();				
 			}
 			else
 			{
@@ -62,6 +54,6 @@
 			echo "You did not enter anything";
 		}
 		?>
-		<a href="dashboard.php">Main Dashboard</a>
+		<br /><a href="dashboard.php">Main Dashboard</a>
 	</body>
 </html>
