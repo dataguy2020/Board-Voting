@@ -19,22 +19,28 @@
 	
 		if ($newmotiondesc != "")
 		{
+			echo "New Description has text";
 			if ($newmotiondesc == $existingmotiondec)
 			{
 				echo "The new motion text and the existing is the same";
 			}
 			elseif ($newmotiondesc != $existingmotiondec)
 			{
+				echo "New Motion Description and Existing Motion Description are not the same";
 				$updateMotion=$db_con->prepare(
 					"UPDATE motions SET motion_description=:description where motions_id=:motionid;");
-				$updateMotion->execute(array(':updatedvote'=>$motiontext,':motionid' =>$motionid));
+				$updateMotion->bindParam(':description',$newmotiondesc);
+				$updateMotion->bindParam(":motionid',$motionid);
+				$updateMotion->execute();
 				echo "Updated the motion";
 				echo "<br />";
 				
 				$dispo="AMENDED";
 				$amendMotion=$db_con->prepare(
 						"UPDATE motions SET motion_disposition=:dispo where motions_id=:motionid;");
-				$amendMotion->execute(array(':dispo'=>$dispo,':motionid'=>$motionid));
+				$amendMotion->bindParam(':dispo',$dispo);
+				$amendMotion->bindParam(':motionid',$motionid);
+				$amendMotion->execute();
 				echo "Updated motion disposition";
 				
 				$field="Motion Description";
