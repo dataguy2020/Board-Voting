@@ -5,10 +5,15 @@
 	<body>
 		<?php
 		$motionid=$_POST['motionid'];
+		echo "Motion ID: " . $motionid;
 		$motionname=$_POST['motionname'];
+		echo "<br />Motion Name: " . $motionname;
 		$newmotiondesc=$_POST['newmotiondesc'];
+		echo "<br />New Motion Desc: " . $newmotiondesc;
 		$existingmotiondec=$_POST['existingmotiondec'];
+		echo "<br />Existing Motion Desc: " . $existingmotiondec;
 		$userid=$_SESSION['userid'];
+		echo "<br />User ID: " . $userid;
 		
 		include_once('include/db-config.php');
 	
