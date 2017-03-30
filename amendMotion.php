@@ -32,8 +32,24 @@
 				$amendMotion->execute(array(':dispo'=>$dispo,':motionid'=>$motionid));
 				echo "Updated motion disposition";
 				
-				$getUserDeteails=$db_con->prepare(
-					"SELECT * FROM users where user
+				$field="Motion Description";
+				$insertChange=$db_con->prepare(
+					"INSERT INTO motionChangeLog
+						(userid,motionid,field,oldValue,newValue)
+						VALUES (:userid,:motionid,:field,:oldValue,:newValue);");
+				$insertChange->bindParam(':userid',$userid);
+				$insertChange->bindParam(':motionid',$motionid);
+				$insertChange->bindParam(':field',$field);
+				$insertChange->bindParam(':oldValue',$existingmotiondec);
+				$insertChange->bindParam(':newValue',$newmotiondesc);
+				$insertChange->execute();
+				
+				$disposition="AMENDED";
+				$updateStatus=$db_con->prepare(
+					"UPDATE motions set motion_disposition = :motiondispo where motion_id=:motionid;");
+				$updateStatus->bindParam(':motiondispo',$disposition);
+				$updateStatus->bindParam(':motionid',$motionid);
+				$updateStatus->execute();
 				
 			}
 			else
