@@ -1,3 +1,4 @@
+
 <html>
 	<head>
 		<title>Amending Motion</title>
@@ -13,34 +14,28 @@
 		$existingmotiondec=$_POST['existingmotiondec'];
 		echo "<br />Existing Motion Desc: " . $existingmotiondec;
 		$userid=$_SESSION['userid'];
-		echo "<br />User ID: " . $userid;
+		echo "<br />User ID: " . $userid . "<br /><br />";
 		
 		include_once('include/db-config.php');
 	
 		if ($newmotiondesc != "")
 		{
-			echo "New Description has text";
 			if ($newmotiondesc == $existingmotiondec)
 			{
 				echo "The new motion text and the existing is the same";
 			}
 			elseif ($newmotiondesc != $existingmotiondec)
 			{
-				echo "New Motion Description and Existing Motion Description are not the same";
 				$updateMotion=$db_con->prepare(
 					"UPDATE motions SET motion_description=:description where motions_id=:motionid;");
-				$updateMotion->bindParam(':description',$newmotiondesc);
-				$updateMotion->bindParam(":motionid',$motionid);
-				$updateMotion->execute();
+				$updateMotion->execute(array(':updatedvote'=>$newmotiondesc,':motionid' =>$motionid));
 				echo "Updated the motion";
 				echo "<br />";
 				
 				$dispo="AMENDED";
 				$amendMotion=$db_con->prepare(
 						"UPDATE motions SET motion_disposition=:dispo where motions_id=:motionid;");
-				$amendMotion->bindParam(':dispo',$dispo);
-				$amendMotion->bindParam(':motionid',$motionid);
-				$amendMotion->execute();
+				$amendMotion->execute(array(':dispo'=>$dispo,':motionid'=>$motionid));
 				echo "Updated motion disposition";
 				
 				$field="Motion Description";
