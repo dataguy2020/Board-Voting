@@ -5,22 +5,41 @@
 	<body>
 		<?php
 		$motionid=$_POST['motionid'];
-		$motiontext=$_POST['motiondesc'];
+		$motionname=$_POST['motionname'];
+		$newmotiondesc=$_POST['newmotiondesc'];
+		$existingmotiondec=$_POST['existingmotiondec'];
+		$userid=$_SESSION['userid'];
+		
 		include_once('include/db-config.php');
 	
-		if ($motiontext != "")
+		if ($newmotiondesc != "")
 		{
-			echo "You did not enter anything";
-			$updateMotion=$db_con->prepare(
+			if ($newmotiondesc == $existingmotiondec)
+			{
+				echo "The new motion text and the existing is the same";
+			}
+			elseif ($newmotiondesc != $existingmotiondec)
+			{
+				$updateMotion=$db_con->prepare(
 					"UPDATE motions SET motion_description=:description where motions_id=:motionid;");
-			$updateMotion->execute(array(':updatedvote'=>$motiontext,':motionid' =>$motionid));
-			echo "Updated the motion";
-			echo "<br />";
-			$dispo="AMENDED";
-			$amendMotion=$db_con->prepare(
-					"UPDATE motions SET motion_disposition=:dispo where motions_id=:motionid;");
-			$amendMotion->execute(array(':dispo'=>$dispo,':motionid'=>$motionid));
-			echo "Updated motion disposition";
+				$updateMotion->execute(array(':updatedvote'=>$motiontext,':motionid' =>$motionid));
+				echo "Updated the motion";
+				echo "<br />";
+				
+				$dispo="AMENDED";
+				$amendMotion=$db_con->prepare(
+						"UPDATE motions SET motion_disposition=:dispo where motions_id=:motionid;");
+				$amendMotion->execute(array(':dispo'=>$dispo,':motionid'=>$motionid));
+				echo "Updated motion disposition";
+				
+				$getUserDeteails=$db_con->prepare(
+					"SELECT * FROM users where user
+				
+			}
+			else
+			{
+				echo "You did not enter anything";
+			}
 		}	
 		else
 		{
