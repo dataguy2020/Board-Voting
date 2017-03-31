@@ -32,8 +32,7 @@
 					echo "<br />Your password has been changed";
 					$passwordUpdatestatement->closeCursor();
 					$temppwUpdate=$db_con->prepare("update users set temppw= 0 where users_id=:usersid");
-					$temppwUpdate=$db_con->execute(array(':usersid'=>$_SESSION['user_id']));
-					echo "<br />Change status back to non-temp password";
+					$temppwUpdate->execute(array(':usersid'=>$_SESSION['user_id']));
 					$temppwUpdate->closeCursor();
 				}
 				else
@@ -51,6 +50,6 @@
 		{
 			echo "<br />You have not entered your current password";
 		}
-		echo "<br /><a href='dashboard.php'>Main Dashboard</a>";
 	?>
+		<br /><a href='dashboard.php'>Main Dashboard</a>
 </body>

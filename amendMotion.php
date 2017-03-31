@@ -14,13 +14,15 @@
 			include_once('include/db-config.php');
 			function amendmail($motionid,$boardEmail)
 			{
-				$body = "<html><head><title>A motion has been amended</title<body>";
+				global $db_con;
+				$body = "<html><head><title>A motion has been amended</title></head><body>";
 				$body .= "Dear Board Member:";
 				$body .="<br /><br />A motion has been amended. Please log into the system and 
 					verify your vote is still accurate. Some of the information of this history 
-					of this motion is below";
+					of this motion is below<br /><br />";
 
-				$motionSelect=$db_con->prepare ("SELECT * FROM motions wher motion_id=:motionid");
+
+				$motionSelect=$db_con->prepare ("SELECT * FROM motions where motion_id=:motionid");
 				$motionSelect->bindParam(':motionid',$motionid);
 				$motionSelect->execute();
 				while ($row=$motionSelect->fetch(PDO::FETCH_ASSOC))
@@ -28,7 +30,7 @@
 					$motionname=$row['motion_name'];
 				}//end of while ($row=$motionSelect->fetch(PDO::FETCH_ASSOC))
 
-				$body .= "Motion Name: " . $motionname;
+				$body .= "<strong>Motion Name:</strong> " . $motionname;
 				$body .= '<table border="1" width="100%">
 					<tr>
 						<th>User</th>
@@ -126,7 +128,6 @@
 					{
 						$boardEmail .= $row['email'] .",";
 					}//end of while ($row=$userSearch->fetch(PDO::FETCH_ASSOC))
-
 					amendmail($motionid,$boardEmail);
 				}//end of elseif ($newmotiondesc != $existingmotiondec)
 			}//end of if ($newmotiondesc != "")
