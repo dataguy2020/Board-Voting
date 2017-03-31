@@ -20,16 +20,9 @@
 			$confirmpassword=$_POST['confirmpassword'];
 			if ( sha1($newpassword) == sha1($confirmpassword) )
 			{
-            			$statement = $db_con->prepare("select * from users where users_id = :usersid 
-								AND password = :password;" );
-        			$statement->execute(array(':usersid' => $_SESSION['user_id'],
-							  'password'=> sha1($currentpassword));
+            			$statement = $db_con->prepare("select * from users where users_id = :usersid AND password = :password;" );
+        			$statement->execute(array(':usersid' => $_SESSION['user_id'],'password'=> sha1($_POST['currentpassword'])));
                 		$row = $statement->fetchAll(PDO::FETCH_ASSOC);
-				echo "<br />Current Password: " . $currentpassword;
-				echo "<br />Current Password Hash: " . sha1($currentpassword);
-				echo "<br />New Password: " . $newpassword;
-				echo "<br />New Password: " . sha1($newpassword);	
-				echo "<br />Count: " . count($row);		    
 				if(count($row)>0)
 				{
 					$passwordUpdatestatement = $db_con->prepare("update users set password = :password where 
@@ -58,7 +51,6 @@
 		{
 			echo "<br />You have not entered your current password";
 		}
-
 		echo "<br /><a href='dashboard.php'>Main Dashboard</a>";
 	?>
 </body>
