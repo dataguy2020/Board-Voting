@@ -11,11 +11,43 @@
 	</head>
 	<body>
 		<?php
-			//Session
-			echo '<pre>' . var_dump($_SESSION) . '</pre>';
-			echo "<br /><br />";
-			echo '<pre>' . var_dump($_POST) . '</pre>';
+			
+		function mailing($motionid,$boardEmail)
+		{
+			$body = "<html><head><title>A motion has been amended</title<body>";
+			$body .= "Dear Board Member:";
+			$body .="<br /><br />A motion has been amended. Please log into the system and verify you still support
+					the motion.";
+			$motionSelect=$db_con->prepare ("SELECT * FROM motions where motion_id=:motionid");
+			$motionSelect->bindParam(':motionid',$motionid);
+			$motionSelect->execute();
+			while ($row=$motionSelect->fetch(PDO::FETCH_ASSOC))
+			{
+			 	$motionname=$row['motion_name'];
+			 	$dateadded=$row['dateadded'];
+			 	$motiondesc=$row['motion_description'];
+			 	$disposition=$row['motion_disposition']
+			}
+			
+			$body .= "Motion Name: " . $motionname;
+			
+			$motionChangeSelect=$db_con->prepare("SELECT * FROM
+
+			$body .= "</body>
+				</html>";
+			$subject = "Motion Summary for Motion:" . $motionname;
+			$message = $body;
+			$to=$boardEmail;
+			$headers[] = 'MIME-Version: 1.0';
+			$headers[] = 'Content-type: text/html; charset=iso-8859-1';
+			$headers[]= 'From: Tanyard Springs Votes <noreply@tanyardspringshoa.com>';
 		
+		
+			if(mail($to,$subject,$message, implode("\r\n", $headers)))
+				print "<br />Email successfully sent";
+			else
+				print "<br />An error occured";	
+		}//end of function
 		
 		$motionid=$_POST['motionid'];
 		echo "Motion ID: " . $motionid;
