@@ -65,7 +65,7 @@ header('location: index.php');
 
 		include_once ('include/db-config.php');
 
-		if (!empty($_POST))
+		if (!empty($_POST) && !isset($_POST['Amend']))
 		{
 			$motionid=$_POST['motionid'];
 			#echo "Debug: " . $motionid;
@@ -162,7 +162,99 @@ header('location: index.php');
 
 		<?php			
 		}//end of if statement
+		elseif (isset($_POST['Amend']))
+		{
+			$motionid=$_POST['motionid'];
+			#echo "Debug: " . $motionid;
+			$motion=$db_con->prepare ("SELECT * from motions where motion_id = :motionid");
+			$motion->bindParam(':motionid',$motionid);
+			$motion->execute();
+			while ($row=$motion->fetch(PDO::FETCH_ASSOC))
+			{
+				$motionid=$row['motion_id'];
+				$motionname=$row['motion_name'];
+				$dateadded=$row['dateadded'];
+				$motiondesc=$row['motion_description'];
+			
+			
+				echo "<h1>" . $motionname . "</h1><br />";
+				echo "<h2>Date Added:</h2>" . $dateadded . "<br /><br />";
+				echo "<h2>Motion Text</h2>";
+				echo $motiondesc;
+			}
 
+			?>
+			<br /><br />
+			<h2>Current Votes</h2>
+			<table border="1" width="100%">
+			<tr>
+				<th>User</th>
+				<th>Date</th>
+				<th>Vote</th>
+			</tr>
+			<?php
+				$votes=$db_con->prepare(
+					"SELECT u.first_name, u.last_name, v.time, v.vote from votes v inner join motions m on m.motion_id=v.motions_id INNER join users u on u.users_id=v.users_id where m.motion_id=:motionid");
+				$votes->bindParam(':motionid',$motionid);
+				$votes->execute();
+			while ($row=$votes->fetch(PDO::FETCH_ASSOC))
+			{
+				$firstname=$row['first_name'];
+				$lastname=$row['last_name'];
+				$votetime=$row['time'];
+				$votecast=$row['vote'];
+				echo "<tr>";
+					echo "<td>" . $firstname . " " . $lastname . "</td>";
+					echo "<td>" . $votetime . "</td>";
+					echo "<td>" . $votecast . "</td>";
+				echo "</tr>";
+			}
+			$votes->closeCursor();
+			echo "</table>";
+		?>
+
+		<br /><br />
+		<h2>Discussions</h2>
+		<table border="1" width="100%">
+		<tr>
+			<th>User</th>
+			<th>Date</th>
+			<th>Comment</th>
+		</tr>
+		<?php
+			$motiondiscussions=$db_con->prepare(
+			"SELECT u.first_name,u.last_name,d.dateadded,d.discussion_text from users u inner join discussion d on d.user_id=u.users_id where d.motion_id=:motionid");
+			$motiondiscussions->bindParam(':motionid',$motionid);
+			$motiondiscussions->execute();
+			while ($row=$motiondiscussions->fetch(PDO::FETCH_ASSOC))
+			{
+				$firstname=$row['first_name'];
+				$lastname=$row['last_name'];
+				$discussiontime=$row['dateadded'];
+				$discussiontext=$row['discussion_text'];
+				echo "<tr>";
+					echo "<td>" . $firstname . " " . $lastname . "</td>";
+					echo "<td>" . $discussiontime . "</td>";
+					echo "<td>" . $discussiontext . "</td>";
+				echo "</tr>";
+			}//end of while
+			$motiondiscussions->closeCursor();
+			echo "</table>";
+
+		?>
+		 <br />
+        <br />
+	<h2>Your Amendment</h2>
+		
+        <?php echo '<form id="voting" name="voting" method="POST" action="amendMotion.php">
+                <input type="hidden" name="motionid" value="' . $motionid . '">
+		Motion Name: <input type="text" name="motionname" readonly id="motionname" value="'. $motionname . '">
+		<br />Existing Motion Text: <textarea name="existingmotiondec" id="existingmotiondec" style="width:1136px; height: 122px;">' . $motiondesc . '</textarea>
+		<br />Motion Text: <textarea name="newmotiondesc" id="newmotiondesc" style="width:1136px; height: 122px;"></textarea>
+                <input type="Submit" name="Submit" value="Submit">
+                <input type="Reset" name="Reset" value="Reset">
+        </form>';
+		}
 		else
 		{
 	?>
@@ -191,7 +283,7 @@ header('location: index.php');
                         	<td><input type="text" name="motionid" readonly value="'.$motionid. '" /> </td>
 				<td>' . $row['motion_name'].'</td>
 				<td>' . $row['dateadded'] . '</td>
-				<td><input type="submit" value="Submit"> 
+				<td><input type="submit" value="Submit">  <input type="submit" value="Amend" id="Amend" name="Amend"> 
                 </tr>
 		</form>';
                 }//end of while

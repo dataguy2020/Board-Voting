@@ -14,9 +14,7 @@ header('location: index.php');
 <?php
 	$userid=$_SESSION['user_id'];
 	$motionid=$_POST['motionid'];
-
-		include_once ('include/db-config.php');
-
+	include_once ('include/db-config.php');
 			$motion=$db_con->prepare ("SELECT * from motions where motion_id = :motionid");
 			$motion->bindParam(':motionid',$motionid);
 			$motion->execute();
@@ -63,7 +61,6 @@ header('location: index.php');
 							echo "<td>" . $votecast . "</td>";
 						echo "</tr>";
 					}// while ($row=$votes->fetch(PDO::FETCH_ASSOC))
-					$votes->closeCursor();
 					echo "</table>";
 				?>
 
@@ -92,7 +89,43 @@ header('location: index.php');
 						echo "<td>" . $discussiontext . "</td>";
 					echo "</tr>";
 				}//end of while
-			$motiondiscussions->closeCursor();
+				echo "</table>";
+			?>
+			
+				<br /><br />
+		<h2>Change Log</h2>
+		<table border="1" width="100%">
+			<tr>
+				<th>User</th>
+				<th>Date</th>
+				<th>Field</th>
+				<th>Old Value</th>
+				<th>New Value</th>
+			</tr>
+			<?php
+				$changeLog=$db_con->prepare(
+					"SELECT u.first_name,u.last_name,mcl.date, mcl.field,mcl.oldValue,mcl.newValue 
+					FROM users u 
+					inner join motionChangeLog mcl on mcl.userid=u.users_id 
+					WHERE mcl.motionid=:motionid;");
+				$changeLog->bindParam(':motionid',$motionid);
+				$changeLog->execute();
+				while ($row=$changeLog->fetch(PDO::FETCH_ASSOC))
+				{
+					$firstname=$row['first_name'];
+					$lastname=$row['last_name'];
+					$changeLogTime=$row['date'];
+					$field=$row['field'];
+					$oldValue=$row['oldValue'];
+					$newValue=$row['newValue'];
+					echo "<tr>";
+						echo "<td>" . $firstname . " " . $lastname . "</td>";
+						echo "<td>" . $changeLogTime . "</td>";
+						echo "<td>" . $field . "</td>";
+						echo "<td>" . $oldValue . "</td>";
+						echo "<td>" . $newValue . "</td>";
+					echo "</tr>";
+				}//end of while
 				echo "</table>";
 			?>
 

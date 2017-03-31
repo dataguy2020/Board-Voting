@@ -60,14 +60,154 @@ header('location: index.php');
   <div class="main-inner">
     <div class="container">
       <div class="row">
-	
-			<?php
-				include_once ('include/db-config.php');
-				include "mail.php";
-				#Debug: echo $_SERVER['HTTP_REFERER'];
-				$decision=$_POST['vote'];
-				$motionid=$_POST['motionid'];
+	<?php
+	      include_once ('include/db-config.php');
+		function mailing($motionid,$boardEmail,$managementEmail)
 
+	{
+		global $db_con;
+		$motionArray = array($motionid);
+		foreach ($motionArray as $motion)
+		{
+			$motion=$db_con->prepare ("SELECT * from motions where motion_id = :motionid");
+			$motion->bindParam(':motionid',$motionid);
+			$motion->execute();
+			$body="<html>
+					<head>
+						<title>Status of Motion</title>
+					</head>
+					<body>";
+			 while ($row=$motion->fetch(PDO::FETCH_ASSOC))
+			 {
+			 	$motionid=$row['motion_id'];
+			 	$motionname=$row['motion_name'];
+			 	$dateadded=$row['dateadded'];
+			 	$motiondesc=$row['motion_description'];
+			 	$disposition=$row['motion_disposition'];
+			 	 $body .= "<h1>" . $motionname . "</h1>
+                                	   <h2>Date Added:</h2>" . $dateadded . "<br />
+                                	   <h2>Motion Text</h2>" .
+                                	   $motiondesc .
+                                	   "<h2>Disposition:</h2>" .
+                                	   $disposition;
+			}//End of while
+			$body .= "<br /><br />
+					<h2>Current Votes</h2>
+					<table border=\"1\" width=\"100%\">
+					<tr>
+						<th>User</th>
+						<th>Date</th>
+						<th>Vote</th>
+					</tr>";
+			$votes=$db_con->prepare(
+                        	"SELECT u.first_name, u.last_name, v.time, v.vote from votes v 
+				inner join motions m on m.motion_id=v.motions_id INNER join users u on 
+				u.users_id=v.users_id where m.motion_id=:motionid ORDER BY v.time ASC;");
+                     	
+			$votes->bindParam(':motionid',$motionid);
+                        $votes->execute();
+                        while ($row=$votes->fetch(PDO::FETCH_ASSOC))
+                        {
+                        	$firstname=$row['first_name'];
+                                $lastname=$row['last_name'];
+                                $votetime=$row['time'];
+                                $votecast=$row['vote'];
+                                $body .= "<tr>
+					<td>" . $firstname . " " . $lastname . "</td>
+                                        <td>" . $votetime . "</td>
+                                        <td>" . $votecast . "</td>
+                                        </tr>";
+                        }// while ($row=$votes->fetch(PDO::FETCH_ASSOC))
+    			$body .= "</table>";
+			$body .= "<br /><br />
+					<h2>Discussions</h2>
+					<table border=\"1\" width=\"1\">
+					<tr>
+						<th>User</th>
+						<th>Date</th>
+						<th>Comment</th>
+					</tr>";
+			$motiondiscussions=$db_con->prepare(
+				"SELECT u.first_name,u.last_name,d.dateadded,d.discussion_text
+				 from users u inner join discussion d on d.user_id=u.users_id where d.motion_id=:motionid");
+			$motiondiscussions->bindParam(':motionid',$motionid);
+                       	$motiondiscussions->execute();
+			while ($row=$motiondiscussions->fetch(PDO::FETCH_ASSOC))
+			{
+				$firstname=$row['first_name'];
+				$lastname=$row['last_name'];
+                                $discussiontime=$row['dateadded'];
+                                $discussiontext=$row['discussion_text'];
+				$body .= "<tr>
+							<td>" . $firstname . " " . $lastname . "</td>
+							<td>" . $discussiontime . "</td>
+							<td>" . $discussiontext . "</td>
+						</tr>";
+			}//end of while
+			$body .= "</table>";
+			echo "<br />";
+			echo '<h2>Change Log</h2>
+		<table border="1" width="100%">
+			<tr>
+				<th>User</th>
+				<th>Date</th>
+				<th>Field</th>
+				<th>Old Value</th>
+				<th>New Value</th>
+			</tr>';
+			
+				$changeLog=$db_con->prepare(
+					"SELECT u.first_name,u.last_name,mcl.date, mcl.field,mcl.oldValue,mcl.newValue 
+					FROM users u 
+					inner join motionChangeLog mcl on mcl.userid=u.users_id 
+					WHERE mcl.motionid=:motionid;");
+				$changeLog->bindParam(':motionid',$motionid);
+				$changeLog->execute();
+				while ($row=$changeLog->fetch(PDO::FETCH_ASSOC))
+				{
+					$firstname=$row['first_name'];
+					$lastname=$row['last_name'];
+					$changeLogTime=$row['date'];
+					$field=$row['field'];
+					$oldValue=$row['oldValue'];
+					$newValue=$row['newValue'];
+					echo "<tr>";
+						echo "<td>" . $firstname . " " . $lastname . "</td>";
+						echo "<td>" . $changeLogTime . "</td>";
+						echo "<td>" . $field . "</td>";
+						echo "<td>" . $oldValue . "</td>";
+						echo "<td>" . $newValue . "</td>";
+					echo "</tr>";
+				}//end of while
+				echo "</table>";
+			$body .= "</body>
+				</html>";
+		}//end of foreach
+		$emailSearch=$db_con->prepare("SELECT email from users where enabled=1;");
+		$emailSearch->execute();
+		$subject = "Motion Summary for Motion:" . $motionname;
+		$message = $body;
+		$to=$managementEmail;
+		$headers[] = 'MIME-Version: 1.0';
+		$headers[] = 'Content-type: text/html; charset=iso-8859-1';
+		$headers[] = "Cc: $boardEmail";
+		$headers[]= 'From: Tanyard Springs Votes <noreply@tanyardspringshoa.com>';
+		
+		
+		if(mail($to,$subject,$message, implode("\r\n", $headers)))
+			print "<br />Email successfully sent";
+		else
+			print "<br />An error occured";	
+	}//end of function
+	?>
+			<?php
+				
+				//include "mail.php";
+	      			$decision=$_POST['vote'];
+				$motionid=$_POST['motionid'];
+	      			echo "Motion ID: " . $motionid;
+	      			echo "<br />Decision: " . $decision;
+			
 				if (isset($_POST['revote']))
 				{
 					//allready have userid
@@ -79,7 +219,6 @@ header('location: index.php');
 						"UPDATE votes set vote=:updatedvote where motions_id=:motionid AND users_id=:userid;");
 						$updateVote->execute(array(':updatedvote'=>$vote,':motionid' =>$motionid, ':userid' => $userid));
 						echo "Updated your vote";
-						$updateVote->closeCursor();
 					}// if ( $revoteoption == "Yes"
 					else
 					{
@@ -93,7 +232,6 @@ header('location: index.php');
 						"SELECT * FROM votes WHERE users_id=:userid AND motions_id=:motionsid;");
 					$addvote->execute(array(':userid' => $userid,':motionsid' => $motionid));
 					$row=$addvote->fetchAll(PDO::FETCH_ASSOC);
-					#Debug: echo count($row);
 					if (count($row) == 1)
 					{
 						echo 	'<form id="voting" name="voting" method="POST" action="voting.php">
@@ -115,7 +253,6 @@ header('location: index.php');
 						$secondedCount=$secondedVote->rowCount();
 						if ($secondedCount == 1)
 						{
-							echo "In the IF statement <br />";
 							$decision="SECONDED";
 							$initialVote=$db_con->prepare(
 								"INSERT INTO votes (users_id,motions_id,vote) VALUE (:users_id, :motions_id, :vote)");
@@ -123,7 +260,6 @@ header('location: index.php');
 							$initialVote->bindParam(':motions_id',$motionid);
 							$initialVote->bindParam(':vote',$decision);
 							$initialVote->execute();
-							$initialVote->closeCursor();
 							echo "Voted";
 							
 						}
@@ -136,10 +272,8 @@ header('location: index.php');
 							$initialVote->bindParam(':vote',$decision);
 							$initialVote->execute();
 							echo "Voted";
-							$initialVote->closeCursor();
 						}
-						$secondedVote->closeCursor();
-
+						
 						$enabledCount=$db_con->prepare(
 						"SELECT * FROM users where enabled=1;");
 						$enabledCount->execute();
@@ -161,8 +295,23 @@ header('location: index.php');
                                                 	$motiondep->bindParam(':motion_id',$motionid);
                                                 	$motiondep->execute();
 							echo "<br /> Updated the final disposition of the motion";
-							mailing($motionid);
-							$motiondep->closeCursor();
+							
+							//grabbing email addresses for Board and management
+							$userSearch=$db_con->prepare("SELECT * from users where enabled=1;");
+							$userSearch->execute();
+							$boardEmail="";
+							while ($row=$userSearch->fetch(PDO::FETCH_ASSOC))
+							{
+								$boardEmail .= $row['email'] .",";
+							}
+							$managementSearch=$db_con->prepare("SELECT * FROM management where fenabled=1;");
+							$managementSearch->execute();
+							$managementEmail="";
+							while ($row=$managementSearch->fetch(PDO::FETCH_ASSOC))
+							{
+								$managementEmail .= $row['email'] .",";
+							}
+							mailing($motionid,$boardEmail,$managementEmail);
 						}
 						else
 						{
@@ -177,20 +326,33 @@ header('location: index.php');
 							$motiondep->bindParam(':disposition',$disposition);
 							$motiondep->bindParam(':motion_id',$motionid);
 							$motiondep->execute();
-							mailing($motionid);
-							$motiondep->closeCursor();
+							
+							//grabbing email addresses for Board and management
+                                                        $userSearch=$db_con->prepare("SELECT * from users where enabled=1;");
+                                                        $userSearch->execute();
+                                                        $boardEmail="";
+                                                        while ($row=$userSearch->fetch(PDO::FETCH_ASSOC))
+                                                        {
+                                                                $boardEmail .= $row['email'] .",";
+                                                        }
+                                                        $managementSearch=$db_con->prepare("SELECT * FROM management where fenabled=1;");
+                                                        $managementSearch->execute();
+                                                        $managementEmail="";
+                                                        while ($row=$managementSearch->fetch(PDO::FETCH_ASSOC))
+                                                        {
+                                                                $managementEmail .= $row['email'] .",";
+                                                        }
+                                                        mailing($motionid,$boardEmail,$managementEmail);
+
 						}
 						else
 						{
-						 	echo "";
+						 	exit;
 						}
-						$votecount->closeCursor();
-						$enabledCount->closeCursor();
 					}//end of else if (count($row) == 1)
 				}//end of else  if (isset($_POST['revote']))
 			?>
         <!-- /span6 -->
-        
         <!-- /span6 --> 
       </div>
       <!-- /row --> 
@@ -200,7 +362,6 @@ header('location: index.php');
   <!-- /main-inner --> 
 </div>
 <!-- /main -->
-
 <!-- /extra -->
 <div class="footer">
   <div class="footer-inner">
@@ -220,9 +381,6 @@ header('location: index.php');
 ================================================== --> 
 <!-- Placed at the end of the document so the pages load faster --> 
 <script src="js/jquery-1.7.2.min.js"></script> 
-
 <script src="js/bootstrap.js"></script>
- 
-
-</body>
+ </body>
 </html>
