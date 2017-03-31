@@ -4,11 +4,6 @@
 	{
 		header('location: index.php');
 	}
-
-	var_dump_($_SESSION);
-	echo "<br />";
-	var_dump($_POST);
-	echo "<br />";
 ?>
 <html>
 	<head>
