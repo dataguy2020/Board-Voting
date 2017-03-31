@@ -13,73 +13,73 @@
 		<?php
 			include_once('include/db-config.php');
 		
-		function amendmail($motionid,$boardEmail)
-		{
-			$body = "<html><head><title>A motion has been amended</title<body>";
-			$body .= "Dear Board Member:";
-			echo "<br />" . $body;
-			$body .="<br /><br />A motion has been amended. Please log into the system and 
-				verify your vote is still accurate. Some of the information of this history 
-				of this motion is below";
+		//function amendmail($motionid,$boardEmail)
+		//{
+		//	$body = "<html><head><title>A motion has been amended</title<body>";
+		//	$body .= "Dear Board Member:";
+		//	echo "<br />" . $body;
+		//	$body .="<br /><br />A motion has been amended. Please log into the system and 
+		//		verify your vote is still accurate. Some of the information of this history 
+		//		of this motion is below";
 
-			$motionSelect=$db_con->prepare ("SELECT * FROM motions wher motion_id=:motionid");
-			$motionSelect->bindParam(':motionid',$motionid);
-			$motionSelect->execute();
+		//	$motionSelect=$db_con->prepare ("SELECT * FROM motions wher motion_id=:motionid");
+		//	$motionSelect->bindParam(':motionid',$motionid);
+		//	$motionSelect->execute();
 
-			while ($row=$motionSelect->fetch(PDO::FETCH_ASSOC))
-			{
-				$motionname=$row['motion_name'];
-			}
+		//	while ($row=$motionSelect->fetch(PDO::FETCH_ASSOC))
+		//	{
+		//		$motionname=$row['motion_name'];
+		//	}
 
-			$body .= "Motion Name: " . $motionname;
-			$body .= '<table border="1" width="100%">
-					<tr>
-						<th>User</th>
-						<th>Date</th>
-						<th>Field</th>
-						<th>Old Value</th>
-						<th>New Value</th>
-					</tr>';
+		//	$body .= "Motion Name: " . $motionname;
+		//	$body .= '<table border="1" width="100%">
+		//			<tr>
+		////				<th>User</th>
+		//				<th>Date</th>
+		//				<th>Field</th>
+		//				<th>Old Value</th>
+		//				<th>New Value</th>
+		//			</tr>';
 
-			$changeLog=$db_con->prepare("SELECT u.first_name,u.last_name,mcl.date,
-						mcl.field,mcl.oldValue,mcl.newValue FROM users u inner join
-						motionChangeLog mcl on mcl.userid=u.users_id WHERE 					mcl.motionid=:motionid ORDER BY date DESC;");
-			$changeLog->bindParam(':motionid',$motionid);
-			$changeLog->execute();
+		//	$changeLog=$db_con->prepare("SELECT u.first_name,u.last_name,mcl.date,
+		//				mcl.field,mcl.oldValue,mcl.newValue FROM users u inner join
+		//				motionChangeLog mcl on mcl.userid=u.users_id WHERE 					mcl.motionid=:motionid ORDER BY date DESC;");
+		//	$changeLog->bindParam(':motionid',$motionid);
+		//	$changeLog->execute();
 
-			while ($row=$changeLog->fetch(PDO::FETCH_ASSOC))
-			{
-				$firstname=$row['first_name'];
-				$lastname=$row['last_name'];
-				$changeLogTime=$row['date'];
-				$field=$row['field'];
-				$oldValue=$row['oldValue'];
-				$newValue=$row['newValue'];
-				$body .= "<tr>";
-				$body .= "<td>" . $firstname . " " . $lastname . "</td>";
-				$body .= "<td>" . $changeLogTime . "</td>";
-				$body .= "<td>" . $field . "</td>";
-				$body .= "<td>" . $oldValue . "</td>";
-				$body .= "<td>" . $newValue . "</td>";
-				$body .= "</tr>";
-				}//end of while
-				$body .= "</table>";
-				$body .= "</body>
-				</html>";
-			}
+		//	while ($row=$changeLog->fetch(PDO::FETCH_ASSOC))
+		//	{
+		//		$firstname=$row['first_name'];
+		//		$lastname=$row['last_name'];
+		//		$changeLogTime=$row['date'];
+		//		$field=$row['field'];
+		//		$oldValue=$row['oldValue'];
+		//		$newValue=$row['newValue'];
+		//		$body .= "<tr>";
+		//		$body .= "<td>" . $firstname . " " . $lastname . "</td>";
+		//		$body .= "<td>" . $changeLogTime . "</td>";
+		//		$body .= "<td>" . $field . "</td>";
+		//		$body .= "<td>" . $oldValue . "</td>";
+		//		$body .= "<td>" . $newValue . "</td>";
+		//		$body .= "</tr>";
+		//		}//end of while
+		//		$body .= "</table>";
+		//		$body .= "</body>
+		//		</html>";
+		//	}
 
-			$subject = "Motion has been Amended:" . $motionname;
-			$message = $body;
-			$to=$boardEmail;
-			$headers[] = 'MIME-Version: 1.0';
-			$headers[] = 'Content-type: text/html; charset=iso-8859-1';
-			$headers[]= 'From: Tanyard Springs Votes <noreply@tanyardspringshoa.com>';
+		//	$subject = "Motion has been Amended:" . $motionname;
+		//	$message = $body;
+		//	$to=$boardEmail;
+		//	$headers[] = 'MIME-Version: 1.0';
+		//	$headers[] = 'Content-type: text/html; charset=iso-8859-1';
+		//	$headers[]= 'From: Tanyard Springs Votes <noreply@tanyardspringshoa.com>';
 
-			if(mail($to,$subject,$message, implode("\r\n", $headers)))
-				print "<br />Email successfully sent";
-			else
-				print "<br />An error occured";	
-		}//end of function
+		//	if(mail($to,$subject,$message, implode("\r\n", $headers)))
+		//		print "<br />Email successfully sent";
+		//	else
+		//		print "<br />An error occured";	
+		//}//end of function
 					
 			$motionid=$_POST['motionid'];
 			//echo "Motion ID: " . $motionid;
@@ -134,7 +134,7 @@
 						$boardEmail .= $row['email'] .",";
 					}
 
-					amendmail($motionid,$boardEmail)
+					//amendmail($motionid,$boardEmail)
 				}
 				else
 				{
