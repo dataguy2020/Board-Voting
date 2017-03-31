@@ -3,7 +3,7 @@
 	if(empty($_SESSION['user_id']))
 	{
 		header('location: index.php');
-	}
+	}//end of if(empty($_SESSION['user_id']))
 ?>
 <html>
 	<head>
@@ -12,26 +12,24 @@
 	<body>
 		<?php
 			include_once('include/db-config.php');
-		
-		function amendmail($motionid,$boardEmail)
-		{
-			$body = "<html><head><title>A motion has been amended</title<body>";
-			$body .= "Dear Board Member:";
-			$body .="<br /><br />A motion has been amended. Please log into the system and 
-				verify your vote is still accurate. Some of the information of this history 
-				of this motion is below";
-
-			$motionSelect=$db_con->prepare ("SELECT * FROM motions wher motion_id=:motionid");
-			$motionSelect->bindParam(':motionid',$motionid);
-			$motionSelect->execute();
-
-			while ($row=$motionSelect->fetch(PDO::FETCH_ASSOC))
+			function amendmail($motionid,$boardEmail)
 			{
-				$motionname=$row['motion_name'];
-			}
+				$body = "<html><head><title>A motion has been amended</title<body>";
+				$body .= "Dear Board Member:";
+				$body .="<br /><br />A motion has been amended. Please log into the system and 
+					verify your vote is still accurate. Some of the information of this history 
+					of this motion is below";
 
-			$body .= "Motion Name: " . $motionname;
-			$body .= '<table border="1" width="100%">
+				$motionSelect=$db_con->prepare ("SELECT * FROM motions wher motion_id=:motionid");
+				$motionSelect->bindParam(':motionid',$motionid);
+				$motionSelect->execute();
+				while ($row=$motionSelect->fetch(PDO::FETCH_ASSOC))
+				{
+					$motionname=$row['motion_name'];
+				}//end of while ($row=$motionSelect->fetch(PDO::FETCH_ASSOC))
+
+				$body .= "Motion Name: " . $motionname;
+				$body .= '<table border="1" width="100%">
 					<tr>
 						<th>User</th>
 						<th>Date</th>
@@ -40,28 +38,28 @@
 						<th>New Value</th>
 					</tr>';
 
-			$changeLog=$db_con->prepare("SELECT u.first_name,u.last_name,mcl.date,
+				$changeLog=$db_con->prepare("SELECT u.first_name,u.last_name,mcl.date,
 						mcl.field,mcl.oldValue,mcl.newValue FROM users u inner join
 						motionChangeLog mcl on mcl.userid=u.users_id WHERE 					mcl.motionid=:motionid ORDER BY date DESC;");
-			$changeLog->bindParam(':motionid',$motionid);
-			$changeLog->execute();
+				$changeLog->bindParam(':motionid',$motionid);
+				$changeLog->execute();
 
-			while ($row=$changeLog->fetch(PDO::FETCH_ASSOC))
-			{
-				$firstname=$row['first_name'];
-				$lastname=$row['last_name'];
-				$changeLogTime=$row['date'];
-				$field=$row['field'];
-				$oldValue=$row['oldValue'];
-				$newValue=$row['newValue'];
-				$body .= "<tr>";
-				$body .= "<td>" . $firstname . " " . $lastname . "</td>";
-				$body .= "<td>" . $changeLogTime . "</td>";
-				$body .= "<td>" . $field . "</td>";
-				$body .= "<td>" . $oldValue . "</td>";
-				$body .= "<td>" . $newValue . "</td>";
-				$body .= "</tr>";
-			}//end of while
+				while ($row=$changeLog->fetch(PDO::FETCH_ASSOC))
+				{
+					$firstname=$row['first_name'];
+					$lastname=$row['last_name'];
+					$changeLogTime=$row['date'];
+					$field=$row['field'];
+					$oldValue=$row['oldValue'];
+					$newValue=$row['newValue'];
+					$body .= "<tr>";
+					$body .= "<td>" . $firstname . " " . $lastname . "</td>";
+					$body .= "<td>" . $changeLogTime . "</td>";
+					$body .= "<td>" . $field . "</td>";
+					$body .= "<td>" . $oldValue . "</td>";
+					$body .= "<td>" . $newValue . "</td>";
+					$body .= "</tr>";
+				}//end of while ($row=$changeLog->fetch(PDO::FETCH_ASSOC))
 				$body .= "</table>";
 				$body .= "</body>
 				</html>";
@@ -90,7 +88,7 @@
 				if ($newmotiondesc == $existingmotiondec)
 				{
 					echo "The new motion text and the existing is the same";
-				}
+				}//end of if ($newmotiondesc == $existingmotiondec)
 				elseif ($newmotiondesc != $existingmotiondec)
 				{
 					$updateMotion=$db_con->prepare(
@@ -124,19 +122,15 @@
 					while ($row=$userSearch->fetch(PDO::FETCH_ASSOC))
 					{
 						$boardEmail .= $row['email'] .",";
-					}
+					}//end of while ($row=$userSearch->fetch(PDO::FETCH_ASSOC))
 
 					amendmail($motionid,$boardEmail)
-				}
-				else
-				{
-					echo "You did not enter anything";
-				}
-			}	
+				}//end of elseif ($newmotiondesc != $existingmotiondec)
+			}//end of if ($newmotiondesc != "")	
 			else
 			{
 				echo "You did not enter anything";
-			}
+			}//end of else
 		?>
 		<br /><a href="dashboard.php">Main Dashboard</a>
 	</body>
