@@ -51,27 +51,34 @@
 		{
 			try
 			{
-				$userfind=$db_con->prepare("SELECT * FROM users where email=:email;");
-				$userfind->bindParam(':email',$_POST['email']);
-				$userfind->execute();
-				$userCount=$userfind->rowCount();
-				$email=$_POST['email'];
-				if ( $userCount == 1)
+				if ($_POST == "")
 				{
-					$temppassword=randomPassword();
-					$temppassword1=sha1($temppassword);
-					$updatepw = $db_con->prepare("update users set password = :password where email = :email;");
-					$updatepw->bindParam(':password',$temppassword1);
-					$updatepw->bindParam(':email',$_POST['email']);
-					$updatepw->execute();
-					temppassword($temppassword,$_POST['email']);
-					echo "E-mail sent";
-					$updatepw->closeCursor();
+					echo "You did not enter a password";
 				}
 				else
 				{
-					$userfind->closeCursor();
-					echo "Your e-mail is not found in our database";
+				    $userfind=$db_con->prepare("SELECT * FROM users where email=:email;");
+					$userfind->bindParam(':email',$_POST['email']);
+					$userfind->execute();
+					$userCount=$userfind->rowCount();
+					$email=$_POST['email'];
+					if ( $userCount == 1)
+					{
+						$temppassword=randomPassword();
+						$temppassword1=sha1($temppassword);
+						$updatepw = $db_con->prepare("update users set password = :password where email = :email;");
+						$updatepw->bindParam(':password',$temppassword1);
+						$updatepw->bindParam(':email',$_POST['email']);
+						$updatepw->execute();
+						temppassword($temppassword,$_POST['email']);
+						echo "E-mail sent";
+						$updatepw->closeCursor();
+					}
+					else
+					{
+						$userfind->closeCursor();
+						echo "Your e-mail is not found in our database";
+					}
 				}
 			}
 			catch (PDOException $e)
