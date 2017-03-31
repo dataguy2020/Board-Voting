@@ -40,7 +40,8 @@
 
 				$changeLog=$db_con->prepare("SELECT u.first_name,u.last_name,mcl.date,
 						mcl.field,mcl.oldValue,mcl.newValue FROM users u inner join
-						motionChangeLog mcl on mcl.userid=u.users_id WHERE 					mcl.motionid=:motionid ORDER BY date DESC;");
+						motionChangeLog mcl on mcl.userid=u.users_id WHERE
+						mcl.motionid=:motionid ORDER BY date DESC;");
 				$changeLog->bindParam(':motionid',$motionid);
 				$changeLog->execute();
 
@@ -53,16 +54,16 @@
 					$oldValue=$row['oldValue'];
 					$newValue=$row['newValue'];
 					$body .= "<tr>";
-					$body .= "<td>" . $firstname . " " . $lastname . "</td>";
-					$body .= "<td>" . $changeLogTime . "</td>";
-					$body .= "<td>" . $field . "</td>";
-					$body .= "<td>" . $oldValue . "</td>";
-					$body .= "<td>" . $newValue . "</td>";
+						$body .= "<td>" . $firstname . " " . $lastname . "</td>";
+						$body .= "<td>" . $changeLogTime . "</td>";
+						$body .= "<td>" . $field . "</td>";
+						$body .= "<td>" . $oldValue . "</td>";
+						$body .= "<td>" . $newValue . "</td>";
 					$body .= "</tr>";
 				}//end of while ($row=$changeLog->fetch(PDO::FETCH_ASSOC))
 				$body .= "</table>";
-				$body .= "</body>
-				</html>";
+				$body .= "</body>";
+				$body .= "</html>";
 
 			$subject = "Motion has been Amended:" . $motionname;
 			$message = $body;
@@ -89,6 +90,7 @@
 				{
 					echo "The new motion text and the existing is the same";
 				}//end of if ($newmotiondesc == $existingmotiondec)
+				
 				elseif ($newmotiondesc != $existingmotiondec)
 				{
 					$updateMotion=$db_con->prepare(
@@ -119,18 +121,15 @@
 					$userSearch=$db_con->prepare("SELECT * from users where enabled=1;");
 					$userSearch->execute();
 					$boardEmail="";
+					
 					while ($row=$userSearch->fetch(PDO::FETCH_ASSOC))
 					{
 						$boardEmail .= $row['email'] .",";
 					}//end of while ($row=$userSearch->fetch(PDO::FETCH_ASSOC))
 
-					amendmail($motionid,$boardEmail)
+					amendmail($motionid,$boardEmail);
 				}//end of elseif ($newmotiondesc != $existingmotiondec)
-			}//end of if ($newmotiondesc != "")	
-			else
-			{
-				echo "You did not enter anything";
-			}//end of else
+			}//end of if ($newmotiondesc != "")
 		?>
 		<br /><a href="dashboard.php">Main Dashboard</a>
 	</body>
