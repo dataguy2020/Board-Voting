@@ -25,8 +25,8 @@
 		echo "<br />New Motion Desc: " . $newmotiondesc;
 		$existingmotiondec=$_POST['existingmotiondec'];
 		echo "<br />Existing Motion Desc: " . $existingmotiondec;
-		$userid=$_SESSION['userid'];
-		echo "<br />User ID: " . $_SESSION['userid'] . "<br /><br />";
+		$userid=$_SESSION['user_id'];
+		echo "<br />User ID: " . $_SESSION['user_id'] . "<br /><br />";
 		
 		include_once('include/db-config.php');
 	
@@ -39,8 +39,8 @@
 			elseif ($newmotiondesc != $existingmotiondec)
 			{
 				$updateMotion=$db_con->prepare(
-					"UPDATE motions SET motion_description=:description where motions_id=:motionid;");
-				$updateMotion->execute(array(':updatedvote'=>$newmotiondesc,':motionid' =>$motionid));
+					"UPDATE motions SET motion_description=:description where motion_id=:motionid;");
+				$updateMotion->execute(array(':description'=>$newmotiondesc,':motionid' =>$motionid));
 				echo "Updated the motion";
 				echo "<br />";
 				
