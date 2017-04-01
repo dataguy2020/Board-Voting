@@ -176,7 +176,7 @@ header('location: index.php');
 				$motionuser=$voteRow['users_id'];
 				if ($userid != $motionuser)
 				{
-					echo "You are not the user who motioned the vote"
+					echo "You are not the user who motioned the vote";
 					echo "<br />Please have the person who motioned the vote revoke it";
 				}
 				else
