@@ -1,4 +1,4 @@
-<?php
+e?php
 session_start();
 if(empty($_SESSION['user_id'])){
 header('location: index.php');	
@@ -65,7 +65,7 @@ header('location: index.php');
 
 		include_once ('include/db-config.php');
 
-		if (!empty($_POST) && !isset($_POST['Amend']))
+		if (!empty($_POST) && !isset($_POST['Amend']) && !isset($_POST['Revoke']))
 		{
 			$motionid=$_POST['motionid'];
 			#echo "Debug: " . $motionid;
@@ -162,6 +162,10 @@ header('location: index.php');
 
 		<?php			
 		}//end of if statement
+		elseif (isset($_POST['Revoke']))
+		{
+			echo "Revoking";
+		}
 		elseif (isset($_POST['Amend']))
 		{
 			$motionid=$_POST['motionid'];
