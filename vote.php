@@ -171,7 +171,7 @@ header('location: index.php');
 			$motionSelect=$db_con->prepare("SELECT * FROM votes where vote=:action");
 			$motionSelect->bindParam(':action',$action);
 			$motionSelect->execute();
-			while $voteRow=$motionSelect->fetch(PDO::FETCH_ASSOC)
+			while ($voteRow=$motionSelect->fetch(PDO::FETCH_ASSOC))
 			{
 				$motionuser=$voteRow['users_id'];
 				if ($userid != $motionuser)
