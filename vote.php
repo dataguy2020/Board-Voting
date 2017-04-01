@@ -165,6 +165,34 @@ header('location: index.php');
 		elseif (isset($_POST['Revoke']))
 		{
 			echo "Revoking";
+			$userid=$_SESSION['userid'];
+			$motionid=$_POST['motionid'];
+			$action="MOTIONED";
+			$motionSelect=$db_con->prepare("SELECT * FROM votes where vote=:action");
+			$motionSelect->bindParam(':action',$action);
+			$motionSelect->execute();
+			while $voteRow=$motionSelect->fetch(PDO::FETCH_ASSOC)
+			{
+				$motionuser=$voteRow['users_id'];
+				if ($userid != $motionuser)
+				{
+					echo "You are not the user who motioned the vote"
+					echo "<br />Please have the person who motioned the vote revoke it";
+				}
+				else
+				{
+
+					$updatemotion=$db_con->prepare("UPDATE motions set motion_disposition=:dispo WHERE motion_id=:motionid");
+					$dispo="REVOKED";
+					$updatemotion->bindParam(':dispo',$dispo);
+					$updatemotion->bindParam(':motionid',$motionid);
+					$insertrevoke=$db_con->prepare("INSERT into votes (users_id,motions_id,vote) VALUES (:users_id,:motions_id,:vote");
+					$insertrevoke->bindParam(':users_id',$userid);
+					$insertrevoke->bindParam(':motions_id',$motionid);
+					$insertrevoke->bindParam(':vote',$dispo);
+					$insertrevoke->execute();
+				}	
+			}
 		}
 		elseif (isset($_POST['Amend']))
 		{
@@ -273,7 +301,7 @@ header('location: index.php');
                 </tr>
         <?php
                 $motions=$db_con->prepare(
-                        "select * from motions where motion_disposition NOT IN ('PASSED','FAILED','DEFERRED')");
+                        "select * from motions where motion_disposition NOT IN ('PASSED','FAILED','DEFERRED','REVOKED')");
                 $motions->execute(); 
                 while ( $row = $motions->fetch(PDO::FETCH_ASSOC))
                 { 
