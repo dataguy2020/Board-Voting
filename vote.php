@@ -164,8 +164,8 @@ header('location: index.php');
 		}//end of if statement
 		elseif (isset($_POST['Revoke']))
 		{
-			echo "Revoking";
-			$userid=$_SESSION['userid'];
+			
+			$userid=$_SESSION['user_id'];
 			$motionid=$_POST['motionid'];
 			$action="MOTIONED";
 			$motionSelect=$db_con->prepare("SELECT * FROM votes where vote=:action");
@@ -174,10 +174,13 @@ header('location: index.php');
 			while ($voteRow=$motionSelect->fetch(PDO::FETCH_ASSOC))
 			{
 				$motionuser=$voteRow['users_id'];
-				if ($userid != $motionuser)
+			}
+				
+			if ($userid != $motionuser)
 				{
-					echo "You are not the user who motioned the vote";
+					echo "<br />You are not the user who motioned the vote";
 					echo "<br />Please have the person who motioned the vote revoke it";
+					exit;
 				}
 				else
 				{
@@ -191,8 +194,10 @@ header('location: index.php');
 					$insertrevoke->bindParam(':motions_id',$motionid);
 					$insertrevoke->bindParam(':vote',$dispo);
 					$insertrevoke->execute();
+					echo "Updated motion disposition and your vote";
+					exit;
 				}	
-			}
+			
 		}
 		elseif (isset($_POST['Amend']))
 		{
