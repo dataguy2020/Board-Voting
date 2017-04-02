@@ -180,7 +180,6 @@ header('location: index.php');
 				{
 					echo "<br />You are not the user who motioned the vote";
 					echo "<br />Please have the person who motioned the vote revoke it";
-					exit;
 				}
 				else
 				{
@@ -195,7 +194,6 @@ header('location: index.php');
 					$insertrevoke->bindParam(':vote',$dispo);
 					$insertrevoke->execute();
 					echo "Updated motion disposition and your vote";
-					exit;
 				}	
 			
 		}
