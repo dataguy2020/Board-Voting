@@ -168,32 +168,51 @@ header('location: index.php');
 			$userid=$_SESSION['user_id'];
 			$motionid=$_POST['motionid'];
 			$action="MOTIONED";
-			$motionSelect=$db_con->prepare("SELECT * FROM votes where vote=:action");
+			$motionSelect=$db_con->prepare("SELECT * FROM votes where vote=:action and motions_id=:motionid");
 			$motionSelect->bindParam(':action',$action);
+			$motionSelect->bindParam(':motionid',$motionid);
 			$motionSelect->execute();
 			while ($voteRow=$motionSelect->fetch(PDO::FETCH_ASSOC))
 			{
+				$vote=$voteRow['vote'];
 				$motionuser=$voteRow['users_id'];
 			}
 				
 			if ($userid != $motionuser)
 				{
 					echo "<br />You are not the user who motioned the vote";
-					echo "<br />Please have the person who motioned the vote revoke it";
+					echo "<br />Please have the person who created the motion revoke it";
 				}
 				else
 				{
 
-					$updatemotion=$db_con->prepare("UPDATE motions set motion_disposition=:dispo WHERE motion_id=:motionid");
+					$updatemotion=$db_con->prepare("UPDATE motions set motion_disposition=:dispo 
+									WHERE motion_id=:motionid");
 					$dispo="REVOKED";
 					$updatemotion->bindParam(':dispo',$dispo);
 					$updatemotion->bindParam(':motionid',$motionid);
-					$insertrevoke=$db_con->prepare("INSERT into votes (users_id,motions_id,vote) VALUES (:users_id,:motions_id,:vote");
+					$updatemotion->execute();
+					echo "Updated motion disposition<br />";
+					
+					$insertrevoke=$db_con->prepare("INSERT into votes (users_id,motions_id,vote)
+									VALUES (:users_id,:motions_id,:vote)");
 					$insertrevoke->bindParam(':users_id',$userid);
 					$insertrevoke->bindParam(':motions_id',$motionid);
 					$insertrevoke->bindParam(':vote',$dispo);
 					$insertrevoke->execute();
-					echo "Updated motion disposition and your vote";
+					echo "Updated your vote<br />";
+					
+					$field="Vote";
+					$newValue="Revoked";
+					$vote=$oldValue;
+					$changeLog=$db_con->prepare("INSERT into motionChangeLog (users_id,motions_id,field,oldValue,newValue)
+									VALUES (:users_id,:motions_id,:field,:oldValue,:newValue)");
+					$changeLog->bindParam(':uses_id',$userid);
+					$changeLog->bindParam(':motions_id',$motionid);
+					$changeLog->bindParam(':field',$field);
+					$changeLog->bindParam(':oldValue',$oldValue);
+					$changeLog->bindParam(':newValue,'$newValue);
+					echo "Updated the change log for this motion";
 				}	
 			
 		}
