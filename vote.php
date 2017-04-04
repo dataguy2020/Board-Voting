@@ -168,13 +168,21 @@ header('location: index.php');
 			$userid=$_SESSION['user_id'];
 			$motionid=$_POST['motionid'];
 			$action="MOTIONED";
+<<<<<<< HEAD
 			$motionSelect=$db_con->prepare("SELECT * FROM votes where vote=:action AND motions_id=:motionid");
+=======
+			$motionSelect=$db_con->prepare("SELECT * FROM votes where vote=:action and motions_id=:motionid");
+>>>>>>> 6d6c9d59815d78b4b0613afb84735d52c3953d2d
 			$motionSelect->bindParam(':action',$action);
 			$motionSelect->bindParam(':motionid',$motionid);
 			$motionSelect->execute();
 			while ($voteRow=$motionSelect->fetch(PDO::FETCH_ASSOC))
 			{
+<<<<<<< HEAD
 				echo "<br />In the while loop<br />";
+=======
+				$vote=$voteRow['vote'];
+>>>>>>> 6d6c9d59815d78b4b0613afb84735d52c3953d2d
 				$motionuser=$voteRow['users_id'];
 			}
 
@@ -185,11 +193,12 @@ header('location: index.php');
 			if ($userid != $motionuser)
 				{
 					echo "<br />You are not the user who motioned the vote";
-					echo "<br />Please have the person who motioned the vote revoke it";
+					echo "<br />Please have the person who created the motion revoke it";
 				}
 				else
 				{
 
+<<<<<<< HEAD
 					$dispo="REVOKED";
 					try
 					{
@@ -235,7 +244,6 @@ header('location: index.php');
                                                 print "Exceptoin: " . $e->getMessage() . "<br />";
                                                 die();
                                         }
-				}	
 			
 		}
 		elseif (isset($_POST['Amend']))
