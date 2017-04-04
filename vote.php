@@ -181,7 +181,7 @@ header('location: index.php');
                                 {
                                         echo "<br />You are not the user who motioned the vote";
                                         echo "<br />Please have the person who created the motion revoke it";
-                                }
+                                }//end of the if
                                 else
                                 {
                                         $dispo="REVOKED";
@@ -192,17 +192,17 @@ header('location: index.php');
                                                 $updatemotion->bindParam(':dispo',$dispo);
                                                 $updatemotion->bindParam(':motionid',$motionid);
                                                 $updatemotion->execute();
-                                        }
+                                        }//end of try
                                         catch (PDOException $e)
                                         {
                                                 print "PDO Exception: " . $e->getMessage() . "<br/>";
                                                 die();
-                                        }
+                                        }//end of catch
                                         catch (Exception $e)
                                         {
                                                 print "Exceptoin: " . $e->getMessage() . "<br />";
                                                 die();
-                                        }
+                                        }//end of catch
 
                                         try
                                         {
@@ -218,18 +218,20 @@ header('location: index.php');
                                                 $insertrevoke->bindParam(':newValue',$dispo);
                                                 $insertrevoke->execute();
 						 echo "<br />Updated motion disposition and your vote";
-                                        }
+                                        }//end of try
                                         catch (PDOException $e)
                                         {
                                                 print "PDO Exception: " . $e->getMessage() . "<br/>";
                                                 die();
-                                        }
+                                        }//end of catch
                                         catch (Exception $e)
                                         {
                                                 print "Exceptoin: " . $e->getMessage() . "<br />";
                                                 die();
-                                        }
+                                        }//end of catch
+				}//end of else
                 }
+
 		elseif (isset($_POST['Amend']))
 		{
 			$motionid=$_POST['motionid'];
