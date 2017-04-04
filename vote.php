@@ -62,9 +62,7 @@ header('location: index.php');
     <div class="container">
       <div class="row">
 	<?php
-
 		include_once ('include/db-config.php');
-
 		if (!empty($_POST) && !isset($_POST['Amend']) && !isset($_POST['Revoke']))
 		{
 			$motionid=$_POST['motionid'];
@@ -86,7 +84,6 @@ header('location: index.php');
 				echo $motiondesc;
 			}
 			$motion->closeCursor();
-
 			?>
 			<br /><br />
 			<h2>Current Votes</h2>
@@ -144,7 +141,6 @@ header('location: index.php');
 			}//end of while
 			$motiondiscussions->closeCursor();
 			echo "</table>";
-
 		?>
 		 <br />
         <br />
@@ -157,84 +153,47 @@ header('location: index.php');
                 <input type="Submit" name="Submit" value="Submit">
                 <input type="Reset" name="Reset" value="Reset">
         </form>';
-
 	?>
 
 		<?php			
 		}//end of if statement
 		elseif (isset($_POST['Revoke']))
 		{
-			
 			$userid=$_SESSION['user_id'];
-			$motionid=$_POST['motionid'];
-			$action="MOTIONED";
-<<<<<<< HEAD
-			$motionSelect=$db_con->prepare("SELECT * FROM votes where vote=:action AND motions_id=:motionid");
-=======
-			$motionSelect=$db_con->prepare("SELECT * FROM votes where vote=:action and motions_id=:motionid");
->>>>>>> 6d6c9d59815d78b4b0613afb84735d52c3953d2d
-			$motionSelect->bindParam(':action',$action);
-			$motionSelect->bindParam(':motionid',$motionid);
-			$motionSelect->execute();
-			while ($voteRow=$motionSelect->fetch(PDO::FETCH_ASSOC))
-			{
-<<<<<<< HEAD
-				echo "<br />In the while loop<br />";
-=======
-				$vote=$voteRow['vote'];
->>>>>>> 6d6c9d59815d78b4b0613afb84735d52c3953d2d
-				$motionuser=$voteRow['users_id'];
-			}
+                        $motionid=$_POST['motionid'];
+                        $action="MOTIONED";
+                        $motionSelect=$db_con->prepare("SELECT * FROM votes where vote=:action and motions_id=:motionid");
+                        $motionSelect->bindParam(':action',$action);
+                        $motionSelect->bindParam(':motionid',$motionid);
+                        $motionSelect->execute();
+                        while ($voteRow=$motionSelect->fetch(PDO::FETCH_ASSOC))
+                        {
+                                echo "<br />In the while loop<br />";
+                                $vote=$voteRow['vote'];
+                                $motionuser=$voteRow['users_id'];
+                        }
 
-			echo "<br />Motion ID: " . $motionid;
-			echo "<br />User ID: " . $userid;
-			echo "<br />Motion User: " . $motionuser;
-				
+                        echo "<br />Motion ID: " . $motionid;
+                        echo "<br />User ID: " . $userid;
+                        echo "<br />Motion User: " . $motionuser;
+			
 			if ($userid != $motionuser)
-				{
-					echo "<br />You are not the user who motioned the vote";
-					echo "<br />Please have the person who created the motion revoke it";
-				}
-				else
-				{
-
-<<<<<<< HEAD
-					$dispo="REVOKED";
+                                {
+                                        echo "<br />You are not the user who motioned the vote";
+                                        echo "<br />Please have the person who created the motion revoke it";
+                                }
+                                else
+                                {
+                                        $dispo="REVOKED";
 					try
-					{
-						$updatemotion=$db_con->prepare("UPDATE motions set motion_disposition=:dispo 
-										WHERE motion_id=:motionid");
-						$updatemotion->bindParam(':dispo',$dispo);
-						$updatemotion->bindParam(':motionid',$motionid);
-						$updatemotion->execute();
-					}
-					catch (PDOException $e)
-					{
-						print "PDO Exception: " . $e->getMessage() . "<br/>";
-    						die();
-					}
-					catch (Exception $e)
-					{
-						print "Exceptoin: " . $e->getMessage() . "<br />";
-						die();
-					}
-					
-					try
-					{
-						$field="Motion Disposition";
-						$oldvalue="MOTIONED";
-						$dispo="REVOKED";
-						$insertrevoke=$db_con->prepare("INSERT into motionChangeLog (userid,motionid,field,oldvalue,newValue)
-									VALUES(:users_id,:motions_id,:field,:oldValue,:newValue)");
-						$insertrevoke->bindParam(':users_id',$userid);
-						$insertrevoke->bindParam(':motions_id',$motionid);
-						$insertrevoke->bindParam(':field',$field);
-						$insertrevoke->bindParam(':oldValue',$oldvalue);
-						$insertrevoke->bindParam(':newValue',$dispo);
-						$insertrevoke->execute();
-						echo "<br />Updated motion disposition and your vote";
-					}
-					catch (PDOException $e)
+                                        {
+						$updatemotion=$db_con->prepare("UPDATE motions set motion_disposition=:dispo
+                                                                                WHERE motion_id=:motionid");
+                                                $updatemotion->bindParam(':dispo',$dispo);
+                                                $updatemotion->bindParam(':motionid',$motionid);
+                                                $updatemotion->execute();
+                                        }
+                                        catch (PDOException $e)
                                         {
                                                 print "PDO Exception: " . $e->getMessage() . "<br/>";
                                                 die();
@@ -244,8 +203,33 @@ header('location: index.php');
                                                 print "Exceptoin: " . $e->getMessage() . "<br />";
                                                 die();
                                         }
-			
-		}
+
+                                        try
+                                        {
+                                                $field="Motion Disposition";
+                                                $oldvalue="MOTIONED";
+                                                $dispo="REVOKED";
+                                                $insertrevoke=$db_con->prepare("INSERT into motionChangeLog (userid,motionid,field,oldvalue,newValue)
+                                                                        VALUES(:users_id,:motions_id,:field,:oldValue,:newValue)");
+                                                $insertrevoke->bindParam(':users_id',$userid);
+                                                $insertrevoke->bindParam(':motions_id',$motionid);
+                                                $insertrevoke->bindParam(':field',$field);
+                                                $insertrevoke->bindParam(':oldValue',$oldvalue);
+                                                $insertrevoke->bindParam(':newValue',$dispo);
+                                                $insertrevoke->execute();
+						 echo "<br />Updated motion disposition and your vote";
+                                        }
+                                        catch (PDOException $e)
+                                        {
+                                                print "PDO Exception: " . $e->getMessage() . "<br/>";
+                                                die();
+                                        }
+                                        catch (Exception $e)
+                                        {
+                                                print "Exceptoin: " . $e->getMessage() . "<br />";
+                                                die();
+                                        }
+                }
 		elseif (isset($_POST['Amend']))
 		{
 			$motionid=$_POST['motionid'];
@@ -266,7 +250,6 @@ header('location: index.php');
 				echo "<h2>Motion Text</h2>";
 				echo $motiondesc;
 			}
-
 			?>
 			<br /><br />
 			<h2>Current Votes</h2>
@@ -324,7 +307,6 @@ header('location: index.php');
 			}//end of while
 			$motiondiscussions->closeCursor();
 			echo "</table>";
-
 		?>
 		 <br />
         <br />
@@ -360,7 +342,6 @@ header('location: index.php');
 			$motionid=$row['motion_id'];
 			$motionname=$row['motion_name'];
 			$dateadded=$row['dateadded'];		
-
 		echo '
 		<form id="vote" action="vote.php" method="post">
 		<tr>
