@@ -168,13 +168,19 @@ header('location: index.php');
 			$userid=$_SESSION['user_id'];
 			$motionid=$_POST['motionid'];
 			$action="MOTIONED";
-			$motionSelect=$db_con->prepare("SELECT * FROM votes where vote=:action");
+			$motionSelect=$db_con->prepare("SELECT * FROM votes where vote=:action AND motions_id=:motionid");
 			$motionSelect->bindParam(':action',$action);
+			$motionSelect->bindParam(':motionid',$motionid);
 			$motionSelect->execute();
 			while ($voteRow=$motionSelect->fetch(PDO::FETCH_ASSOC))
 			{
+				echo "<br />In the while loop<br />";
 				$motionuser=$voteRow['users_id'];
 			}
+
+			echo "<br />Motion ID: " . $motionid;
+			echo "<br />User ID: " . $userid;
+			echo "<br />Motion User: " . $motionuser;
 				
 			if ($userid != $motionuser)
 				{
@@ -184,16 +190,51 @@ header('location: index.php');
 				else
 				{
 
-					$updatemotion=$db_con->prepare("UPDATE motions set motion_disposition=:dispo WHERE motion_id=:motionid");
 					$dispo="REVOKED";
-					$updatemotion->bindParam(':dispo',$dispo);
-					$updatemotion->bindParam(':motionid',$motionid);
-					$insertrevoke=$db_con->prepare("INSERT into votes (users_id,motions_id,vote) VALUES (:users_id,:motions_id,:vote");
-					$insertrevoke->bindParam(':users_id',$userid);
-					$insertrevoke->bindParam(':motions_id',$motionid);
-					$insertrevoke->bindParam(':vote',$dispo);
-					$insertrevoke->execute();
-					echo "Updated motion disposition and your vote";
+					try
+					{
+						$updatemotion=$db_con->prepare("UPDATE motions set motion_disposition=:dispo 
+										WHERE motion_id=:motionid");
+						$updatemotion->bindParam(':dispo',$dispo);
+						$updatemotion->bindParam(':motionid',$motionid);
+						$updatemotion->execute();
+					}
+					catch (PDOException $e)
+					{
+						print "PDO Exception: " . $e->getMessage() . "<br/>";
+    						die();
+					}
+					catch (Exception $e)
+					{
+						print "Exceptoin: " . $e->getMessage() . "<br />";
+						die();
+					}
+					
+					try
+					{
+						$field="Motion Disposition";
+						$oldvalue="MOTIONED";
+						$dispo="REVOKED";
+						$insertrevoke=$db_con->prepare("INSERT into motionChangeLog (userid,motionid,field,oldvalue,newValue)
+									VALUES(:users_id,:motions_id,:field,:oldValue,:newValue)");
+						$insertrevoke->bindParam(':users_id',$userid);
+						$insertrevoke->bindParam(':motions_id',$motionid);
+						$insertrevoke->bindParam(':field',$field);
+						$insertrevoke->bindParam(':oldValue',$oldvalue);
+						$insertrevoke->bindParam(':newValue',$dispo);
+						$insertrevoke->execute();
+						echo "<br />Updated motion disposition and your vote";
+					}
+					catch (PDOException $e)
+                                        {
+                                                print "PDO Exception: " . $e->getMessage() . "<br/>";
+                                                die();
+                                        }
+                                        catch (Exception $e)
+                                        {
+                                                print "Exceptoin: " . $e->getMessage() . "<br />";
+                                                die();
+                                        }
 				}	
 			
 		}

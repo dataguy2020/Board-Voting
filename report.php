@@ -107,7 +107,7 @@ header('location: index.php');
 					"SELECT u.first_name,u.last_name,mcl.date, mcl.field,mcl.oldValue,mcl.newValue 
 					FROM users u 
 					inner join motionChangeLog mcl on mcl.userid=u.users_id 
-					WHERE mcl.motionid=:motionid;");
+					WHERE mcl.motionid=:motionid ORDER BY mcl.date DESC;");
 				$changeLog->bindParam(':motionid',$motionid);
 				$changeLog->execute();
 				while ($row=$changeLog->fetch(PDO::FETCH_ASSOC))
