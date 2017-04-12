@@ -74,7 +74,7 @@ header('location: index.php');
 			</tr>
 			<?php
 				$motiondiscussions=$db_con->prepare(
-					"SELECT u.first_name,u.last_name,d.dateadded,d.discussion_text from users u inner join discussion d on d.user_id=u.users_id where d.motion_id=:motionid");
+					"SELECT u.first_name,u.last_name,d.dateadded,d.discussion_text from users u inner join discussion d on d.user_id=u.users_id where d.motion_id=:motionid ORDER BY d.dateadded DESC");
 				$motiondiscussions->bindParam(':motionid',$motionid);
 				$motiondiscussions->execute();
 				while ($row=$motiondiscussions->fetch(PDO::FETCH_ASSOC))
