@@ -91,6 +91,23 @@ label {
 					<input type="reset" value="Reset">
   			</fieldset>
 		</form>
+	      
+	      <br /><br /><br /><br />
+	      <form action="changeemail.php" method="post">
+  			<fieldset>
+  				<legend>Change Email</legend>
+    					<label for="currentEmail">Current E-mail:</label>
+    					<input type="text" name="currentEmail" id="currentEmail" />
+    					<br />
+    					<label for="newEMail">New E-Mail:</label>
+    					<input type="text" name="newemail" id="newemail" />
+    					<br />
+    					<label for="confirmemail">Confirm Password:</label>
+    					<input type="text" name="confirmemail" id="confirmemail"  />
+					<br /><input type="submit" value="Submit">
+					<input type="reset" value="Reset">
+  			</fieldset>
+</form>
 
 
 	<!-- /span6 -->
