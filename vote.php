@@ -350,9 +350,10 @@ header('location: index.php');
                         	<td><input type="text" name="motionid" readonly value="'.$motionid. '" /> </td>
 				<td>' . $row['motion_name'].'</td>
 				<td>' . $row['dateadded'] . '</td>
-				<td><input type="submit" value="Submit">  
+				<td><input type="submit" value="Vote">  
 				<input type="submit" value="Amend" id="Amend" name="Amend"> 
 				<input type="submit" value="Revoke" id="Revoke" name="Revoke">
+				<input type="submit" value="Deferred" id="Deferred" name="Deferred">
                 </tr>
 		</form>';
                 }//end of while
