@@ -12,28 +12,25 @@
 <body>
 	<?php
 		include_once('./include/db-config.php');
-		$currentpassword=$_POST['currentpassword'];
+		$currentEmail=$_POST['currentpassword'];
 		
-		if ( $currentpassword != "" )
+		if ( $currentEmail != "" )
 		{
-			$newpassword=$_POST['newpassword'];
-			$confirmpassword=$_POST['confirmpassword'];
-			if ( sha1($newpassword) == sha1($confirmpassword) )
+			$newemail=$_POST['newemail'];
+			$confirmemail=$_POST['confirmemail'];
+			if ( $newemail == $confirmemail )
 			{
-            			$statement = $db_con->prepare("select * from users where users_id = :usersid AND password = :password;" );
-        			$statement->execute(array(':usersid' => $_SESSION['user_id'],'password'=> sha1($_POST['currentpassword'])));
+            			$statement = $db_con->prepare("select * from users where users_id = :usersid AND email = :email;" );
+        			$statement->execute(array(':usersid' => $_SESSION['user_id'],'email'=> $currentEmail));
                 		$row = $statement->fetchAll(PDO::FETCH_ASSOC);
 				if(count($row)>0)
 				{
-					$passwordUpdatestatement = $db_con->prepare("update users set password = :password where 
+					$emailUpdatestatement = $db_con->prepare("update users set email = :email where 
 									users_id =:usersid;");
-					$passwordUpdatestatement->execute(array(':password' => sha1($confirmpassword),
+					$emailUpdatestatement->execute(array(':password' => $confirmemail,
 						':usersid'=>$_SESSION['user_id']));
-					echo "<br />Your password has been changed";
-					$passwordUpdatestatement->closeCursor();
-					$temppwUpdate=$db_con->prepare("update users set temppw= 0 where users_id=:usersid");
-					$temppwUpdate->execute(array(':usersid'=>$_SESSION['user_id']));
-					$temppwUpdate->closeCursor();
+					echo "<br />Your email has been changed";
+					$emailUpdatestatement->closeCursor();
 				}
 				else
 				{	
