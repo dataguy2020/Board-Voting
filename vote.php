@@ -63,7 +63,7 @@ header('location: index.php');
       <div class="row">
 	<?php
 		include_once ('include/db-config.php');
-		if (!empty($_POST) && !isset($_POST['Amend']) && !isset($_POST['Revoke']))
+		if (!empty($_POST) && !isset($_POST['Amend']) && !isset($_POST['Revoke']) && !($_POST['Deferred'])
 		{
 			$motionid=$_POST['motionid'];
 			#echo "Debug: " . $motionid;
@@ -157,6 +157,27 @@ header('location: index.php');
 
 		<?php			
 		}//end of if statement
+		
+		elseif (isset($_POST['Deferred']))
+		{
+			$userid=$_SESSION['user_id'];
+			$motionid=$_POST['motionid'];
+			$action=$_POST['Deferred'];
+			$deferredMotion=$db_con->prepare("UPDATE motions set motion_disposition=:dispo where motionid=:motionid;");
+			$deferredMotion->bindParam(':dispo',$action);
+			$deferredMotion->bindParam(':motiondid',$motionid);
+			$deferredMotion->execute();
+			echo "Change the status of the motion to " . $action;
+			
+			$userVote=$db_con->prepare("INSERT into votes (users_id,motions_id,vote) VALUES (:users_id,:motions_id,:vote);
+			$userVote->bindParam(':users_id',$userid);
+			$userVote->bindParam(':motions_id',$motionid);
+			$userVote->bindParam(':vote',$action);
+			$userVote->execute();
+			echo "<br />";
+			echo "Added your vote";
+		}
+		        
 		elseif (isset($_POST['Revoke']))
 		{
 			$userid=$_SESSION['user_id'];
@@ -168,7 +189,6 @@ header('location: index.php');
                         $motionSelect->execute();
                         while ($voteRow=$motionSelect->fetch(PDO::FETCH_ASSOC))
                         {
-                                echo "<br />In the while loop<br />";
                                 $vote=$voteRow['vote'];
                                 $motionuser=$voteRow['users_id'];
                         }
@@ -350,9 +370,10 @@ header('location: index.php');
                         	<td><input type="text" name="motionid" readonly value="'.$motionid. '" /> </td>
 				<td>' . $row['motion_name'].'</td>
 				<td>' . $row['dateadded'] . '</td>
-				<td><input type="submit" value="Submit">  
+				<td><input type="submit" value="Vote">  
 				<input type="submit" value="Amend" id="Amend" name="Amend"> 
 				<input type="submit" value="Revoke" id="Revoke" name="Revoke">
+				<input type="submit" value="Deferred" id="Deferred" name="Deferred">
                 </tr>
 		</form>';
                 }//end of while
