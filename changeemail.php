@@ -27,7 +27,7 @@
 				{
 					$emailUpdatestatement = $db_con->prepare("update users set email = :email where 
 									users_id =:usersid;");
-					$emailUpdatestatement->execute(array(':password' => $confirmemail,
+					$emailUpdatestatement->execute(array(':email' => $confirmemail,
 						':usersid'=>$_SESSION['user_id']));
 					echo "<br />Your email has been changed";
 					$emailUpdatestatement->closeCursor();
