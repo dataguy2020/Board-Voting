@@ -165,7 +165,7 @@ header('location: index.php');
 			$action=$_POST['Deferred'];
 			$deferredMotion=$db_con->prepare("UPDATE motions set motion_disposition=:dispo where motionid=:motionid;");
 			$deferredMotion->bindParam(':dispo',$action);
-			$deferredMotion->bindParam(':motiondid,$motionid);
+			$deferredMotion->bindParam(':motiondid',$motionid);
 			$deferredMotion->execute();
 			echo "Change the status of the motion to " . $action;
 			
