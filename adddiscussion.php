@@ -25,7 +25,56 @@ header('location: index.php');
 </head>
 <body>
 <?php
-	$userid=$_SESSION['user_id'];
+	$userid=$_SESSION['user_id'];	
+	
+	//Start Added April 19, 2017
+	function addDiscussionMail($motionid, $boardEmail, $emailDiscussions)
+		{
+			global $db_con;
+			$motionArray = array($motionid);
+			$userSearch=$db_con->prepare("SELECT * from users where enabled=1;");
+			$userSearch->execute();
+			foreach ($motionArray as $motionid)
+			{
+				$motion=$db_con->prepare ("SELECT * from motions where motion_id = :motionid");
+				$motion->bindParam(':motionid',$motionid);
+				if (!$motion->execute()) var_dump($motion->errorinfo());
+				$body="<html>
+						<head>
+							<title>New Discussion Item</title>
+						</head>
+						<body>";
+				$body .= "Dear Board Member<br /><br />";
+				$body .= "A new discussion item has been added for the below motion";
+				while ($row=$motion->fetch(PDO::FETCH_ASSOC))
+				{
+					$motionid=$row['motion_id'];
+					$motionname=$row['motion_name'];
+					$dateadded=$row['dateadded'];
+					$motiondesc=$row['motion_description'];
+					$body .= "<br ><br />Motion ID: " . $motionid;
+					$body .= "<br />Motion Name: " . $motionname;
+					$body .= "<br />Motion Text: " . $motiondesc;
+					$body .= "<br />';
+					$body .= $emailDiscussions;
+				}//End of while
+
+				$body .= "</body>
+					</html>";
+			}//end of foreach
+						
+			$subject = "New Discussion Added for Motion" . $motionid;
+			$message = $body;
+			$headers[] = 'MIME-Version: 1.0';
+			$headers[] = 'Content-type: text/html; charset=iso-8859-1';
+			$headers[]= 'From: Tanyard Springs Votes <noreply@tanyardspringshoa.com>';
+			//mailing
+			if (mail($boardEmail,$subject,$message, implode("\r\n", $headers)))
+				print "<br />Email successfully sent";
+			else
+				print "<br />An error occured";
+		}//end of function
+		//End Added April 19, 2017
 ?>
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
@@ -73,13 +122,57 @@ header('location: index.php');
 				}
 				else
 				{
-					$addDiscussion=$db_con->prepare("INSERT INTO discussion (user_id,motion_id,discussion_text) VALUES(:userid, :motionid, :text)");
+					$addDiscussion=$db_con->prepare("INSERT INTO discussion (user_id,motion_id,
+									discussion_text) VALUES(:userid, :motionid, :text)");
 					$addDiscussion->bindParam(':userid',$userid);
 					$addDiscussion->bindParam(':motionid',$motionid);
 					$addDiscussion->bindParam(':text',$text);
 					$addDiscussion->execute();
 					$addDiscussion->closeCursor();
 					echo "Added Discussion Text";
+					
+					//Start Added on April 19, 2017
+					$discussions=$db_con->prepare("
+							SELECT u.first_name,u.last_name,d.discussion_text, d.dateadded FROM 
+							discussion d inner join users u on u.users_id=d.user_id 
+							WHERE motion_id=:motionid ORDER BY dateadded DESC");
+					$discussions=bindParam(':motionid',$motionid);
+					$discussions->execute();
+					
+					$emailDiscussions="";
+					$emailDiscussions.="
+					<table>
+						<tr>
+							<th>User</th>
+							<th>Date Added</th>
+							<th>Discussion Text</th>
+						</tr>";
+					while ($row=$discussions->fetch(PDO::FETCH_ASSOC))
+					{
+						$firstName=$row['first_name'];
+						$lastName=$row['last_name'];
+						$name="$firstName $lastName";
+						$discussion=$row['discussion_text'];
+						$dateAdded=$row['dateadded'];
+						$emailDiscussions .= "
+						<tr>
+							<td>" . $firstName . $lastName . "</td>
+							<td>" . $dateAdded . "</td>
+							<td>" . $discussion . "</td>
+						</tr>";
+					}
+					
+					$emailDiscussions .= "</table>";
+										
+					$userSearch=$db_con->prepare("SELECT * from users where enabled=1;");
+					$userSearch->execute();
+					$boardEmail="";
+					while ($row=$userSearch->fetch(PDO::FETCH_ASSOC))
+					{
+						$boardEmail .= $row['email'] .",";
+					}
+					addDiscussionMail($motionid,$boardEmail,$emailDiscussions);
+					//End Added on APril A19, 2017
 				}
 			?>
         <!-- /span6 -->
