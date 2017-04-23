@@ -63,7 +63,7 @@ header('location: index.php');
       <div class="row">
 	<?php
 		include_once ('include/db-config.php');
-		if (!empty($_POST) && !isset($_POST['Amend']) && !isset($_POST['Revoke']) && !($_POST['Deferred'])
+		if (!empty($_POST) && !isset($_POST['Amend']) && !isset($_POST['Revoke']) && !($_POST['Deferred']))
 		{
 			$motionid=$_POST['motionid'];
 			#echo "Debug: " . $motionid;
@@ -163,16 +163,22 @@ header('location: index.php');
 			$userid=$_SESSION['user_id'];
 			$motionid=$_POST['motionid'];
 			$action=$_POST['Deferred'];
-			$deferredMotion=$db_con->prepare("UPDATE motions set motion_disposition=:dispo where motionid=:motionid;");
+			$deferredMotion=$db_con->prepare("UPDATE motions set motion_disposition=:dispo where motion_id=:motionid;");
 			$deferredMotion->bindParam(':dispo',$action);
-			$deferredMotion->bindParam(':motiondid',$motionid);
+			$deferredMotion->bindParam(':motionid',$motionid);
 			$deferredMotion->execute();
 			echo "Change the status of the motion to " . $action;
 			
-			$userVote=$db_con->prepare("INSERT into votes (users_id,motions_id,vote) VALUES (:users_id,:motions_id,:vote);
+			$userVote=$db_con->prepare("INSERT into motionChangeLog (userid,motionid,field,oldValue,newValue) 
+							VALUES (:users_id,:motions_id,:field,:oldValue,:newValue");
 			$userVote->bindParam(':users_id',$userid);
 			$userVote->bindParam(':motions_id',$motionid);
-			$userVote->bindParam(':vote',$action);
+			$field="Motion Disposition";
+			$oldValue="IN PROGRESS";
+			$newValue="DEFERRED";
+			$userVote->bindParam(':field',$field);
+			$userVote->bindParam(':oldValue',$oldValue);
+			$userVote->bindParam(':newValue',$newValue);
 			$userVote->execute();
 			echo "<br />";
 			echo "Added your vote";
