@@ -124,6 +124,7 @@ header('location: index.php');
 					echo "</tr>";
 				}//end of while
 				echo "</table>";
+				?>
 			<br /><br />
 			<h2>Current Votes</h2>
 			<table border="1" width="100%">
