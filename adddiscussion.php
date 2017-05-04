@@ -26,7 +26,7 @@ header('location: index.php');
 <body>
 <?php
 	$userid=$_SESSION['user_id'];	
-	
+	include_once ('include/db-config.php');
 	//Start Added April 19, 2017
 	function addDiscussionMail($motionid, $boardEmail, $emailDiscussions)
 		{
@@ -111,7 +111,7 @@ header('location: index.php');
       <div class="row">
 	
 			<?php
-				include_once ('include/db-config.php');
+				
 				#Debug: echo $_SERVER['HTTP_REFERER'];
 				$motionid=$_POST['motionid'];
 				$userid=$_POST['userid'];
@@ -139,9 +139,8 @@ header('location: index.php');
 					$discussions=bindParam(':motionid',$motionid);
 					$discussions->execute();
 					
-					$emailDiscussions="";
-					$emailDiscussions.="
-					<table>
+					$emailDiscussions ="";
+					$emailDiscussions .="<table>
 						<tr>
 							<th>User</th>
 							<th>Date Added</th>
@@ -154,7 +153,7 @@ header('location: index.php');
 						$name="$firstName $lastName";
 						$discussion=$row['discussion_text'];
 						$dateAdded=$row['dateadded'];
-						$emailDiscussions .= "
+						$emailDiscussions .= "";
 						<tr>
 							<td>" . $firstName . $lastName . "</td>
 							<td>" . $dateAdded . "</td>
