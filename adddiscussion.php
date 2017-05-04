@@ -55,7 +55,7 @@ header('location: index.php');
 					$body .= "<br ><br />Motion ID: " . $motionid;
 					$body .= "<br />Motion Name: " . $motionname;
 					$body .= "<br />Motion Text: " . $motiondesc;
-					$body .= "<br />';
+					$body .= "<br />";
 					$body .= $emailDiscussions;
 				}//End of while
 
@@ -112,7 +112,7 @@ header('location: index.php');
 	
 			<?php
 				
-				#Debug: echo $_SERVER['HTTP_REFERER'];
+				//echo $_SERVER['HTTP_REFERER'];
 				$motionid=$_POST['motionid'];
 				$userid=$_POST['userid'];
 				$text=$_POST['discussiontext'];
