@@ -152,8 +152,6 @@ header('location: index.php');
 						$lastName=$row['last_name'];
 						$name="$firstName $lastName";
 						$discussion=$row['discussion_text'];
-						echo "Testing<br />";
-						echo $row['discussion_text'];
 						echo "<br />";
 						$dateAdded=$row['dateadded'];
 						$emailDiscussions .= "";
@@ -165,6 +163,10 @@ header('location: index.php');
 					}
 					
 					$emailDiscussions .= "</table>";
+					
+					echo "This is a test below<br />";
+					echo "============================<br />";
+					echo $emailDiscussions;
 										
 					$userSearch=$db_con->prepare("SELECT * from users where enabled=1;");
 					$userSearch->execute();
