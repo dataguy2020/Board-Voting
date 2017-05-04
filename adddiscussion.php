@@ -140,7 +140,7 @@ header('location: index.php');
 					$discussions->execute();
 					
 					$emailDiscussions ="";
-					$emailDiscussions .="<table>
+					$emailDiscussions .="<table border="1" width='100%'>
 						<tr>
 							<th>User</th>
 							<th>Date Added</th>
@@ -155,9 +155,9 @@ header('location: index.php');
 						$dateAdded=$row['dateadded'];
 						$emailDiscussions .= "";
 						$emailDiscussions .= "<tr>
-							<td> . $firstName . $lastName . </td>
-							<td> . $dateAdded . </td>
-							<td . $discussion . </td>
+							<td> $firstName $lastName </td>
+							<td> $dateAdded </td>
+							<td $discussion </td>
 						";
 					}
 					
