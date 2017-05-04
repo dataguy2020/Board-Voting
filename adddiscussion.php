@@ -140,7 +140,7 @@ header('location: index.php');
 					$discussions->execute();
 					
 					$emailDiscussions ="";
-					$emailDiscussions .="<table border="1" width='100%'>
+					$emailDiscussions .="<table border='1' width='100%'>
 						<tr>
 							<th>User</th>
 							<th>Date Added</th>
