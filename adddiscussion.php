@@ -59,9 +59,9 @@ header('location: index.php');
 					$body .= $emailDiscussions;
 				}//End of while
 
-				$body .= "</body>
-					</html>";
-			}//end of foreach
+				$body .= "</body>";
+				$body .= "</html>";
+			}
 						
 			$subject = "New Discussion Added for Motion" . $motionid;
 			$message = $body;
