@@ -152,6 +152,9 @@ header('location: index.php');
 						$lastName=$row['last_name'];
 						$name="$firstName $lastName";
 						$discussion=$row['discussion_text'];
+						echo "Testing<br />";
+						echo $row['discussion_text'];
+						echo "<br />";
 						$dateAdded=$row['dateadded'];
 						$emailDiscussions .= "";
 						$emailDiscussions .= "<tr>
