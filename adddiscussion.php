@@ -136,7 +136,7 @@ header('location: index.php');
 							SELECT u.first_name,u.last_name,d.discussion_text, d.dateadded FROM 
 							discussion d inner join users u on u.users_id=d.user_id 
 							WHERE motion_id=:motionid ORDER BY dateadded DESC");
-					$discussions=bindParam(':motionid',$motionid);
+					$discussions->bindParam(':motionid',$motionid);
 					$discussions->execute();
 					
 					$emailDiscussions ="";
