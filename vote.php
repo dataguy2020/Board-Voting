@@ -151,16 +151,16 @@ header('location: index.php');
 						</tr>";
 			}//end of while
 			$body .= "</table>";
-			echo "<br />";
-			echo '<h2>Change Log</h2>
-		<table border="1" width="100%">
+			$body .= "<br />";
+			$body .= "<h2>Change Log</h2>
+		<table border='1' width='100%'>
 			<tr>
 				<th>User</th>
 				<th>Date</th>
 				<th>Field</th>
 				<th>Old Value</th>
 				<th>New Value</th>
-			</tr>';
+			</tr>";
 			
 				$changeLog=$db_con->prepare(
 					"SELECT u.first_name,u.last_name,mcl.date, mcl.field,mcl.oldValue,mcl.newValue 
@@ -177,15 +177,15 @@ header('location: index.php');
 					$field=$row['field'];
 					$oldValue=$row['oldValue'];
 					$newValue=$row['newValue'];
-					echo "<tr>";
-						echo "<td>" . $firstname . " " . $lastname . "</td>";
-						echo "<td>" . $changeLogTime . "</td>";
-						echo "<td>" . $field . "</td>";
-						echo "<td>" . $oldValue . "</td>";
-						echo "<td>" . $newValue . "</td>";
-					echo "</tr>";
+					$body .= "<tr>";
+						$body .= "<td>" . $firstname . " " . $lastname . "</td>";
+						$body .= "<td>" . $changeLogTime . "</td>";
+						$body .= "<td>" . $field . "</td>";
+						$body .= "<td>" . $oldValue . "</td>";
+						$body .= "<td>" . $newValue . "</td>";
+					$body .= "</tr>";
 				}//end of while
-				echo "</table>";
+				$body .= "</table>";
 			$body .= "</body>
 				</html>";
 		}//end of foreach
