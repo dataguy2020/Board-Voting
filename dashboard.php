@@ -90,6 +90,12 @@ header('location: index.php');
 		</form>
 		<?php }//end of while ?>
 	</table>
+	      <br />
+	      <br />	
+	      <h3>Legend</h3>
+	      <p>Deferred: Deferred to be discussed at the next board meeting</p>
+	      <p>Approved: Approved as it will be ratified at the next board meeting</p>
+	      <p>Failed: Will be discussed at the next board meeting</p>
 	<?php $motions->closeCursor(); ?>
         <!-- /span6 -->
         
