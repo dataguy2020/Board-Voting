@@ -21,11 +21,14 @@
 			 	$dateadded=$row['dateadded'];
 			 	$motiondesc=$row['motion_description'];
 			 	$disposition=$row['motion_disposition'];
+				$session=$row['Session'];
 
 			 	 $body .= "<h1>" . $motionname . "</h1>
                                 	   <h2>Date Added:</h2>" . $dateadded . "<br />
                                 	   <h2>Motion Text</h2>" .
                                 	   $motiondesc .
+					 "<h2>Session</h2> .
+					 $session .
                                 	   "<h2>Disposition:</h2>" .
                                 	   $disposition;
 			}//End of while
