@@ -25,11 +25,14 @@ header('location: index.php');
 				$dateadded=$row['dateadded'];
 				$motiondesc=$row['motion_description'];
 				$disposition=$row['motion_disposition'];
+				$session=$row['Session'];
 			
 				echo "<h1>" . $motionname . "</h1>";
 				echo "<h2>Date Added:</h2>" . $dateadded . "<br />";
 				echo "<h2>Motion Text</h2>";
 				echo $motiondesc;
+				echo "<h2>Session</h2>";
+				echo $session;
 				echo "<h2>Disposition:</h2>";
 				echo $disposition;
 				
