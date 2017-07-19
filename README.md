@@ -2,14 +2,19 @@
 Ths is a system built for the Tanyard Springs Homeowners Association to handle electronic votes. This is based off of the phpclicks.com ajax login form using php mysql and pdo
 
 ----------------------
-Requirements
+## Requirements
 ----------------------
 - LAMP Stack
 - Mail Server
  
- *MariaDB can be substituted for MySQL if desired
+ ----------------------
+ ### Additional Notes
+ ----------------------
+ MariaDB can be substituted for MySQL if desired
+ 
+
 ----------------------
-Core Features
+##Core Features
 ----------------------
 - Ability to add a motion
 - Ability to defer a motion
@@ -25,7 +30,7 @@ Core Features
 - Ability to modify a vote
 
 ----------------------
-Other Features
+##Other Features
 ----------------------
 - Abilty to modify e-mail address
 - Ability to modify password
