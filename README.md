@@ -44,3 +44,4 @@ Future Features
 - Ability to add user in GUI
 - Force user to log out when they do a password change
 - Fully implement Forgot Password Functionality
+- Ability to be able to add formatting in description (tables, colors, line breaks, etc) in motion description
