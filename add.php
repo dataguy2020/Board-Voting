@@ -65,6 +65,13 @@
 		<FIELDSET>
 			<LEGEND><b>Submit a Motion</b></LEGEND>
 			<p><label>Motion Name: </label><input type="text" name="motionname" id="motionname" /></p>
+			<p>
+				<select name="session">
+					<option value=""></option>
+					<option value="Executive">Executive</option>
+					<option value="Public">Public</option>
+				</select>
+			</p>
 			<p><label>Motion Text: </label><textarea name="motiontext" id="motiontext" style="width: 1136px; height: 122px;"></textarea>
 			<br /><input type="submit" value="Submit" name="Submit" />
 			<input type="reset" value="Reset" name="Reset" />
