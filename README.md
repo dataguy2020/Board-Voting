@@ -2,6 +2,13 @@
 Ths is a system built for the Tanyard Springs Homeowners Association to handle electronic votes. This is based off of the phpclicks.com ajax login form using php mysql and pdo
 
 ----------------------
+Requirements
+----------------------
+- LAMP Stack
+- Mail Server
+ 
+ *MariaDB can be substituted for MySQL if desired
+----------------------
 Core Features
 ----------------------
 - Ability to add a motion
@@ -10,10 +17,10 @@ Core Features
 - Ability to amend a motion
 - Ability to add discussion/comments for each motion
 - Generate reports for each motion
-- E-mail Management when motion passes to add to agenda to ratify
-- E-mail Management when motion fails to add to agenda as a motion to vote on
-- E-mail Management when motion is deferred to add to agenda as a motion to vote on
-- E-mail to board members when motino was amended to verify their vote is still accurate
+- Automatically e-mail Management when motion passes to add to agenda to ratify
+- Automatically e-mail Management when motion fails to add to agenda as a motion to vote on
+- Automatically e-mail Management when motion is deferred to add to agenda as a motion to vote on
+- Automatically e-mail to board members when motino was amended to verify their vote is still accurate
 - Ability to add a vote
 - Ability to modify a vote
 
