@@ -14,7 +14,7 @@ Ths is a system built for the Tanyard Springs Homeowners Association to handle e
  
 
 ----------------------
-##Core Features
+## Core Features
 ----------------------
 - Ability to add a motion
 - Ability to defer a motion
@@ -30,7 +30,7 @@ Ths is a system built for the Tanyard Springs Homeowners Association to handle e
 - Ability to modify a vote
 
 ----------------------
-##Other Features
+## Other Features
 ----------------------
 - Abilty to modify e-mail address
 - Ability to modify password
