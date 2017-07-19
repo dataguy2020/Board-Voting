@@ -65,7 +65,7 @@
 		<FIELDSET>
 			<LEGEND><b>Submit a Motion</b></LEGEND>
 			<p><label>Motion Name: </label><input type="text" name="motionname" id="motionname" /></p>
-			<p>
+			<p>Session:<br />
 				<select name="session">
 					<option value=""></option>
 					<option value="Executive">Executive</option>
