@@ -40,8 +40,10 @@
 					$motionname=$row['motion_name'];
 					$dateadded=$row['dateadded'];
 					$motiondesc=$row['motion_description'];
+					$session=$row['session'];
 					$body .= "<br ><br />Motion ID: " . $motionid;
 					$body .= "<br />Motion Name: " . $motionname;
+					$body .= "<br />Session: " . $session;
 					$body .= "<br />Date Added: " . $dateadded;
 					$body .= "<br />Motion Text: " . $motiondesc;
 				}//End of while
@@ -74,13 +76,20 @@
 			{
 				echo "Motion Text is blank";
 			}
+			
+			if ( $session == "" )
+			{
+				echo "Session is blank"
+			}
+				
 		
 			else
 			{
 				$today=date("Y-m-d H:i:s");
 				$disposition="IN PROGRESS";
-				$motionstatement= $db_con->prepare ("INSERT into motions (motion_name,motion_description,
-				dateadded,motion_disposition) VALUES (:name, :motion, :dateadded, :disposition)");
+				$motionstatement= $db_con->prepare ("INSERT into motions (Session, motion_name,motion_description,
+				dateadded,motion_disposition) VALUES (:session, :name, :motion, :dateadded, :disposition)");
+				$motionstatement -> bindParam(':session',$session);
 				$motionstatement -> bindParam(':name',$motionname);
 				$motionstatement -> bindParam(':motion',$motiontext);
 				$motionstatement -> bindParam(':dateadded',$today);
