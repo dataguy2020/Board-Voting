@@ -40,10 +40,10 @@
 					$motionname=$row['motion_name'];
 					$dateadded=$row['dateadded'];
 					$motiondesc=$row['motion_description'];
-					$session=$row['session'];
+					$boardsession=$row['Session'];
 					$body .= "<br ><br />Motion ID: " . $motionid;
 					$body .= "<br />Motion Name: " . $motionname;
-					$body .= "<br />Session: " . $session;
+					$body .= "<br />Session: " . $boardsession;
 					$body .= "<br />Date Added: " . $dateadded;
 					$body .= "<br />Motion Text: " . $motiondesc;
 				}//End of while
