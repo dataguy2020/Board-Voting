@@ -64,9 +64,10 @@ header('location: index.php');
       <div class="row">
 	<table border="1" width="100%">
 		<tr>
+			<th>Date Added</th>
+			<th>Session</th>
 			<th>Motion Name</th>
 			<th>Motion Text</th>
-			<th>Date Added</th>
 			<th>Status</th>
 			<th>Report</th>
 		</tr>
@@ -80,9 +81,10 @@ header('location: index.php');
 		<form id="report" name="report" action="report.php" method="POST">
 		 <?php $motionid=$row['motion_id']; ?>
 		<tr>
+			<td><?php echo $row['dateadded']; ?> </td>
+			<td><?php echo $row['Session']; ?> </td>
 			<td><?php echo $row['motion_name']; ?> </td>
 			<td><?php echo $row['motion_description']; ?> </td>
-			<td><?php echo $row['dateadded']; ?> </td>
 			<td><?php echo $row['motion_disposition']; ?> </td>
 		<?php echo '<input type="hidden" id="motionid" name="motionid" value="' . $motionid . '">'; ?>
 			<td><input type="Submit" name="Submit" value="Report"></td>
