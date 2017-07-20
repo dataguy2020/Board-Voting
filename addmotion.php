@@ -39,7 +39,6 @@
 					$motionid=$row['motion_id'];
 					$motionname=$row['motion_name'];
 					$dateadded=$row['dateadded'];
-					$boardsession=$row['Session'];
 					$motiondesc=$row['motion_description'];
 					$boardsession=$row['Session'];
 					$body .= "<br ><br />Motion ID: " . $motionid;
@@ -78,7 +77,7 @@
 				echo "Motion Text is blank";
 			}
 			
-			if ( $session == "" )
+			if ( $boardsession == "" )
 			{
 				echo "Session is blank";
 			}
