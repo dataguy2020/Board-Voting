@@ -62,7 +62,7 @@ header('location: index.php');
   <div class="main-inner">
     <div class="container">
       <div class="row">
-	<table border="1" width="100%">
+	<table border="1" width="100%" cellpadding="10">
 		<tr>
 			<th>Date Added</th>
 			<th>Session</th>
