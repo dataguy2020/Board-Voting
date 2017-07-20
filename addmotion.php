@@ -80,7 +80,7 @@
 			
 			if ( $session == "" )
 			{
-				echo "Session is blank"
+				echo "Session is blank";
 			}
 				
 		
