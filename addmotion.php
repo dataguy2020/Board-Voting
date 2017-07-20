@@ -39,6 +39,7 @@
 					$motionid=$row['motion_id'];
 					$motionname=$row['motion_name'];
 					$dateadded=$row['dateadded'];
+					$boardsession=$row['Session'];
 					$motiondesc=$row['motion_description'];
 					$boardsession=$row['Session'];
 					$body .= "<br ><br />Motion ID: " . $motionid;
@@ -89,7 +90,7 @@
 				$disposition="IN PROGRESS";
 				$motionstatement= $db_con->prepare ("INSERT into motions (Session, motion_name,motion_description,
 				dateadded,motion_disposition) VALUES (:session, :name, :motion, :dateadded, :disposition)");
-				$motionstatement -> bindParam(':session',$session);
+				$motionstatement -> bindParam(':session',$boardsession);
 				$motionstatement -> bindParam(':name',$motionname);
 				$motionstatement -> bindParam(':motion',$motiontext);
 				$motionstatement -> bindParam(':dateadded',$today);
