@@ -66,7 +66,7 @@
 			<LEGEND><b>Submit a Motion</b></LEGEND>
 			<p><label>Motion Name: </label><input type="text" name="motionname" id="motionname" /></p>
 			<p>Session:<br />
-				<select name="boardsession">
+				<select name="boardsession" id="boardsession">
 					<option value=""></option>
 					<option value="Executive">Executive</option>
 					<option value="Public">Public</option>
