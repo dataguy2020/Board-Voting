@@ -64,6 +64,7 @@
 		}//end of function
 		$motionname=$_POST['motionname'];
 		$motiontext=$_POST['motiontext'];
+		$boardsession=$_POST['boardsession'];
 
 		if ( $motionname == "" )
 		{
