@@ -155,11 +155,14 @@ header('location: index.php');
 						echo "<br />";
 						$dateAdded=$row['dateadded'];
 						$emailDiscussions .= "";
-						$emailDiscussions .= "<tr>
-							<td> " . $firstName . $lastName . "</td>
-							<td>" . $dateAdded . "</td>
-							<td" . $discussion " . "</td>
-						";
+						$emailDiscussions .= "<tr>";
+						$emailDiscussions .= "<td> ";
+						$emailDiscussions .= "$firstName $lastName";
+						$emailDiscussions .= "</td><td>"; 
+						$emailDiscussions .= "$dateAdded";
+						$emailDiscussions .= "</td><td>";
+						$emailDiscussions .= "$discussion";
+						$emailDiscussions .= "</td>";
 					}
 					
 					$emailDiscussions .= "</table>";
