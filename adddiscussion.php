@@ -158,7 +158,7 @@ header('location: index.php');
 						$emailDiscussions .= "<tr>
 							<td> " . $firstName . $lastName . "</td>
 							<td>" . $dateAdded . "</td>
-							<td" . $discussion " . </td>
+							<td" . $discussion " . "</td>
 						";
 					}
 					
