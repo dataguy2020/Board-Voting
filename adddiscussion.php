@@ -156,9 +156,9 @@ header('location: index.php');
 						$dateAdded=$row['dateadded'];
 						$emailDiscussions .= "";
 						$emailDiscussions .= "<tr>
-							<td> $firstName $lastName </td>
-							<td> $dateAdded </td>
-							<td $discussion </td>
+							<td> " . $firstName $lastName . "</td>
+							<td>" . $dateAdded . "</td>
+							<td" . $discussion " . </td>
 						";
 					}
 					
