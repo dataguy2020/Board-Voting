@@ -121,7 +121,7 @@ header('location: index.php');
     			$body .= "</table>";
 			$body .= "<br /><br />
 					<h2>Discussions</h2>
-					<table border=\"1\" width=\"1\">
+					<table border=\"1\" width=\"100%\">
 					<tr>
 						<th>User</th>
 						<th>Date</th>
@@ -147,7 +147,7 @@ header('location: index.php');
 			$body .= "</table>";
 			echo "<br />";
 			echo '<h2>Change Log</h2>
-		<table border="1" width="100%">
+		<table border=\"1\" width=\"100%\">
 			<tr>
 				<th>User</th>
 				<th>Date</th>
