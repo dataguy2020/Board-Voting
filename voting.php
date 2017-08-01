@@ -253,14 +253,52 @@ header('location: index.php');
 						$secondedCount=$secondedVote->rowCount();
 						if ($secondedCount == 1)
 						{
-							$decision="SECONDED";
-							$initialVote=$db_con->prepare(
+							if ($decision == "NO")
+							{
+								$initialVote=$db_con->prepare(
 								"INSERT INTO votes (users_id,motions_id,vote) VALUE (:users_id, :motions_id, :vote)");
-							$initialVote->bindParam(':users_id',$userid);
-							$initialVote->bindParam(':motions_id',$motionid);
-							$initialVote->bindParam(':vote',$decision);
-							$initialVote->execute();
-							echo "Voted";
+								$initialVote->bindParam(':users_id',$userid);
+								$initialVote->bindParam(':motions_id',$motionid);
+								$initialVote->bindParam(':vote',$decision);
+								$initialVote->execute();
+								echo "Voted";
+								
+								$disposition="FAILED";
+								$motiondep=$db_con->prepare(
+								"UPDATE motions set motion_disposition =:disposition WHERE motion_id=:motion_id");
+								$motiondep->bindParam(':disposition',$disposition);
+								$motiondep->bindParam(':motion_id',$motionid);
+								$motiondep->execute();
+							
+								//grabbing email addresses for Board and management
+                                                       	 	$userSearch=$db_con->prepare("SELECT * from users where enabled=1;");
+                                                        	$userSearch->execute();
+                                                        	$boardEmail="";
+                                                        	while ($row=$userSearch->fetch(PDO::FETCH_ASSOC))
+                                                        	{
+                                                           	     $boardEmail .= $row['email'] .",";
+                                                       		}
+                                                       		$managementSearch=$db_con->prepare("SELECT * FROM management where fenabled=1;");
+                                                        	$managementSearch->execute();
+                                                        	$managementEmail="";
+                                                        	while ($row=$managementSearch->fetch(PDO::FETCH_ASSOC))
+                                                        	{
+                                                                	$managementEmail .= $row['email'] .",";
+                                                        	}
+                                                        	mailing($motionid,$boardEmail,$managementEmail);
+							}
+							
+							else
+							{
+								$decision="SECONDED";
+								$initialVote=$db_con->prepare(
+									"INSERT INTO votes (users_id,motions_id,vote) VALUE (:users_id, :motions_id, :vote)");
+								$initialVote->bindParam(':users_id',$userid);
+								$initialVote->bindParam(':motions_id',$motionid);
+								$initialVote->bindParam(':vote',$decision);
+								$initialVote->execute();
+								echo "Voted";
+							}
 							
 						}
 						else
