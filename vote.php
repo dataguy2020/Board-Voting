@@ -219,7 +219,7 @@ header('location: index.php');
 				$motionname=$row['motion_name'];
 				$dateadded=$row['dateadded'];
 				$motiondesc=$row['motion_description'];
-				$dispo=$rowp['motion_disposition'];
+				$dispo=$row['motion_disposition'];
 			
 			
 				echo "<h1>" . $motionname . "</h1><br />";
