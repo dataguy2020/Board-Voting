@@ -1,5 +1,17 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 4.7.0
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost
+-- Generation Time: Aug 03, 2017 at 12:46 PM
+-- Server version: 5.5.57-0+deb8u1-log
+-- PHP Version: 7.0.20-1~dotdeb+8.2
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -26,31 +38,9 @@ CREATE TABLE `audit` (
 --
 -- Dumping data for table `audit`
 --
-
 -- --------------------------------------------------------
 
---
--- Table structure for table `banned`
---
 
-CREATE TABLE `banned` (
-  `banned_id` int(11) NOT NULL,
-  `banned_by` int(11) NOT NULL,
-  `first_name` varchar(20) NOT NULL,
-  `last_name` varchar(20) NOT NULL,
-  `description` varchar(500) NOT NULL,
-  `location` varchar(200) NOT NULL,
-  `datebanned` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `banned`
---
-
-INSERT INTO `banned` (`banned_id`, `banned_by`, `first_name`, `last_name`, `description`, `location`, `datebanned`) VALUES
-(1, 7, 'Test', 'User', '5\'10\" Male, ', 'Basketball Court', '2017-03-10 21:00:00');
-
--- --------------------------------------------------------
 
 --
 -- Table structure for table `discussion`
@@ -60,14 +50,13 @@ CREATE TABLE `discussion` (
   `discussion_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `motion_id` int(11) NOT NULL,
-  `discussion_text` varchar(1000) NOT NULL,
-  `dateadded` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `discussion_text` varchar(5000) NOT NULL,
+  `dateadded` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `discussion`
 --
-
 -- --------------------------------------------------------
 
 --
@@ -87,7 +76,8 @@ CREATE TABLE `management` (
 --
 
 INSERT INTO `management` (`managementID`, `first_name`, `last_name`, `email`, `fenabled`) VALUES
-(1, 'FirstName', 'LastName', 'manager1@management.com', 1);
+(1, 'First_Name', 'Last_Name', 'mgt1@mail.com', 1),
+(2, 'First_Name', 'Last_Name', 'mgt2@mail.com', 1);
 
 -- --------------------------------------------------------
 
@@ -116,10 +106,14 @@ CREATE TABLE `motionChangeLog` (
   `userid` int(11) NOT NULL,
   `motionid` int(11) NOT NULL,
   `field` varchar(200) NOT NULL,
-  `oldValue` varchar(500) NOT NULL,
-  `newValue` varchar(500) NOT NULL
+  `oldValue` varchar(5000) NOT NULL,
+  `newValue` varchar(5000) NOT NULL,
+  `date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `motionChangeLog`
+--
 -- --------------------------------------------------------
 
 --
@@ -128,8 +122,9 @@ CREATE TABLE `motionChangeLog` (
 
 CREATE TABLE `motions` (
   `motion_id` int(11) NOT NULL,
-  `motion_name` varchar(50) NOT NULL,
-  `motion_description` varchar(500) NOT NULL,
+  `Session` varchar(20) NOT NULL,
+  `motion_name` varchar(150) NOT NULL,
+  `motion_description` varchar(5000) NOT NULL,
   `dateadded` datetime DEFAULT NULL,
   `motion_disposition` varchar(20) DEFAULT NULL,
   `sent` int(1) DEFAULT NULL
@@ -138,8 +133,6 @@ CREATE TABLE `motions` (
 --
 -- Dumping data for table `motions`
 --
-
-
 -- --------------------------------------------------------
 
 --
@@ -148,7 +141,7 @@ CREATE TABLE `motions` (
 
 CREATE TABLE `positions` (
   `position_id` int(11) NOT NULL,
-  `position_name` varchar(20) NOT NULL
+  `position_name` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -156,11 +149,24 @@ CREATE TABLE `positions` (
 --
 
 INSERT INTO `positions` (`position_id`, `position_name`) VALUES
-(6, 'President'),
-(7, 'Vice-President'),
-(8, 'Treasurer'),
-(9, 'Secretary'),
-(10, 'Director');
+(1, 'President'),
+(2, 'Vice-President (16-17)'),
+(3, 'Secretary'),
+(4, 'Treasurer'),
+(5, 'Director'),
+(6, 'Vice President');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `states`
+--
+
+CREATE TABLE `states` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `code` char(2) NOT NULL,
+  `name` varchar(64) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -184,30 +190,6 @@ CREATE TABLE `users` (
 --
 -- Dumping data for table `users`
 --
-
-INSERT INTO `users` (`users_id`, `username`, `password`, `first_name`, `last_name`, `email`, `position_id`, `enabled`, `temppw`, `lastlogin`) VALUES
-(6, 'jwalters', 'bab4b75fe3a410ba39cee1493bdc79ecf5f1c739', 'FirstName', 'LastName', 'user@email.com', 6, 1, 0, '2017-03-10 14:11:53'),
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `vehicles`
---
-
-CREATE TABLE `vehicles` (
-  `vehicles_id` int(11) NOT NULL,
-  `addedby` int(11) NOT NULL,
-  `year` int(4) DEFAULT NULL,
-  `make` varchar(200) DEFAULT NULL,
-  `model` varchar(200) DEFAULT NULL,
-  `color` varchar(15) DEFAULT NULL,
-  `plate` varchar(50) DEFAULT NULL,
-  `location` varchar(200) NOT NULL,
-  `picture` int(11) NOT NULL,
-  `dateobserved` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 -- --------------------------------------------------------
 
 --
@@ -223,8 +205,9 @@ CREATE TABLE `votes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `votes
+-- Dumping data for table `votes`
 --
+
 -- Indexes for dumped tables
 --
 
@@ -234,13 +217,6 @@ CREATE TABLE `votes` (
 ALTER TABLE `audit`
   ADD PRIMARY KEY (`audit_id`),
   ADD KEY `user_id` (`user_id`);
-
---
--- Indexes for table `banned`
---
-ALTER TABLE `banned`
-  ADD PRIMARY KEY (`banned_id`),
-  ADD KEY `banned_by` (`banned_by`);
 
 --
 -- Indexes for table `discussion`
@@ -285,18 +261,18 @@ ALTER TABLE `positions`
   ADD PRIMARY KEY (`position_id`);
 
 --
+-- Indexes for table `states`
+--
+ALTER TABLE `states`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id` (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`users_id`),
   ADD UNIQUE KEY `position_id` (`position_id`);
-
---
--- Indexes for table `vehicles`
---
-ALTER TABLE `vehicles`
-  ADD PRIMARY KEY (`vehicles_id`),
-  ADD KEY `addedby` (`addedby`);
 
 --
 -- Indexes for table `votes`
@@ -314,22 +290,17 @@ ALTER TABLE `votes`
 -- AUTO_INCREMENT for table `audit`
 --
 ALTER TABLE `audit`
-  MODIFY `audit_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
---
--- AUTO_INCREMENT for table `banned`
---
-ALTER TABLE `banned`
-  MODIFY `banned_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `audit_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
 --
 -- AUTO_INCREMENT for table `discussion`
 --
 ALTER TABLE `discussion`
-  MODIFY `discussion_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `discussion_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 --
 -- AUTO_INCREMENT for table `management`
 --
 ALTER TABLE `management`
-  MODIFY `managementID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `managementID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `messages`
 --
@@ -339,47 +310,35 @@ ALTER TABLE `messages`
 -- AUTO_INCREMENT for table `motionChangeLog`
 --
 ALTER TABLE `motionChangeLog`
-  MODIFY `changelogID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `changelogID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `motions`
 --
 ALTER TABLE `motions`
-  MODIFY `motion_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `motion_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT for table `positions`
 --
 ALTER TABLE `positions`
-  MODIFY `position_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `position_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT for table `states`
+--
+ALTER TABLE `states`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `users_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
---
--- AUTO_INCREMENT for table `vehicles`
---
-ALTER TABLE `vehicles`
-  MODIFY `vehicles_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `users_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `votes`
 --
 ALTER TABLE `votes`
-  MODIFY `votes_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
+  MODIFY `votes_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 --
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `audit`
---
-ALTER TABLE `audit`
-  ADD CONSTRAINT `audit_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`users_id`);
-
---
--- Constraints for table `banned`
---
-ALTER TABLE `banned`
-  ADD CONSTRAINT `banned_ibfk_1` FOREIGN KEY (`banned_by`) REFERENCES `users` (`users_id`);
 
 --
 -- Constraints for table `discussion`
@@ -389,37 +348,18 @@ ALTER TABLE `discussion`
   ADD CONSTRAINT `discussion_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`users_id`);
 
 --
--- Constraints for table `messages`
---
-ALTER TABLE `messages`
-  ADD CONSTRAINT `messages_ibfk_1` FOREIGN KEY (`userTo`) REFERENCES `users` (`users_id`),
-  ADD CONSTRAINT `messages_ibfk_2` FOREIGN KEY (`userFrom`) REFERENCES `users` (`users_id`);
-
---
 -- Constraints for table `motionChangeLog`
 --
 ALTER TABLE `motionChangeLog`
-  ADD CONSTRAINT `motionChangeLog_ibfk_1` FOREIGN KEY (`userid`) REFERENCES `users` (`users_id`),
-  ADD CONSTRAINT `motionChangeLog_ibfk_2` FOREIGN KEY (`motionid`) REFERENCES `motions` (`motion_id`);
+  ADD CONSTRAINT `motionChangeLog_ibfk_1` FOREIGN KEY (`motionid`) REFERENCES `motions` (`motion_id`),
+  ADD CONSTRAINT `motionChangeLog_ibfk_2` FOREIGN KEY (`userid`) REFERENCES `users` (`users_id`);
 
 --
 -- Constraints for table `users`
 --
 ALTER TABLE `users`
   ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`position_id`) REFERENCES `positions` (`position_id`);
-
---
--- Constraints for table `vehicles`
---
-ALTER TABLE `vehicles`
-  ADD CONSTRAINT `vehicles_ibfk_1` FOREIGN KEY (`addedby`) REFERENCES `users` (`users_id`);
-
---
--- Constraints for table `votes`
---
-ALTER TABLE `votes`
-  ADD CONSTRAINT `votes_ibfk_1` FOREIGN KEY (`users_id`) REFERENCES `users` (`users_id`),
-  ADD CONSTRAINT `votes_ibfk_2` FOREIGN KEY (`motions_id`) REFERENCES `motions` (`motion_id`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
