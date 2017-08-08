@@ -74,10 +74,9 @@ content="7d5cea67efa74a6200b4a875969ce64d" />
 <div class="account-container">
 	
 	<div class="content clearfix">
-		
+		<p style="text-align:center"><img src="./img/image004.png" /></p>
 		<form name="log-in-form"  id="log-in-form" method="post">
 		
-			<h1>Login</h1>	
             <div class="alert" id="error-msg">
             
            </div>
@@ -87,8 +86,6 @@ content="7d5cea67efa74a6200b4a875969ce64d" />
           </div>	
 			
 			<div class="login-fields">
-				
-				<p>Please provide your details</p>
 				
 				<div class="field">
 					<label for="username">Email</label>
