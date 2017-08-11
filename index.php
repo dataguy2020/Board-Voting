@@ -21,12 +21,18 @@ content="7d5cea67efa74a6200b4a875969ce64d" />
 
     <link href="css/font-awesome.css" rel="stylesheet">
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet">
+	`<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
     
     <link href="css/style.css" rel="stylesheet" type="text/css">
     <link href="css/pages/signin.css" rel="stylesheet" type="text/css">
   <style>
 #error-msg{ display:none }
 #success-msg{ display:none }
+	  .name {
+		font-family: 'Tangerine', serif;
+        	font-size: 48px;
+	  }
+	  
 </style>
 </head>
 
@@ -75,6 +81,7 @@ content="7d5cea67efa74a6200b4a875969ce64d" />
 	
 	<div class="content clearfix">
 		<p style="text-align:center"><img src="./img/image004.png" /></p>
+		<div class="name">Board of Directors Online Voting System</div>
 		<form name="log-in-form"  id="log-in-form" method="post">
 		
             <div class="alert" id="error-msg">
