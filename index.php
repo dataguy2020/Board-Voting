@@ -83,7 +83,7 @@ vertical-align: middle;
 	
 	<div class="content clearfix">
 		<p style="text-align:center"><img src="./img/image004.png" /></p>
-		<div class="name">Board of Directors <br />Online Voting System</div>
+		<br /><br /><div class="name">Board of Directors <br /><br />Online Voting System</div><br /><br />
 		<form name="log-in-form"  id="log-in-form" method="post">
 		
             <div class="alert" id="error-msg">
