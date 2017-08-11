@@ -31,6 +31,8 @@ content="7d5cea67efa74a6200b4a875969ce64d" />
 	  .name {
 		font-family: 'Tangerine', serif;
         	font-size: 48px;
+		  text-align: center;
+vertical-align: middle;
 	  }
 	  
 </style>
@@ -81,7 +83,7 @@ content="7d5cea67efa74a6200b4a875969ce64d" />
 	
 	<div class="content clearfix">
 		<p style="text-align:center"><img src="./img/image004.png" /></p>
-		<div class="name">Board of Directors Online Voting System</div>
+		<div class="name">Board of Directors <br />Online Voting System</div>
 		<form name="log-in-form"  id="log-in-form" method="post">
 		
             <div class="alert" id="error-msg">
