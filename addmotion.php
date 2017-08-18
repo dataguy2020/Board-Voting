@@ -86,14 +86,16 @@
 		
 			else
 			{
-				$today=date("Y-m-d H:i:s");
+				//$today=date("Y-m-d H:i:s");
 				$disposition="IN PROGRESS";
+				//$motionstatement= $db_con->prepare ("INSERT into motions (Session, motion_name,motion_description,
+				//dateadded,motion_disposition) VALUES (:session, :name, :motion, :dateadded, :disposition)");
 				$motionstatement= $db_con->prepare ("INSERT into motions (Session, motion_name,motion_description,
-				dateadded,motion_disposition) VALUES (:session, :name, :motion, :dateadded, :disposition)");
+				motion_disposition) VALUES (:session, :name, :motion, :disposition)");
 				$motionstatement -> bindParam(':session',$boardsession);
 				$motionstatement -> bindParam(':name',$motionname);
 				$motionstatement -> bindParam(':motion',$motiontext);
-				$motionstatement -> bindParam(':dateadded',$today);
+				//$motionstatement -> bindParam(':dateadded',$today);
 				$motionstatement -> bindParam(':disposition',$disposition);
 				$motionstatement->execute();
 				echo "Added motion to the database .... ";
