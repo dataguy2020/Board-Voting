@@ -118,7 +118,11 @@
 					$insertChange->bindParam(':oldValue',$existingmotiondec);
 					$insertChange->bindParam(':newValue',$newmotiondesc);
 					$insertChange->execute();	
-				
+					
+					//Move all votes to the changelog
+					//Remove all votes
+					//person who amended set to MOTIONED
+								
 					//grabbing email addresses for Board and management
 					$userSearch=$db_con->prepare("SELECT * from users where enabled=1;");
 					$userSearch->execute();
