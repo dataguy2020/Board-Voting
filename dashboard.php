@@ -64,9 +64,9 @@ header('location: index.php');
   <div class="main-inner">
     <div class="container">
       <div class="row">
-	      <div class="alert alert-danger" role="alert">
-  		<strong>MESSAGE:</strong>This system will be going offline starting at 9:00p.m. on Friday September 29, 2017 until 12:00 a.m. on Saturday September 30, 2017
-	      </div>
+	      <!--<div class="alert alert-danger" role="alert">
+  		<strong>ALERT: </strong>This message is as of October 17, 2018. Please be advised this site will be moved to a new server in the next week
+	      </div>-->
 	<table border="1" width="100%" cellpadding="10">
 		<tr>
 			<th>Date Added</th>

@@ -86,9 +86,9 @@ vertical-align: middle;
 	</div> <!-- /content -->
 	
 </div> <!-- /account-container -->
-      <div class="alert alert-danger" role="alert">
+      <!--<div class="alert alert-danger" role="alert">
   		<strong>MESSAGE:</strong>This system will be going offline starting at 9:00p.m. on Friday September 29, 2017 until 12:00 a.m. on Saturday September 30, 2017
-	      </div>
+	      </div>-->
 
 
 
