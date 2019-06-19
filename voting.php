@@ -81,6 +81,7 @@ header('location: index.php');
 			 {
 			 	$motionid=$row['motion_id'];
 			 	$motionname=$row['motion_name'];
+				$session=$row['Session'];
 			 	$dateadded=$row['dateadded'];
 			 	$motiondesc=$row['motion_description'];
 			 	$disposition=$row['motion_disposition'];
@@ -88,6 +89,8 @@ header('location: index.php');
                                 	   <h2>Date Added:</h2>" . $dateadded . "<br />
                                 	   <h2>Motion Text</h2>" .
                                 	   $motiondesc .
+					   "<br /> <h2>Session</h2>" .
+					   $session
                                 	   "<h2>Disposition:</h2>" .
                                 	   $disposition;
 			}//End of while
@@ -185,7 +188,7 @@ header('location: index.php');
 		}//end of foreach
 		$emailSearch=$db_con->prepare("SELECT email from users where enabled=1;");
 		$emailSearch->execute();
-		$subject = "Motion Summary for Motion:" . $motionname;
+		$subject = "<$session> Motion Summary for Motion:" . $motionname;
 		$message = $body;
 		$to=$managementEmail;
 		$headers[] = 'MIME-Version: 1.0';
