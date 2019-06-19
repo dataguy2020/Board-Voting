@@ -77,11 +77,12 @@ header('location: index.php');
 				$motionid=$row['motion_id'];
 				$motionname=$row['motion_name'];
 				$dateadded=$row['dateadded'];
+				$session=$row['Session'];
 				$motiondesc=$row['motion_description'];
 			
-			
 				echo "<h1>" . $motionname . "</h1><br />";
-				echo "<h2>Date Added:</h2>" . $dateadded . "<br /><br />";
+				echo "<h2>Date Added:</h2>" . $dateadded . "<br />";
+				echo "<h2>Session:</h2>" . $session . "<br /><br />";
 				echo "<h2>Motion Text</h2>";
 				echo $motiondesc;
 			}//end of while ($row=$motion->fetch(PDO::FETCH_ASSOC))
