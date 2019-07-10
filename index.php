@@ -20,7 +20,7 @@ content="7d5cea67efa74a6200b4a875969ce64d" />
     <link href="css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css" />
 
     <link href="css/font-awesome.css" rel="stylesheet">
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet">
 	`<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
     
     <link href="css/style.css" rel="stylesheet" type="text/css">

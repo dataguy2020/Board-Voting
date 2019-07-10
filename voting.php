@@ -90,7 +90,7 @@ header('location: index.php');
                                 	   <h2>Motion Text</h2>" .
                                 	   $motiondesc .
 					   "<br /> <h2>Session</h2>" .
-					   $session
+					   $session .
                                 	   "<h2>Disposition:</h2>" .
                                 	   $disposition;
 			}//End of while
