@@ -32,7 +32,7 @@ Ths is a system built for the Tanyard Springs Homeowners Association to handle e
 ----------------------
 ## Other Features
 ----------------------
-- Abilty to modify e-mail address
+- Ability to modify e-mail address
 - Ability to modify password
 - Utilizes timing of local time zone instead of GMT
 
