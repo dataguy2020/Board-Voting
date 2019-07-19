@@ -74,7 +74,9 @@
 				</select>
 			</p>
 			<p><label>Motion Text: </label><textarea name="motiontext" id="motiontext" style="width: 1136px; height: 122px;"></textarea>
-				                CKEDITOR.replace( 'motiontext' );
+			<script>
+				CKEDITOR.replace( 'motiontext' );
+				</script>
 
 			<br /><input type="submit" value="Submit" name="Submit" />
 			<input type="reset" value="Reset" name="Reset" />
