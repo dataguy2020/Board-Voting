@@ -19,7 +19,7 @@
 <link href="css/font-awesome.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
 <link href="css/pages/dashboard.css" rel="stylesheet">
-	<script src="//cdn.ckeditor.com/4.12.1/standard/ckeditor.js"></script>
+	<script src="https://cdn.ckeditor.com/ckeditor5/12.3.1/classic/ckeditor.js"></script>
 <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -75,9 +75,12 @@
 			</p>
 			<p><label>Motion Text: </label><textarea name="motiontext" id="motiontext" style="width: 1136px; height: 122px;"></textarea>
 			<script>
-				CKEDITOR.replace( 'motiontext' );
-				</script>
-
+    ClassicEditor
+        .create( document.querySelector( '#motiontext' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
 			<br /><input type="submit" value="Submit" name="Submit" />
 			<input type="reset" value="Reset" name="Reset" />
 		</FIELDSET>
