@@ -235,7 +235,7 @@ header('location: index.php');
 						"SELECT * FROM votes WHERE users_id=:userid AND motions_id=:motionsid;");
 					$addvote->execute(array(':userid' => $userid,':motionsid' => $motionid));
 					$row=$addvote->fetchAll(PDO::FETCH_ASSOC);
-					$vote=htmlspecialchars($_POST['vote'];
+					$vote=htmlspecialchars($_POST['vote']);
 					if (count($row) == 1)
 					{
 						echo 	'<form id="voting" name="voting" method="POST" action="voting.php">
