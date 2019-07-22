@@ -4174,6 +4174,8 @@ a.list-group-item.active > .badge,
   color: transparent;
   text-shadow: none;
   background-color: transparent;
+    font-family: Helvetica, Arial, Verdana, Tahoma, sans-serif;
+
   border: 0;
 }
 
