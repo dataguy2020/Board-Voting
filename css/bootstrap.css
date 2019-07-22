@@ -4171,10 +4171,11 @@ a.list-group-item.active > .badge,
 
 .text-hide {
   font: 0/0 a;
+  font-family: Helvetica, Arial, Verdana, Tahoma, sans-serif;
   color: transparent;
   text-shadow: none;
   background-color: transparent;
-    font-family: Helvetica, Arial, Verdana, Tahoma, sans-serif;
+    
 
   border: 0;
 }
