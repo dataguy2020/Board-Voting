@@ -206,8 +206,8 @@ header('location: index.php');
 			<?php
 				
 				//include "mail.php";
-	      			$decision=$_POST['vote'];
-				$motionid=$_POST['motionid'];
+	      			$decision=htmlspecialchars($_POST['vote']);
+				$motionid=htmlspecialchars($_POST['motionid']);
 	      			echo "Motion ID: " . $motionid;
 	      			echo "<br />Decision: " . $decision;
 			
