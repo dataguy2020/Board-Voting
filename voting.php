@@ -235,12 +235,13 @@ header('location: index.php');
 						"SELECT * FROM votes WHERE users_id=:userid AND motions_id=:motionsid;");
 					$addvote->execute(array(':userid' => $userid,':motionsid' => $motionid));
 					$row=$addvote->fetchAll(PDO::FETCH_ASSOC);
+					$vote=htmlspecialchars($_POST['vote'];
 					if (count($row) == 1)
 					{
 						echo 	'<form id="voting" name="voting" method="POST" action="voting.php">
                 					<input type="hidden" name="motionid" value="' . $motionid . '">
 							<input type="hidden" name="revote" value="revote">
-							<input type="hidden" name="vote" value="' . $_POST['vote'] . '">
+							<input type="hidden" name="vote" value="' . $vote . '">
                 					<input type="radio" name="revote1" value="Yes">Yes<br />
                 					<input type="radio" name="revote1" value="No">No<br />
                 					<input type="Submit" name="Submit" value="Submit">
