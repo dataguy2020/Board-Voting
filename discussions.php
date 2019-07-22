@@ -2,7 +2,7 @@
 session_start();
 if(empty($_SESSION['user_id'])){
 header('location: index.php');	
-	}
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,41 +14,41 @@ header('location: index.php');
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
 <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600"
-        rel="stylesheet">
+rel="stylesheet">
 <link href="css/font-awesome.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
 <link href="css/pages/dashboard.css" rel="stylesheet">
 <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
 </head>
 <body>
 <?php
-	$userid=$_SESSION['user_id'];
+$userid=$_SESSION['user_id'];
 ?>
 <div class="navbar navbar-fixed-top">
-  <div class="navbar-inner">
-    <div class="container"> <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span
-                    class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span> </a><a class="brand" href="index.php">Tanyard Springs Board Portal</a>
-      
-      <!--/.nav-collapse --> 
-    </div>
-    <!-- /container --> 
-  </div>
-  <!-- /navbar-inner --> 
+<div class="navbar-inner">
+<div class="container"> <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span
+	    class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span> </a><a class="brand" href="index.php">Tanyard Springs Board Portal</a>
+
+<!--/.nav-collapse --> 
+</div>
+<!-- /container --> 
+</div>
+<!-- /navbar-inner --> 
 </div>
 <!-- /navbar -->
 <div class="subnavbar">
-  <div class="subnavbar-inner">
-    <div class="container">
-      <ul class="mainnav">
-        <li><a href="dashboard.php"><i class="icon-dashboard"></i><span>Dashboard</span> </a> </li>
-	<li> <a href ="add.php"><i class ="icon-dashboard"></i><span>Add Motion</span></a></li>
-	<li><a href="vote.php"><i class ="icon-dashboard"></i><span>Vote</span></a></li>
-	 <li class="active"><a href="discussions.php"><i class ="icon-dashboard"></i><span>Discussions</span></a></li>
-	<li><a href="userprefs.php"><i class ="icon-dashboard"></i><span>Prefences</span></a></li>
-         <li><a href="logout.php"><i class="icon-dashboard"></i><span>Logout</span></a> </li>
+<div class="subnavbar-inner">
+<div class="container">
+<ul class="mainnav">
+<li><a href="dashboard.php"><em class="icon-dashboard"></em><span>Dashboard</span> </a> </li>
+	<li> <a href ="add.php"><em class ="icon-dashboard"></em><span>Add Motion</span></a></li>
+	<li><a href="vote.php"><em class ="icon-dashboard"></em><span>Vote</span></a></li>
+	 <li class="active"><a href="discussions.php"><em class ="icon-dashboard"></em><span>Discussions</span></a></li>
+	<li><a href="userprefs.php"><em class ="icon-dashboard"></em><span>Prefences</span></a></li>
+         <li><a href="logout.php"><em class="icon-dashboard"></em><span>Logout</span></a> </li>
 
       </ul>
     </div>

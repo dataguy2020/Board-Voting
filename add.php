@@ -64,7 +64,7 @@
     <div class="container">
 	<form action="addmotion.php"  method="post">
 		<FIELDSET>
-			<LEGEND><b>Submit a Motion</b></LEGEND>
+			<LEGEND><strong>Submit a Motion</strong></LEGEND>
 			<p><label>Motion Name: </label><input type="text" name="motionname" id="motionname" /></p>
 			<p>Session:<br />
 				<select name="boardsession" id="boardsession">
