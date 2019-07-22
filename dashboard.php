@@ -27,6 +27,8 @@
       <style>
          table{
          width:100%;
+             border-collapse: separate;
+   border-spacing: 10px; 
          }
          #example_filter{
          float:right;
@@ -104,7 +106,7 @@
                   </div>-->
             <div class="container">
                <div class="row">
-                  <table border="1"  id="example" class="table table-striped table-bordered" style="width:100%" cellpadding="10">
+                  <table border="1"  id="example" class="table table-striped table-bordered" style="width:100%">
                      <thead>
                         <tr>
                            <th>Date Added</th>
