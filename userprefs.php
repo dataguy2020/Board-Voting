@@ -58,7 +58,7 @@ font-weight:bold;
 <div class="container">
 <ul class="mainnav">
 <li><a href="dashboard.php"><em class="icon-dashboard"></em><span>Dashboard</span></a> </li>
-	<li> <a href ="add.php"><i class ="icon-dashboard"></em><span>Add Motion</span></a></li>
+	<li> <a href ="add.php"><em class ="icon-dashboard"></em><span>Add Motion</span></a></li>
 	<li><a href="vote.php"><em class ="icon-dashboard"></em><span>Vote</span></a></li>
 	 <li><a href="discussions.php"><em class ="icon-dashboard"></em><span>Discussions</span></a></li>
 	<li class="active"><a href="userprefs.php"><em class="icon-dashboard"></em><span>Preferences</span>_</a></li>

@@ -148,8 +148,8 @@ $userid=$_SESSION['user_id'];
 	<h2>Your Discussion:</h2>
 		
         <?php echo '<form id="discussion" name="discussion" method="POST" action="adddiscussion.php">
-                <input type="hidden" name="motionid" value="' . $motionid . '">
-		<input type="hidden" name="userid" value="' . $userid . '">
+                <input type="hidden" name="motionid" value="' . htmlspecialchars($motionid) . '">
+		<input type="hidden" name="userid" value="' . htmlspecialchars($userid) . '">
 		<textarea name="discussiontext" id="discussiontext" style="width:1136px; height: 122px;"></textarea>
                 <input type="Submit" name="Submit" value="Submit">
                 <input type="Reset" name="Reset" value="Reset">

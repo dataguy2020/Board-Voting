@@ -208,7 +208,7 @@ header('location: index.php');
 	      
 		if (!empty($_POST) && !isset($_POST['Amend']) && !isset($_POST['Revoke']) && !($_POST['Deferred']))
 		{
-			$motionid=$_POST['motionid'];
+			$motionid=htmlspecialchars($_POST['motionid']);
 			#echo "Debug: " . $motionid;
 			$motion=$db_con->prepare ("SELECT * from motions where motion_id = :motionid");
 			$motion->bindParam(':motionid',$motionid);
@@ -330,7 +330,7 @@ header('location: index.php');
 	<h2>Your Decision</h2>
 		
         <?php echo '<form id="voting" name="voting" method="POST" action="voting.php">
-                <input type="hidden" name="motionid" value="' . $motionid . '">
+                <input type="hidden" name="motionid" value="' . htmlspecialchars($motionid) . '">
 		<input type="radio" name="vote" value="YES">Vote for Motion<br />
                 <input type="radio" name="vote" value="NO">Vote against Motion<br />
                 <input type="Submit" name="Submit" value="Submit">
@@ -350,7 +350,7 @@ header('location: index.php');
 			$deferredMotion->bindParam(':dispo',$action);
 			$deferredMotion->bindParam(':motionid',$motionid);
 			$deferredMotion->execute();
-			echo "Change the status of the motion to " . $action;
+			echo "Change the status of the motion to " . htmlspecialchars($action);
 			
 			$userVote=$db_con->prepare("INSERT into motionChangeLog (userid,motionid,field,oldValue,newValue) 
 							VALUES (:users_id,:motions_id,:field,:oldValue,:newValue");
@@ -400,7 +400,7 @@ header('location: index.php');
                                 $motionuser=$voteRow['users_id'];
                         }
 
-                        echo "<br />Motion ID: " . $motionid;
+                        echo "<br />Motion ID: " . htmlspecialchars($motionid);
                         echo "<br />User ID: " . $userid;
                         echo "<br />Motion User: " . $motionuser;
 			
@@ -542,9 +542,9 @@ header('location: index.php');
 	<h2>Your Amendment</h2>
 		
         <?php echo '<form id="voting" name="voting" method="POST" action="amendMotion.php">
-                <input type="hidden" name="motionid" value="' . $motionid . '">
-		Motion Name: <input type="text" name="motionname" readonly id="motionname" value="'. $motionname . '">
-		<br />Existing Motion Text: <textarea name="existingmotiondec" id="existingmotiondec" style="width:1136px; height: 122px;">' . $motiondesc . '</textarea>
+                <input type="hidden" name="motionid" value="' . htmlspecialchars($motionid) . '">
+		Motion Name: <input type="text" name="motionname" readonly id="motionname" value="'. htmlspecialchars($motionname) . '">
+		<br />Existing Motion Text: <textarea name="existingmotiondec" id="existingmotiondec" style="width:1136px; height: 122px;">' . htmlspecialchars($motiondesc) . '</textarea>
 		<br />Motion Text: <textarea name="newmotiondesc" id="newmotiondesc" style="width:1136px; height: 122px;"></textarea>
                 <input type="Submit" name="Submit" value="Submit">
                 <input type="Reset" name="Reset" value="Reset">

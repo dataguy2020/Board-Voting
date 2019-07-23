@@ -5,6 +5,7 @@
 		header('location: index.php');
 	}//end of if(empty($_SESSION['user_id']))
 ?>
+<!DOCTYPE html>
 <html>
 	<head>
 		<title>Amending Motion</title>

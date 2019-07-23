@@ -1,6 +1,7 @@
 <?php
 	session_start();
 ?>
+<!DOCTYPE html>
 <html>
 <head>
 	<title>Change Temporary Password</title>
@@ -33,8 +34,8 @@
 				{
 					//TODO: Try/catch
 					$updatepassword=$db_con->prepare(
-						"UPDATE users set password=:password where users_id=:userid;");
-					$updatepassword->bindParam(':password',$confirmpassword);
+						"UPDATE users set password=:passcode where users_id=:userid;");
+					$updatepassword->bindParam(':passcode',$confirmpassword);
 					$updatepassword->bindParam(':userid',$_SESSION['user_id']);
 					$updatepassword->execute();
 					
