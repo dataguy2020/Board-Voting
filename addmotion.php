@@ -14,7 +14,6 @@
 <body>
 	<?php
 		include_once('include/db-config.php');
-		//include_once('mail.php');
 		function addmailing($votesmotionid, $boardEmail)
 		{
 			global $db_con;
@@ -25,7 +24,10 @@
 			{
 				$motion=$db_con->prepare ("SELECT * from motions where motion_id = :motionid");
 				$motion->bindParam(':motionid',$motionid);
-				if (!$motion->execute()) var_dump($motion->errorinfo());
+				if (!$motion->execute()) 
+				{
+					var_dump($motion->errorinfo());
+				}
 
 
 				$body="<html>
@@ -60,9 +62,13 @@
 			$headers[]= 'From: Tanyard Springs Votes <noreply@tanyardspringshoa.com>';
 			//mailing
 			if (mail($boardEmail,$subject,$message, implode("\r\n", $headers)))
+		 	{
 				print "<br />Email successfully sent";
+			}
 			else
+			{
 				print "<br />An error occured";
+			}
 		}//end of function
 		$motionname=$_POST['motionname'];
 		$motiontext=$_POST['motiontext'];
@@ -88,10 +94,7 @@
 		
 			else
 			{
-				//$today=date("Y-m-d H:i:s");
 				$disposition="IN PROGRESS";
-				//$motionstatement= $db_con->prepare ("INSERT into motions (Session, motion_name,motion_description,
-				//dateadded,motion_disposition) VALUES (:session, :name, :motion, :dateadded, :disposition)");
 				$motionstatement= $db_con->prepare ("INSERT into motions (Session, motion_name,motion_description,
 				motion_disposition) VALUES (:session, :name, :motion, :disposition)");
 				$motionstatement -> bindParam(':session',$boardsession);
