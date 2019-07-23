@@ -6,7 +6,12 @@ Bootstrap Admin Template by EGrappler.com
 
 
 /** Base Body Styles **/
-body{ background: url(../../img/body-bg.png); color:#838383; font: 13px/1.7em 'Helvetica, Arial, Verdana, Tahoma, sans-serif';}
+body{ 
+	background: url(../../img/body-bg.png); 
+	color:#838383; 
+	font: 13px/1.7em Helvetica, Arial;
+	font-family: "Verdana, Tahoma, sans-serif";
+}
 
 .account-container {
 	width: 380px; 
