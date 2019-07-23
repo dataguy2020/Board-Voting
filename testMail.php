@@ -17,7 +17,10 @@
 
 			$motion=$db_con->prepare ("SELECT * from motions where motion_id = :motionid");
 			$motion->bindParam(':motionid',$motionid);
-			if (!$motion->execute()) var_dump($motion->errorinfo());
+			if (!$motion->execute()) 
+			{
+					var_dump($motion->errorinfo());
+			}
 
 			$body="<html>
 						<head>
@@ -60,9 +63,13 @@
 		$headers .= "From: Tanyard Springs Votes <noreply@tanyardspringshoa.com>\r\n";
 		//mailing
 		if (mail($boardEmail,$subject,$message,$headers))
+		{
 			print "Email successfully sent";
+		}
 		else
+		{
 			print "An error occured";
+		}
 	}//end of function
 	
 	addmailing(52);

@@ -22,6 +22,11 @@ header('location: index.php');
 <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+<style>
+table {
+	width:"100%";
+}
+</style>
 </head>
 <body>
 <?php
@@ -201,15 +206,18 @@ header('location: index.php');
 		
 		
 		if(mail($to,$subject,$message, implode("\r\n", $headers)))
+		{
 			print "<br />Email successfully sent";
+		}
 		else
+		{
 			print "<br />An error occured";	
+		}
 	}//end of function
 	      
 		if (!empty($_POST) && !isset($_POST['Amend']) && !isset($_POST['Revoke']) && !($_POST['Deferred']))
 		{
 			$motionid=htmlspecialchars($_POST['motionid']);
-			#echo "Debug: " . $motionid;
 			$motion=$db_con->prepare ("SELECT * from motions where motion_id = :motionid");
 			$motion->bindParam(':motionid',$motionid);
 			$motion->execute();
@@ -234,7 +242,7 @@ header('location: index.php');
 			?>
 	      <br />
 	     	 <h2>Change Log</h2>
-		<table border="1" width="100%">
+		<table border="1">
 			<tr>
 				<th>User</th>
 				<th>Date</th>
@@ -270,7 +278,7 @@ header('location: index.php');
 				?>
 			<br /><br />
 			<h2>Current Votes</h2>
-			<table border="1" width="100%">
+			<table border="1">
 			<tr>
 				<th>User</th>
 				<th>Date</th>
@@ -299,7 +307,7 @@ header('location: index.php');
 
 		<br /><br />
 		<h2>Discussions</h2>
-		<table border="1" width="100%">
+		<table border="1">
 		<tr>
 			<th>User</th>
 			<th>Date</th>
@@ -462,7 +470,6 @@ header('location: index.php');
 		elseif (isset($_POST['Amend']))
 		{
 			$motionid=$_POST['motionid'];
-			#echo "Debug: " . $motionid;
 			$motion=$db_con->prepare ("SELECT * from motions where motion_id = :motionid");
 			$motion->bindParam(':motionid',$motionid);
 			$motion->execute();
@@ -482,7 +489,7 @@ header('location: index.php');
 			?>
 			<br /><br />
 			<h2>Current Votes</h2>
-			<table border="1" width="100%">
+			<table border="1">
 			<tr>
 				<th>User</th>
 				<th>Date</th>
@@ -511,7 +518,7 @@ header('location: index.php');
 
 		<br /><br />
 		<h2>Discussions</h2>
-		<table border="1" width="100%">
+		<table border="1">
 		<tr>
 			<th>User</th>
 			<th>Date</th>
@@ -555,7 +562,7 @@ header('location: index.php');
 	?>
 	<p>Please choose a motion to vote on. Only one motion can be voted
 		on at a time</p>
-		<table border="1" width="100%">
+		<table border="1">
                 <tr>
                         <th>Motion ID</th>
                         <th>Motion Name</th>

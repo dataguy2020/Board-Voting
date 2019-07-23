@@ -198,14 +198,17 @@ header('location: index.php');
 		
 		
 		if(mail($to,$subject,$message, implode("\r\n", $headers)))
+		{
 			print "<br />Email successfully sent";
+		}
 		else
+		{
 			print "<br />An error occured";	
+		}
 	}//end of function
 	?>
 			<?php
 				
-				//include "mail.php";
 	      			$decision=htmlspecialchars($_POST['vote']);
 				$motionid=htmlspecialchars($_POST['motionid']);
 	      			echo "Motion ID: " . $motionid;
