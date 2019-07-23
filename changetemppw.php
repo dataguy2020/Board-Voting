@@ -18,7 +18,6 @@
 		$confirmpassword=$_POST['confirmpassword'];
 		$confirmpassword=sha1($confirmpassword);
 		
-		//TODO: Try/Catch
 		$getCurrentPassword=$db_con->prepare("SELECT * FROM users where users_id=:userid;");
 		$getCurrentPassword->bindParam(':userid',$_SESSION['users_id']);
 		$getCurrentPassword->execute();
@@ -32,14 +31,12 @@
 			{
 				if ($newpassword==$confirmpassword)
 				{
-					//TODO: Try/catch
 					$updatepassword=$db_con->prepare(
 						"UPDATE users set password=:passcode where users_id=:userid;");
 					$updatepassword->bindParam(':passcode',$confirmpassword);
 					$updatepassword->bindParam(':userid',$_SESSION['user_id']);
 					$updatepassword->execute();
 					
-					//TODO: Try/catch
 					$temppw=$db_con->prepare(
 						"UPDATE users set temppw=:temppw where users_id=:userid;");
 					$temppw->bindParam(':temppw', 0);

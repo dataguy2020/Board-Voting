@@ -100,7 +100,6 @@
 				$motionstatement -> bindParam(':session',$boardsession);
 				$motionstatement -> bindParam(':name',$motionname);
 				$motionstatement -> bindParam(':motion',$motiontext);
-				//$motionstatement -> bindParam(':dateadded',$today);
 				$motionstatement -> bindParam(':disposition',$disposition);
 				$motionstatement->execute();
 				echo "Added motion to the database .... ";
