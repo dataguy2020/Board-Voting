@@ -10,18 +10,18 @@ Bootstrap Admin Template by EGrappler.com
 
 body {
 	background: #f9f6f1;
-	font: 13px/1.7em 'Open Sans';
+	font: 13px/1.7em sans-serif;
 }
     
 p { 
-	font: 13px/1.7em 'Open Sans'; 	
+	font: 13px/1.7em sans-serif; 	
 }
     
 input,
 button,
 select,
 textarea {
-  font-family: 'Open Sans';
+  font-family:sans-serif, Open Sans;
 }
 
 .dropdown .dropdown-menu {
@@ -588,7 +588,6 @@ ul.messages_layout li .message_wrap {
 	position: relative;
 	border: 1px solid #e9e9e9;
 	padding: 10px;
-	border: 1px solid #cbcbcb;
 	margin-bottom: 20px;
 	float: left;
 	background: #fefefe;
@@ -598,8 +597,6 @@ ul.messages_layout li .message_wrap {
 }
 ul.messages_layout li .message_wrap .arrow {
 	background-position: 0 -228px;
-	height: 15px;
-	width: 12px;
 	height: 15px;
 	width: 12px;
 	position: absolute;

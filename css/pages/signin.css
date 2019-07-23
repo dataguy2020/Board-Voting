@@ -9,8 +9,7 @@ Bootstrap Admin Template by EGrappler.com
 body{ 
 	background: url(../../img/body-bg.png); 
 	color:#838383; 
-	font: 13px/1.7em Helvetica, Arial;
-	font-family: "Verdana, Tahoma, sans-serif";
+	font: 13px/1.7em sans-serif;
 }
 
 .account-container {
@@ -46,7 +45,7 @@ body{
 }
 
 .login-fields input {
-	font-family: 'Open Sans';
+	font-family: Helvetica, Arial, Verdana, Tahoma, sans-serif;
 	font-size: 13px;
 	color: #8e8d8d;
 	padding: 11px 15px 10px 50px;
