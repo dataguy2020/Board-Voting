@@ -124,13 +124,6 @@ Bootstrap Admin Template by EGrappler.com
 
 .news-items li:last-child { padding-bottom: 0; border: none; }
 
-.news-item-date {
-	display: table-cell;
-}
-
-.news-item-detail {
-	display: table-cell;
-}
 
 .news-item-title {
 	font-size: 13px;
@@ -138,6 +131,7 @@ Bootstrap Admin Template by EGrappler.com
 }
 
 .news-item-date {
+	display: table-cell;
 	width: 75px;
 	vertical-align: middle;
 	text-align: center;

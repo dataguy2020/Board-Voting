@@ -406,12 +406,9 @@ textarea {
 
 .widget-content {
 	padding: 20px 15px 15px;
-	
 	background: #FFF;
-	
-	
 	border: 1px solid #D5D5D5;
-	
+	zoom; 1;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
@@ -443,10 +440,6 @@ textarea {
     clear:both;
 }
 
-/* For IE 6/7 (trigger hasLayout) */
-.widget-content {
-    zoom:1;
-}
 
 /* Widget Table */
 
@@ -488,10 +481,6 @@ textarea {
 
 
 /* Widget Box */
-
-.widget-box {	
-	
-}
 
 .widget-box .widget-content {	
 	background: #E3E3E3;	
