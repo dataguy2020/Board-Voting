@@ -28,9 +28,13 @@ table {
 	width:"100%";
 }
 </style>
+	<script>
 	$(document).ready(function() {
     $('#openMotions').DataTable();
 } );
+	</script>
+	<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 </head>
 <body>
 <?php
@@ -641,8 +645,7 @@ table {
 <!-- Le javascript
 ================================================== --> 
 <!-- Placed at the end of the document so the pages load faster --> 
-			<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+			
  
 <?php } ?>
 </body>
