@@ -14,7 +14,7 @@
       <meta name="apple-mobile-web-app-capable" content="yes">
       <link href="css/bootstrap.min.css" rel="stylesheet">
       <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
-      <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet">
       <link href="css/font-awesome.css" rel="stylesheet">
       <link href="css/style.css" rel="stylesheet">
       <link href="css/pages/dashboard.css" rel="stylesheet">
@@ -28,7 +28,6 @@
          table{
          width:100%;
              border-collapse: separate;
-   border-spacing: 10px; 
          }
          #example_filter{
          float:right;
