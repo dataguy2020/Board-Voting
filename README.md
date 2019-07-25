@@ -5,7 +5,7 @@ Ths is a system built for the Tanyard Springs Homeowners Association to handle e
 ## Requirements
 ----------------------
 - LAMP Stack
-- Mail Server
+- Mail Server (msmtp)
  
  ----------------------
  ### Additional Notes
