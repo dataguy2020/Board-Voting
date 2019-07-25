@@ -27,7 +27,9 @@ table {
 	width:"100%";
 }
 </style>
-	
+	$(document).ready(function() {
+    $('#openMotions').DataTable();
+} );
 </head>
 <body>
 <?php
