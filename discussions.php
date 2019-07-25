@@ -159,7 +159,8 @@ $userid=$_SESSION['user_id'];
 		<input type="hidden" name="userid" value="' . htmlspecialchars($userid) . '">
 		<textarea name="discussiontext" id="discussiontext" style="width:1136px; height: 122px;"></textarea>
                 <input type="Submit" name="Submit" value="Submit">
-                <input type="Reset" name="Reset" value="Reset">
+		<input type="Reset" name="Reset" value="Reset">';
+?>
 		
 		<script>
     ClassicEditor
@@ -168,6 +169,9 @@ $userid=$_SESSION['user_id'];
             console.error( error );
         } );
 </script>
+
+<?php 
+			echo '
         </form>';
 
 	?>
