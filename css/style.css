@@ -708,10 +708,8 @@ html .fc, .fc table {
 }
 .fc-header .fc-button {
 	margin-bottom: 1em;
-	vertical-align: top
-}
-.fc-header .fc-button {
-	margin-right: -1px
+	vertical-align: top;
+	margin-right: -1px;
 }
 .fc-header .fc-corner-right {
 	margin-right: 1px
@@ -917,16 +915,14 @@ a.fc-event {
 	margin-bottom: 1px
 }
 .fc-corner-bottom .fc-event-inner {
-	margin-bottom: -1px
+	margin-bottom: -1px;
+	border-bottom-width: 1px;
 }
 .fc-corner-left .fc-event-inner {
 	border-left-width: 1px
 }
 .fc-corner-right .fc-event-inner {
 	border-right-width: 1px
-}
-.fc-corner-top .fc-event-inner {
-	border-top-width: 1px
 }
 .fc-corner-bottom .fc-event-inner {
 	border-bottom-width: 1px
