@@ -28,6 +28,7 @@ rel="stylesheet">
 		width: 100%;
 }	
 </style>
+	<script src="https://cdn.ckeditor.com/ckeditor5/12.3.1/classic/ckeditor.js"></script>
 
 </head>
 <body>
@@ -159,6 +160,14 @@ $userid=$_SESSION['user_id'];
 		<textarea name="discussiontext" id="discussiontext" style="width:1136px; height: 122px;"></textarea>
                 <input type="Submit" name="Submit" value="Submit">
                 <input type="Reset" name="Reset" value="Reset">
+		
+		<script>
+    ClassicEditor
+        .create( document.querySelector( '#discussiontext' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
         </form>';
 
 	?>
