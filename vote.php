@@ -12,6 +12,7 @@ header('location: index.php');
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
 <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
 <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600"
         rel="stylesheet">
@@ -565,13 +566,15 @@ table {
 	?>
 	<p>Please choose a motion to vote on. Only one motion can be voted
 		on at a time</p>
-		<table border="1" id="openMotions" name="openMotions">
-                <tr>
+		<table border="1" id="openMotions" name="openMotions" class="display" style="width:100%">
+                <thead><tr>
                         <th>Motion ID</th>
                         <th>Motion Name</th>
                         <th>Date Added</th>
 			<th>Action</th>
                 </tr>
+			</thead>
+			<tbody>
         <?php
                 $motions=$db_con->prepare(
                         "select * from motions where motion_disposition NOT IN ('PASSED','FAILED','DEFERRED','REVOKED')");
@@ -595,9 +598,19 @@ table {
 		</form>';
                 }//end of while
 			$motions->closeCursor();
-		echo '
+		?>
+			</tbody>
+			<tfoot>
+				<tr>
+                        <th>Motion ID</th>
+                        <th>Motion Name</th>
+                        <th>Date Added</th>
+			<th>Action</th>
+                </tr>
+			</tfoot>
+				
         	</table>';
-	?>
+
         <!-- /span6 -->
         
         <!-- /span6 --> 
