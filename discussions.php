@@ -97,7 +97,7 @@ if (!empty($_POST)) {
         echo $motiondesc;
     } //end of while ($row=$motion->fetch(PDO::FETCH_ASSOC))
 ?>
-           <br /><br />
+          <br /><br />
             <h2>Current Votes</h2>
             <table border="1">
             <tr>
@@ -149,7 +149,7 @@ if (!empty($_POST)) {
     echo "</table>";
     
 ?>
-        <br />
+       <br />
         <br />
     <h2>Your Discussion:</h2>
         
@@ -161,7 +161,7 @@ if (!empty($_POST)) {
                 <input type="Submit" name="Submit" value="Submit">
         <input type="Reset" name="Reset" value="Reset">';
 ?>
-       
+      
         <script>
     ClassicEditor
         .create( document.querySelector( '#discussiontext' ) )
@@ -181,18 +181,17 @@ if (!empty($_POST)) {
 
 else {
 ?>
-   <p>Please choose a motion to vote on. Only one motion can be voted
-        on at a time</p>
+  <p>Please choose a motion to vote on. Only one motion can be voted on at a time</p>
         <table border="1"id="dt-basic-checkbox" class="table table-striped table-bordered" cellspacing="0" width="100%>
                 <thead>
-                                                              <tr>
-                        <th>Motion ID</th>
-                        <th>Motion Name</th>
-                        <th>Date Added</th>
-            		<th>Action</th>
-                </tr>
-                                                              </thead>
-														  <tbody>
+                    <tr>
+                <th>Motion ID</th>
+                <th>Motion Name</th>
+                <th>Date Added</th>
+                <th>Action</th>
+                       </tr>
+                 </thead>
+                                                          <tbody>
         <?php
     $motions = $db_con->prepare("select * from motions where motion_disposition   NOT IN ('PASSED','FAILED','DEFERRED','REVOKED')");
     $motions->execute();
@@ -217,13 +216,13 @@ else {
                         <th>Motion ID</th>
                         <th>Motion Name</th>
                         <th>Date Added</th>
-            		<th>Action</th>
+                    <th>Action</th>
                 </tr>
     </tfoot>
             </table>';
     $motions->closeCursor();
 ?>
-       <!-- /span6 -->
+      <!-- /span6 -->
         
         <!-- /span6 --> 
       </div>
