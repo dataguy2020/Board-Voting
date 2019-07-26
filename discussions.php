@@ -29,7 +29,20 @@ rel="stylesheet">
 }	
 </style>
 	<script src="https://cdn.ckeditor.com/ckeditor5/12.3.1/classic/ckeditor.js"></script>
+<script>
+	$('#dt-basic-checkbox').dataTable({
 
+columnDefs: [{
+orderable: false,
+className: 'select-checkbox',
+targets: 0
+}],
+select: {
+style: 'os',
+selector: 'td:first-child'
+}
+});
+	</script>
 </head>
 <body>
 <?php
@@ -184,7 +197,7 @@ $userid=$_SESSION['user_id'];
 	?>
 	<p>Please choose a motion to vote on. Only one motion can be voted
 		on at a time</p>
-		<table border="1">
+		<table border="1"id="dt-basic-checkbox" class="table table-striped table-bordered" cellspacing="0" width="100%>
                 <tr>
                         <th>Motion ID</th>
                         <th>Motion Name</th>
