@@ -29,12 +29,7 @@ rel="stylesheet">
 }    
 </style>
     <script src="https://cdn.ckeditor.com/ckeditor5/12.3.1/classic/ckeditor.js"></script>
-<script>
-    $(document).ready(function () {
-$('#dtBasicExample').DataTable();
-$('.dataTables_length').addClass('bs-select');
-});
-    </script>
+
 </head>
 <body>
 <?php
