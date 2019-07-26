@@ -183,14 +183,14 @@ else {
 ?>
   <p>Please choose a motion to vote on. Only one motion can be voted on at a time</p>
         <table border="1"id="dt-basic-checkbox" class="table table-striped table-bordered" cellspacing="0" width="100%>
-                <thead>
-                    <tr>
-                <th>Motion ID</th>
-                <th>Motion Name</th>
-                <th>Date Added</th>
-                <th>Action</th>
-                       </tr>
-                 </thead>
+               <thead>
+     <tr>
+                        <th>Motion ID</th>
+                        <th>Motion Name</th>
+                        <th>Date Added</th>
+                    <th>Action</th>
+                </tr>
+    </thead>
                                                           <tbody>
         <?php
     $motions = $db_con->prepare("select * from motions where motion_disposition   NOT IN ('PASSED','FAILED','DEFERRED','REVOKED')");
