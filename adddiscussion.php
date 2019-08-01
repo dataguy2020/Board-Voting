@@ -38,7 +38,10 @@ header('location: index.php');
 			{
 				$motion=$db_con->prepare ("SELECT * from motions where motion_id = :motionid");
 				$motion->bindParam(':motionid',$motionid);
-				if (!$motion->execute()) var_dump($motion->errorinfo());
+				if (!$motion->execute()) 
+				{
+					var_dump($motion->errorinfo());
+				}
 				$body="<html>
 						<head>
 							<title>New Discussion Item</title>
@@ -50,7 +53,6 @@ header('location: index.php');
 				{
 					$motionid=$row['motion_id'];
 					$motionname=$row['motion_name'];
-					$dateadded=$row['dateadded'];
 					$motiondesc=$row['motion_description'];
 					$body .= "<br ><br />Motion ID: " . $motionid;
 					$body .= "<br />Motion Name: " . $motionname;
@@ -70,9 +72,13 @@ header('location: index.php');
 			$headers[]= 'From: Tanyard Springs Votes <noreply@tanyardspringshoa.com>';
 			//mailing
 			if (mail($boardEmail,$subject,$message, implode("\r\n", $headers)))
+			{
 				print "<br />Email successfully sent";
+			}
 			else
+			{
 				print "<br />An error occured";
+			}
 		}//end of function
 		//End Added April 19, 2017
 ?>
@@ -92,12 +98,12 @@ header('location: index.php');
   <div class="subnavbar-inner">
     <div class="container">
       <ul class="mainnav">
-	 <li><a href="dashboard.php"><i class="icon-dashboard"></i><span>Dashboard</span> </a> </li>
-        <li> <a href ="add.php"><i class ="icon-dashboard"></i><span>Add Motion</span></a></li>
-        <li><a href="vote.php"><i class ="icon-dashboard"></i><span>Vote</span></a></li>
-        <li class="active"><a href="discussions.php"><i class ="icon-dashboard"></i><span>Discussions</span></a></li>
-        <li><a href="userprefs.php"><i class ="icon-dashboard"></i><span>Prefences</span></a></li>
-         <li><a href="logout.php"><i class="icon-dashboard"></i><span>Logout</span></a> </li>
+ <li><a href="dashboard.php"><em class="icon-dashboard"></em><span>Dashboard</span> </a> </li>
+<li> <a href ="add.php"><em class ="icon-dashboard"></em><span>Add Motion</span></a></li>
+<li><a href="vote.php"><em class ="icon-dashboard"></em><span>Vote</span></a></li>
+<li class="active"><a href="discussions.php"><em class ="icon-dashboard"></em><span>Discussions</span></a></li>
+<li><a href="userprefs.php"><em class ="icon-dashboard"></em><span>Prefences</span></a></li>
+ <li><a href="logout.php"><em class="icon-dashboard"></em><span>Logout</span></a> </li>
       </ul>
     </div>
     <!-- /container --> 
@@ -112,7 +118,6 @@ header('location: index.php');
 	
 			<?php
 				
-				//echo $_SERVER['HTTP_REFERER'];
 				$motionid=$_POST['motionid'];
 				$userid=$_POST['userid'];
 				$text=$_POST['discussiontext'];

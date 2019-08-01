@@ -1,0 +1,168 @@
+INFO: Scanner configuration file: /opt/sonarQubeScanner/conf/sonar-scanner.properties
+INFO: Project root configuration file: NONE
+INFO: SonarQube Scanner 3.3.0.1492
+INFO: Java 1.8.0_121 Oracle Corporation (64-bit)
+INFO: Linux 4.9.0-9-amd64 amd64
+INFO: User cache: /root/.sonar/cache
+INFO: SonarQube server 8.0.0
+INFO: Default locale: "en_US", source code encoding: "UTF-8" (analysis is platform dependent)
+INFO: Load global settings
+INFO: Load global settings (done) | time=846ms
+INFO: Server id: 74E9293D-AWHW8ct9-T_TB3XqouNu
+INFO: User cache: /root/.sonar/cache
+INFO: Load/download plugins
+INFO: Load plugins index
+INFO: Load plugins index (done) | time=200ms
+INFO: Load/download plugins (done) | time=680ms
+INFO: Loaded core extensions: developer-scanner
+INFO: Process project properties
+INFO: Execute project builders
+INFO: Execute project builders (done) | time=22ms
+INFO: Project key: Board-Voting
+INFO: Base dir: /var/www/html/testApps/bvs
+INFO: Working dir: /var/www/html/testApps/bvs/.scannerwork
+INFO: Load project settings for component key: 'Board-Voting'
+INFO: Load project settings for component key: 'Board-Voting' (done) | time=161ms
+INFO: Load project branches
+INFO: Load project branches (done) | time=157ms
+INFO: Load project pull requests
+INFO: Load project pull requests (done) | time=153ms
+INFO: Load branch configuration
+INFO: Load branch configuration (done) | time=7ms
+INFO: Load quality profiles
+INFO: Load quality profiles (done) | time=241ms
+INFO: Load active rules
+INFO: Load active rules (done) | time=4694ms
+INFO: Organization key: mikebrowntsbod-github
+INFO: Indexing files...
+INFO: Project configuration:
+INFO: Load project repositories
+INFO: Load project repositories (done) | time=167ms
+INFO: 49 files indexed
+INFO: 0 files ignored because of scm ignore settings
+INFO: Quality profile for css: Sonar way
+INFO: Quality profile for js: Sonar way
+INFO: Quality profile for php: Sonar way
+INFO: Quality profile for plsql: Sonar way
+INFO: ------------- Run sensors on module Board-Voting
+INFO: Load metrics repository
+INFO: Load metrics repository (done) | time=178ms
+INFO: Sensor SonarCSS Metrics [cssfamily]
+INFO: Sensor SonarCSS Metrics [cssfamily] (done) | time=714ms
+INFO: Sensor SonarCSS Rules [cssfamily]
+INFO: Sensor SonarCSS Rules [cssfamily] (done) | time=3311ms
+INFO: Sensor PL/SQL Sensor [plsql]
+WARN: The Data Dictionary is not configured which prevents rule(s) S3641, S3921, S3618, S3651 to raise issues. See https://docs.sonarqube.org/display/PLUG/Data+Dictionary
+INFO: 1 source files to be analyzed
+INFO: 1/1 source files have been analyzed
+INFO: Sensor PL/SQL Sensor [plsql] (done) | time=809ms
+INFO: Sensor JavaXmlSensor [java]
+INFO: Sensor JavaXmlSensor [java] (done) | time=4ms
+INFO: Sensor HTML [web]
+INFO: Sensor HTML [web] (done) | time=462ms
+INFO: Sensor JaCoCo XML Report Importer [jacoco]
+INFO: Sensor JaCoCo XML Report Importer [jacoco] (done) | time=12ms
+INFO: Sensor SonarJS [javascript]
+INFO: 2 source files to be analyzed
+INFO: 2/2 source files have been analyzed
+INFO: Sensor SonarJS [javascript] (done) | time=3146ms
+INFO: Sensor ESLint-based SonarJS [javascript]
+INFO: 2 source files to be analyzed
+INFO: 2/2 source files have been analyzed
+INFO: Sensor ESLint-based SonarJS [javascript] (done) | time=3772ms
+INFO: Sensor PHP sensor [php]
+INFO: 24 source files to be analyzed
+INFO: 24/24 source files have been analyzed
+INFO: No PHPUnit test report provided (see 'sonar.php.tests.reportPath' property)
+INFO: No PHPUnit coverage reports provided (see 'sonar.php.coverage.reportPaths' property)
+INFO: Sensor PHP sensor [php] (done) | time=5312ms
+INFO: Sensor Analyzer for "php.ini" files [php]
+INFO: Sensor Analyzer for "php.ini" files [php] (done) | time=15ms
+INFO: Sensor JavaSecuritySensor [security]
+INFO: Reading type hierarchy from: /var/www/html/testApps/bvs/.scannerwork/ucfg2/java
+INFO: Read 0 type definitions
+INFO: Reading UCFGs from: /var/www/html/testApps/bvs/.scannerwork/ucfg2/java
+INFO: No UCFGs have been included for analysis.
+INFO: Sensor JavaSecuritySensor [security] (done) | time=13ms
+INFO: Sensor CSharpSecuritySensor [security]
+INFO: Reading type hierarchy from: /var/www/html/testApps/bvs/ucfg_cs2
+INFO: Read 0 type definitions
+INFO: Reading UCFGs from: /var/www/html/testApps/bvs/ucfg_cs2
+INFO: No UCFGs have been included for analysis.
+INFO: Sensor CSharpSecuritySensor [security] (done) | time=8ms
+INFO: Sensor PhpSecuritySensor [security]
+INFO: Reading type hierarchy from: /var/www/html/testApps/bvs/.scannerwork/ucfg2/php
+INFO: Read 203 type definitions
+INFO: Reading UCFGs from: /var/www/html/testApps/bvs/.scannerwork/ucfg2/php
+INFO: 09:28:30.724 Building Type propagation graph
+INFO: 09:28:30.827 Running Tarjan on 1753 nodes
+INFO: 09:28:30.854 Tarjan found 1753 components
+INFO: 09:28:30.901 Variable type analysis: done
+INFO: 09:28:30.915 Building Type propagation graph
+INFO: 09:28:30.985 Running Tarjan on 1753 nodes
+INFO: 09:28:30.987 Tarjan found 1753 components
+INFO: 09:28:31.016 Variable type analysis: done
+INFO: Analyzing 530 ucfgs to detect vulnerabilities.
+INFO: All rules entrypoints : 7 Retained UCFGs : 11
+INFO: rule: S5146, entrypoints: 0
+INFO: Visited 0 ucfgs in 0 ms, 0 steps
+INFO: rule: S5146 done
+INFO: rule: S5131, entrypoints: 7
+INFO: Visited 11 ucfgs in 1256 ms, 4292 steps
+INFO: rule: S5131 done
+INFO: rule: S2091, entrypoints: 0
+INFO: Visited 0 ucfgs in 0 ms, 0 steps
+INFO: rule: S2091 done
+INFO: rule: S2076, entrypoints: 0
+INFO: Visited 0 ucfgs in 0 ms, 0 steps
+INFO: rule: S2076 done
+INFO: rule: S2631, entrypoints: 0
+INFO: Visited 0 ucfgs in 0 ms, 0 steps
+INFO: rule: S2631 done
+INFO: rule: S2083, entrypoints: 0
+INFO: Visited 0 ucfgs in 0 ms, 0 steps
+INFO: rule: S2083 done
+INFO: rule: S2078, entrypoints: 0
+INFO: Visited 0 ucfgs in 0 ms, 0 steps
+INFO: rule: S2078 done
+INFO: rule: S3649, entrypoints: 0
+INFO: Visited 0 ucfgs in 0 ms, 0 steps
+INFO: rule: S3649 done
+INFO: rule: S5135, entrypoints: 0
+INFO: Visited 0 ucfgs in 0 ms, 0 steps
+INFO: rule: S5135 done
+INFO: rule: S5167, entrypoints: 0
+INFO: Visited 0 ucfgs in 0 ms, 0 steps
+INFO: rule: S5167 done
+INFO: rule: S5144, entrypoints: 0
+INFO: Visited 0 ucfgs in 0 ms, 0 steps
+INFO: rule: S5144 done
+INFO: rule: S5145, entrypoints: 0
+INFO: Visited 0 ucfgs in 0 ms, 0 steps
+INFO: rule: S5145 done
+INFO: rule: S5335, entrypoints: 0
+INFO: Visited 0 ucfgs in 0 ms, 0 steps
+INFO: rule: S5335 done
+INFO: rule: S5334, entrypoints: 0
+INFO: Visited 0 ucfgs in 0 ms, 0 steps
+INFO: rule: S5334 done
+INFO: Sensor PhpSecuritySensor [security] (done) | time=4466ms
+INFO: ------------- Run sensors on project
+INFO: Sensor Zero Coverage Sensor
+INFO: Sensor Zero Coverage Sensor (done) | time=83ms
+INFO: 5 files had no CPD blocks
+INFO: Calculating CPD for 22 files
+INFO: CPD calculation finished
+INFO: Analysis report generated in 418ms, dir size=717 KB
+INFO: Analysis report compressed in 322ms, zip size=230 KB
+INFO: Analysis report uploaded in 676ms
+INFO: ANALYSIS SUCCESSFUL, you can browse https://sonarcloud.io/dashboard?id=Board-Voting
+INFO: Note that you will be able to access the updated dashboard once the server has processed the submitted analysis report
+INFO: More about the report processing at https://sonarcloud.io/api/ce/task?id=AWwkK1f28aVgWcqKQOW1
+INFO: Analysis total time: 40.587 s
+INFO: ------------------------------------------------------------------------
+INFO: EXECUTION SUCCESS
+INFO: ------------------------------------------------------------------------
+INFO: Total time: 45.507s
+INFO: Final Memory: 36M/125M
+INFO: ------------------------------------------------------------------------

@@ -43,12 +43,12 @@ header('location: index.php');
   <div class="subnavbar-inner">
     <div class="container">
       <ul class="mainnav">
-	 <li><a href="dashboard.php"><i class="icon-dashboard"></i><span>Dashboard</span> </a> </li>
-        <li> <a href ="add.php"><i class ="icon-dashboard"></i><span>Add Motion</span></a></li>
-        <li class="active"><a href="vote.php"><i class ="icon-dashboard"></i><span>Vote</span></a></li>
-        <li><a href="discussions.php"><i class ="icon-dashboard"></i><span>Discussions</span></a></li>
-        <li><a href="userprefs.php"><i class ="icon-dashboard"></i><span>Prefences</span></a></li>
-         <li><a href="logout.php"><i class="icon-dashboard"></i><span>Logout</span></a> </li>
+	 <li><a href="dashboard.php"><em class="icon-dashboard"></em><span>Dashboard</span> </a> </li>
+        <li> <a href ="add.php"><em class ="icon-dashboard"></em><span>Add Motion</span></a></li>
+        <li class="active"><a href="vote.php"><em class ="icon-dashboard"></em><span>Vote</span></a></li>
+        <li><a href="discussions.php"><em class ="icon-dashboard"></em><span>Discussions</span></a></li>
+        <li><a href="userprefs.php"><em class ="icon-dashboard"></em><span>Prefences</span></a></li>
+         <li><a href="logout.php"><em class="icon-dashboard"></em><span>Logout</span></a> </li>
       </ul>
     </div>
     <!-- /container --> 
@@ -198,16 +198,19 @@ header('location: index.php');
 		
 		
 		if(mail($to,$subject,$message, implode("\r\n", $headers)))
+		{
 			print "<br />Email successfully sent";
+		}
 		else
+		{
 			print "<br />An error occured";	
+		}
 	}//end of function
 	?>
 			<?php
 				
-				//include "mail.php";
-	      			$decision=$_POST['vote'];
-				$motionid=$_POST['motionid'];
+	      			$decision=htmlspecialchars($_POST['vote']);
+				$motionid=htmlspecialchars($_POST['motionid']);
 	      			echo "Motion ID: " . $motionid;
 	      			echo "<br />Decision: " . $decision;
 			
@@ -235,12 +238,13 @@ header('location: index.php');
 						"SELECT * FROM votes WHERE users_id=:userid AND motions_id=:motionsid;");
 					$addvote->execute(array(':userid' => $userid,':motionsid' => $motionid));
 					$row=$addvote->fetchAll(PDO::FETCH_ASSOC);
+					$vote=htmlspecialchars($_POST['vote']);
 					if (count($row) == 1)
 					{
 						echo 	'<form id="voting" name="voting" method="POST" action="voting.php">
                 					<input type="hidden" name="motionid" value="' . $motionid . '">
 							<input type="hidden" name="revote" value="revote">
-							<input type="hidden" name="vote" value="' . $_POST['vote'] . '">
+							<input type="hidden" name="vote" value="' . $vote . '">
                 					<input type="radio" name="revote1" value="Yes">Yes<br />
                 					<input type="radio" name="revote1" value="No">No<br />
                 					<input type="Submit" name="Submit" value="Submit">

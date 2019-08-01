@@ -14,7 +14,7 @@
       <meta name="apple-mobile-web-app-capable" content="yes">
       <link href="css/bootstrap.min.css" rel="stylesheet">
       <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
-      <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet">
       <link href="css/font-awesome.css" rel="stylesheet">
       <link href="css/style.css" rel="stylesheet">
       <link href="css/pages/dashboard.css" rel="stylesheet">
@@ -27,6 +27,7 @@
       <style>
          table{
          width:100%;
+             border-collapse: separate;
          }
          #example_filter{
          float:right;
@@ -82,12 +83,12 @@
          <div class="subnavbar-inner">
             <div class="container">
                <ul class="mainnav">
-                  <li class="active"><a href="dashboard.php"><i class="icon-dashboard"></i><span>Dashboard</span> </a> </li>
-                  <li> <a href ="add.php"><i class ="icon-dashboard"></i><span>Add Motion</span></a></li>
-                  <li><a href="vote.php"><i class ="icon-dashboard"></i><span>Vote</span></a></li>
-                  <li><a href="discussions.php"><i class ="icon-dashboard"></i><span>Discussions</span></a></li>
-                  <li><a href="userprefs.php"><i class ="icon-dashboard"></i><span>Prefences</span></a></li>
-                  <li><a href="logout.php"><i class="icon-dashboard"></i><span>Logout</span></a> </li>
+                  <li class="active"><a href="dashboard.php"><em class="icon-dashboard"></em><span>Dashboard</span> </a> </li>
+                  <li> <a href ="add.php"><em class ="icon-dashboard"></em><span>Add Motion</span></a></li>
+                  <li><a href="vote.php"><em class ="icon-dashboard"></em><span>Vote</span></a></li>
+                  <li><a href="discussions.php"><em class ="icon-dashboard"></em><span>Discussions</span></a></li>
+                  <li><a href="userprefs.php"><em class ="icon-dashboard"></em><span>Prefences</span></a></li>
+                  <li><a href="logout.php"><em class="icon-dashboard"></em><span>Logout</span></a> </li>
                </ul>
             </div>
             <!-- /container --> 
@@ -104,7 +105,7 @@
                   </div>-->
             <div class="container">
                <div class="row">
-                  <table border="1"  id="example" class="table table-striped table-bordered" style="width:100%" cellpadding="10">
+                  <table border="1"  id="example" class="table table-striped table-bordered" style="width:100%">
                      <thead>
                         <tr>
                            <th>Date Added</th>

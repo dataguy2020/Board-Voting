@@ -1523,7 +1523,7 @@
   , lookup: function (event) {
       var that = this
         , items
-        , q
+       
 
       this.query = this.$element.val()
 

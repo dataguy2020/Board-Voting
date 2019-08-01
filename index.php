@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(($_SESSION['user_id'])){
+if($_SESSION['user_id']){
 header('location: dashboard.php');
         }
 ?>
@@ -44,7 +44,7 @@ vertical-align: middle;
 <div class="account-container">
 	
 	<div class="content clearfix">
-		<p style="text-align:center"><img src="./img/image004.png" /></p>
+		<p style="text-align:center"><img src="./img/image004.png" alt="Logo" /></p>
 		<br /><br /><div class="name">Board of Directors <br /><br />Online Voting System</div><br /><br />
 		<form name="log-in-form"  id="log-in-form" method="post">
 		

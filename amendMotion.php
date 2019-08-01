@@ -5,6 +5,7 @@
 		header('location: index.php');
 	}//end of if(empty($_SESSION['user_id']))
 ?>
+<!DOCTYPE html>
 <html>
 	<head>
 		<title>Amending Motion</title>
@@ -75,9 +76,13 @@
 			$headers[]= 'From: Tanyard Springs Votes <noreply@tanyardspringshoa.com>';
 
 			if(mail($to,$subject,$message, implode("\r\n", $headers)))
+			{
 				print "<br />Email successfully sent";
+			}
 			else
+			{
 				print "<br />An error occured";	
+			}
 		}//end of function
 					
 			$motionid=$_POST['motionid'];
@@ -131,7 +136,7 @@
 					while ($row=$userSearch->fetch(PDO::FETCH_ASSOC))
 					{
 						$boardEmail .= $row['email'] .",";
-					}//end of while ($row=$userSearch->fetch(PDO::FETCH_ASSOC))
+					}//end of while
 					amendmail($motionid,$boardEmail);
 				}//end of elseif ($newmotiondesc != $existingmotiondec)
 			}//end of if ($newmotiondesc != "")

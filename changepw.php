@@ -5,6 +5,7 @@
 		header('location: index.php');
         }
 ?>
+<!DOCTYPE html>
 <html>
 <head>
 	<title>Change Password</title>
