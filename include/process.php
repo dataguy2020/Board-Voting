@@ -34,7 +34,7 @@
         $statement->execute(array(':email' => $_POST['email'],'password'=> sha1($_POST['password'])));
 	$row = $statement->fetchAll(PDO::FETCH_ASSOC);
 	$temppw=$row[0]['temppw'];
-	if(count($row)>0)
+	if(($row[0]['enabled'] == 1) && (count($row)>0))
 	{
 		session_start();
 		$_SESSION['temppw'] = $temppw;
@@ -75,7 +75,7 @@
 	}
 	else
 	{
-		$error[] = "Email and password does not match";
+		$error[] = "Email and password does not match or your account is not active";
 		$resp['msg']    = $error;
 		$resp['status']      = false;	
 		echo json_encode($resp);
