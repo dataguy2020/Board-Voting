@@ -523,19 +523,12 @@ elseif (isset($_POST['Deferred'])) {
     echo '<form id="voting" name="voting" method="POST" action="amendMotion.php">
                 <input type="hidden" name="motionid" value="' . htmlspecialchars($motionid) . '">
         Motion Name: <input type="text" name="motionname" readonly id="motionname" value="' . htmlspecialchars($motionname) . '">
-        <br />Existing Motion Text: <textarea name="existingmotiondec" readonly id="existingmotiondec" style="width:1136px; height: 122px;">' . htmlspecialchars($motiondesc) . '</textarea>
+        <br />Existing Motion Text:' . htmlspecialchars($motiondesc) . '</textarea>
         <br />Motion Text: <textarea name="newmotiondesc" id="newmotiondesc" style="width:1136px; height: 122px;"></textarea>
                 <input type="Submit" name="Submit" value="Submit">
                 <input type="Reset" name="Reset" value="Reset">';
     ?>
-    <script>
-    ClassicEditor
-        .create( document.querySelector( '#existingmotiondec' ) )
-        .catch( error => {
-            console.error( error );
-        } );
-</script>
-    
+  
     <script>
     ClassicEditor
         .create( document.querySelector( '#newmotiondesc' ) )
