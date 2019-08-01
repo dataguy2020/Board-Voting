@@ -38,21 +38,7 @@ $('.dataTables_length').addClass('bs-select');
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     	<script src="https://cdn.ckeditor.com/ckeditor5/12.3.1/classic/ckeditor.js"></script>
 
-<script>
-    ClassicEditor
-        .create( document.querySelector( '#existingmotiondec' ) )
-        .catch( error => {
-            console.error( error );
-        } );
-</script>
-    
-    <script>
-    ClassicEditor
-        .create( document.querySelector( '#newmotiondesc' ) )
-        .catch( error => {
-            console.error( error );
-        } );
-</script>
+
     
     
     
@@ -540,7 +526,23 @@ elseif (isset($_POST['Deferred'])) {
         <br />Existing Motion Text: <textarea name="existingmotiondec" id="existingmotiondec" style="width:1136px; height: 122px;">' . htmlspecialchars($motiondesc) . '</textarea>
         <br />Motion Text: <textarea name="newmotiondesc" id="newmotiondesc" style="width:1136px; height: 122px;"></textarea>
                 <input type="Submit" name="Submit" value="Submit">
-                <input type="Reset" name="Reset" value="Reset">
+                <input type="Reset" name="Reset" value="Reset">';
+    <script>
+    ClassicEditor
+        .create( document.querySelector( '#existingmotiondec' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
+    
+    <script>
+    ClassicEditor
+        .create( document.querySelector( '#newmotiondesc' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
+    echo '
         </form>';
 } else {
 ?>
