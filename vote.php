@@ -527,6 +527,7 @@ elseif (isset($_POST['Deferred'])) {
         <br />Motion Text: <textarea name="newmotiondesc" id="newmotiondesc" style="width:1136px; height: 122px;"></textarea>
                 <input type="Submit" name="Submit" value="Submit">
                 <input type="Reset" name="Reset" value="Reset">';
+    ?>
     <script>
     ClassicEditor
         .create( document.querySelector( '#existingmotiondec' ) )
@@ -542,6 +543,7 @@ elseif (isset($_POST['Deferred'])) {
             console.error( error );
         } );
 </script>
+   <?php
     echo '
         </form>';
 } else {
