@@ -36,6 +36,26 @@ $('.dataTables_length').addClass('bs-select');
     </script>
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    	<script src="https://cdn.ckeditor.com/ckeditor5/12.3.1/classic/ckeditor.js"></script>
+
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#existingmotiondec' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
+    
+    <script>
+    ClassicEditor
+        .create( document.querySelector( '#newmotiondesc' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
+    
+    
+    
 </head>
 <body>
 <?php
