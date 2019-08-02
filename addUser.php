@@ -40,39 +40,8 @@ if (empty($_SESSION['user_id'])) {
          margin-top: .5rem;
          }
       </style>
-      <script>
-         $(document).ready(function() {
-         $('#editUsers').DataTable(
-             
-              {     
-           "aLengthMenu": [[5, 10, 25, -1], [5, 10, 25, "All"]],
-             "iDisplayLength": 30
-            } 
-             );
-         } );
-         function checkAll(bx) {
-         var cbs = document.getElementsByTagName('input');
-         for(var i=0; i < cbs.length; i++) {
-         if(cbs[i].type == 'checkbox') {
-           cbs[i].checked = bx.checked;
-         }
-         }
-         }
-      </script>
-       <script>
-       $(document).ready(function() {
-    $('#currentUsers').DataTable( {
-        "dom": '<"toolbar">frtip'
-    } );
- 
-    $("div.toolbar").html('<strong>Current Users</strong>');
-} );
-       </script>
-    <style>
-        .toolbar {
-    float: left;
-}
-    </style>
+    
+  
    </head>
    <body>
        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
@@ -120,89 +89,9 @@ $userid = $_SESSION['user_id'];
                   </div>-->
             <div class="container">
 	   <div class="row">
-		<div class="toolbar"><strong>Current Users</strong></div>
-                  <table id="currentUsers" name="currentUsers" border="1"  id="example" class="table table-striped table-bordered" style="width:100%">
-                     <thead>
-                        <tr>
-                           <th>First Name</th>
-                           <th>Last Name</th>
-                           <th>User Name</th>
-               <th>E-mail Address</th>
-               <th>Enabled</th>
-               <th>Edit</th>
-                        </tr>
-                     </thead>
-                     <tbody>
-                         <tr>
-                             <td colspan="5" style="text-align: center; vertical-align: middle;">Do you want to add a new user?</td>
-                             <td>
-				     <form id="addUser" id="addUser" method="post" action="addUser.php">
-					     <input type="Submit" name="Submit" value="Add User">
-				     </form>
-				 </td>
-                         </tr>
-                        <?php
-include_once('include/db-config.php');
-$users = $db_con->prepare("select * from users;");
-$users->execute();
-while ($row = $users->fetch(PDO::FETCH_ASSOC)) {
-?>
-                       <form id="editUsers" name="editUsers" action="editUsers.php" method="POST">
-                           <?php
-    $usersid = $row['users_id'];
-?>
-                          <tr>
-                              <td><?php
-    echo $row['first_name'];
-?> </td>
-                              <td><?php
-    echo $row['last_name'];
-?> </td>
-                              <td><?php
-    echo $row['username'];
-?> </td>
-                  <td><?php
-    echo $row['email'];
-?> </td>
-<?php
-    $enabled = $row['enabled'];
-    if ($enabled == 1) {
-        $enabledText = "Yes";
-    } else {
-        $enabledText = "No";
-    }
-?>
-               <td><?php
-    echo $enabledText;
-?></td>
-                              <?php
-    echo '<input type="hidden" id="usersid" name="usersid" value="' . $usersid . '">';
-?>
-                             <td><input type="Submit" name="Submit" value="Edit"></td>
-                           </tr>
-                        </form>
-                        <?php
-} //end of while 
-?>
-                    </tbody>
-                     <tfoot>
-                        <tr>
-                           <th>First Name</th>
-                           <th>Second Name</th>
-                           <th>User Name</th>
-               <th>E-mail</th>
-               <th>Enabled</th>
-               <th>Edit user</th>
-                        </tr>
-                     </tfoot>
-                  </table>
-                  <br />
-                  <br />    
-                  <br />
-                  <br />
-                  <br />
-                  <?php
-$users->closeCursor();
+		<?php
+		   $userid=$_POST['userid'];
+		   echo "The userid is $userid";
 ?>
                  <!-- /span6 -->
                   <!-- /span6 --> 
