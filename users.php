@@ -136,7 +136,7 @@ $userid = $_SESSION['user_id'];
                          <tr>
                              <td colspan="5" style="text-align: center; vertical-align: middle;">Do you want to add a new user?</td>
                              <td>
-				     <form id="addUser" id="addUser" method="post" action="addUser.php">
+				     <form id="addUser" id="addUser" method="post" action="modifyUser.php">
 					     <input type="Submit" name="Submit" value="Add User">
 				     </form>
 				 </td>
@@ -147,7 +147,7 @@ $users = $db_con->prepare("select * from users;");
 $users->execute();
 while ($row = $users->fetch(PDO::FETCH_ASSOC)) {
 ?>
-                       <form id="editUsers" name="editUsers" action="editUsers.php" method="POST">
+                       <form id="editUsers" name="editUsers" action="modifyUser.php" method="POST">
                            <?php
     $usersid = $row['users_id'];
 ?>
