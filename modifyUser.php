@@ -91,7 +91,6 @@ $userid = $_SESSION['user_id'];
 	   <div class="row">
 		<?php
 		   $usersid=$_POST['usersid'];
-		   echo "Your userid is" . $_SESSION['user_id'];
 		   echo "The userid is $usersid";
 ?>
                  <!-- /span6 -->
