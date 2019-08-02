@@ -50,7 +50,7 @@ if (empty($_SESSION['user_id'])) {
       <?php
 $userid = $_SESSION['user_id'];
 ?>
-     <div class="navbar navbar-fixed-top">
+    <div class="navbar navbar-fixed-top">
          <div class="navbar-inner">
             <div class="container">
                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span
@@ -88,12 +88,18 @@ $userid = $_SESSION['user_id'];
                <strong>ALERT: </strong>This message is as of October 17, 2018. Please be advised this site will be moved to a new server in the next week
                   </div>-->
             <div class="container">
-	   <div class="row">
-		<?php
-		   $usersid=$_POST['usersid'];
-		   echo "The userid is $usersid";
+       <div class="row">
+        <?php
+if (isset($_POST['usersid'])) {
+    $usersid = $_POST['usersid'];
+    echo "The userid is $usersid";
+}
+
+else {
+    echo "The variable is not set";
+}
 ?>
-                 <!-- /span6 -->
+                <!-- /span6 -->
                   <!-- /span6 --> 
                </div>
                <!-- /row --> 
