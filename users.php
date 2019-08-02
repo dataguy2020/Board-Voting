@@ -135,7 +135,11 @@ $userid = $_SESSION['user_id'];
                      <tbody>
                          <tr>
                              <td colspan="5">Do you want to add a new user?</td>
-                             <td>Filler Text</td>
+                             <td>
+				     <form id="addUser" id="addUser" method="post" action="addUser.php">
+					     <input type="Submit" name="Submit" value="addUserSubmit">
+				     </form>
+				 </td>
                          </tr>
                         <?php
 include_once('include/db-config.php');
