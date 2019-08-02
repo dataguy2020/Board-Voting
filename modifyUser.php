@@ -90,8 +90,8 @@ $userid = $_SESSION['user_id'];
             <div class="container">
 	   <div class="row">
 		<?php
-		   $userid=$_POST['userid'];
-		   echo "The userid is $userid";
+		   $usersid=$_POST['usersid'];
+		   echo "The userid is $usersid";
 ?>
                  <!-- /span6 -->
                   <!-- /span6 --> 
