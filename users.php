@@ -133,6 +133,10 @@ $userid = $_SESSION['user_id'];
                         </tr>
                      </thead>
                      <tbody>
+                         <tr>
+                             <td colspan="5">Do you want to add a new user?</td>
+                             <td>Filler Text</td>
+                         </tr>
                         <?php
 include_once('include/db-config.php');
 $users = $db_con->prepare("select * from users;");
