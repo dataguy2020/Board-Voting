@@ -59,7 +59,7 @@ if (empty($_SESSION['user_id'])) {
          }
          }
       </script>
-       
+       <script>
        $(document).ready(function() {
     $('#currentUsers').DataTable( {
         "dom": '<"toolbar">frtip'
