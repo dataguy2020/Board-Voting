@@ -9,7 +9,7 @@
 <html lang="en">
    <head>
       <meta charset="utf-8">
-      <title>Main Dashboard</title>
+      <title>Admin Users</title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
       <meta name="apple-mobile-web-app-capable" content="yes">
       <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -43,7 +43,7 @@
       </style>
       <script>
          $(document).ready(function() {
-         $('#example').DataTable(
+         $('#editUsers').DataTable(
              
               {     
            "aLengthMenu": [[5, 10, 25, -1], [5, 10, 25, "All"]],
@@ -109,31 +109,42 @@
                   <table border="1"  id="example" class="table table-striped table-bordered" style="width:100%">
                      <thead>
                         <tr>
-                           <th>Date Added</th>
-                           <th>Session</th>
-                           <th>Motion Name</th>
-                           <th>Motion Text</th>
-                           <th>Status</th>
-                           <th>Report</th>
+                           <th>First Name</th>
+                           <th>Last Name</th>
+                           <th>User Name</th>
+			   <th>E-mail Address</th>
+			   <th>Enabled</th>
+			   <th>Edit</th>
                         </tr>
                      </thead>
                      <tbody>
                         <?php
                            include_once ('include/db-config.php');
-                           $motions=$db_con->prepare(
-                           	"select * from motions ORDER BY dateadded desc;");
-                           $motions->execute();
-                           while ( $row = $motions->fetch(PDO::FETCH_ASSOC))
+                           $users=$db_con->prepare(
+                           	"select * from users;");
+			   $users->execute();
+                           while ( $row = $users->fetch(PDO::FETCH_ASSOC))
                            { ?>
-                        <form id="report" name="report" action="report.php" method="POST">
-                           <?php $motionid=$row['motion_id']; ?>
+                        <form id="editUsers" name="editUsers" action="editUsers.php" method="POST">
+                           <?php $usersid=$row['users_id']; ?>
                            <tr>
-                              <td><?php echo $row['dateadded']; ?> </td>
-                              <td><?php echo $row['Session']; ?> </td>
-                              <td><?php echo $row['motion_name']; ?> </td>
-                              <td><?php echo $row['motion_description']; ?> </td>
-                              <td><?php echo $row['motion_disposition']; ?> </td>
-                              <?php echo '<input type="hidden" id="motionid" name="motionid" value="' . $motionid . '">'; ?>
+                              <td><?php echo $row['first_name']; ?> </td>
+                              <td><?php echo $row['last_name']; ?> </td>
+                              <td><?php echo $row['username']; ?> </td>
+			      <td><?php echo $row['email']; ?> </td>
+<?php 
+			   $enabled=$row['enabled'];
+			   if ($enabled==1)
+			   {
+				   $enabledText="Yes";
+				}
+			   else
+			   {
+				   $enabledText="No";
+			   }
+?>
+				<td><?php echo $enabledText; ?></td>
+                              <?php echo '<input type="hidden" id="usersid" name="usersid" value="' . $usersid . '">'; ?>
                               <td><input type="Submit" name="Submit" value="Report"></td>
                            </tr>
                         </form>
@@ -141,12 +152,12 @@
                      </tbody>
                      <tfoot>
                         <tr>
-                           <th>Date Added</th>
-                           <th>Session</th>
-                           <th>Motion Name</th>
-                           <th>Motion Text</th>
-                           <th>Status</th>
-                           <th>Report</th>
+                           <th>First Name</th>
+                           <th>Second Name</th>
+                           <th>User Name</th>
+			   <th>E-mail</th>
+			   <th>Enabled</th>
+			   <th>Edit user</th>
                         </tr>
                      </tfoot>
                   </table>
@@ -155,13 +166,7 @@
                   <br />
                   <br />
                   <br />
-                  <h3>Legend</h3>
-                  <p>Deferred: Deferred to be discussed at the next board meeting</p>
-                  <p>Approved: Approved as it will be ratified at the next board meeting</p>
-                  <p>Failed: Will be discussed at the next board meeting</p>
-                  <p>In Progress: Currently open for voting</p>
-                  <p>Revoked: Revoved by board meeting. Not open for voting anymore</p>
-                  <?php $motions->closeCursor(); ?>
+                  <?php $users->closeCursor(); ?>
                   <!-- /span6 -->
                   <!-- /span6 --> 
                </div>
