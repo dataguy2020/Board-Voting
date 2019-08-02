@@ -134,7 +134,7 @@ $userid = $_SESSION['user_id'];
                      </thead>
                      <tbody>
                          <tr>
-                             <td colspan="5" align="center">Do you want to add a new user?</td>
+                             <td colspan="5" style="text-align: center; vertical-align: middle;">Do you want to add a new user?</td>
                              <td>
 				     <form id="addUser" id="addUser" method="post" action="addUser.php">
 					     <input type="Submit" name="Submit" value="Add User">
