@@ -119,8 +119,8 @@ $userid = $_SESSION['user_id'];
                <strong>ALERT: </strong>This message is as of October 17, 2018. Please be advised this site will be moved to a new server in the next week
                   </div>-->
             <div class="container">
-           <div class="row">
-            <h1>Current Users</h1>
+	   <div class="row">
+		<div class="toolbar"><strong>Current Users</strong></div>
                   <table id="currentUsers" name="currentUsers" border="1"  id="example" class="table table-striped table-bordered" style="width:100%">
                      <thead>
                         <tr>
@@ -170,7 +170,7 @@ while ($row = $users->fetch(PDO::FETCH_ASSOC)) {
                               <?php
     echo '<input type="hidden" id="usersid" name="usersid" value="' . $usersid . '">';
 ?>
-                             <td><input type="Submit" name="Submit" value="Report"></td>
+                             <td><input type="Submit" name="Submit" value="Edit"></td>
                            </tr>
                         </form>
                         <?php
