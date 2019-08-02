@@ -83,12 +83,12 @@
          <div class="subnavbar-inner">
             <div class="container">
                <ul class="mainnav">
-                  <li class="active"><a href="dashboard.php"><em class="icon-dashboard"></em><span>Dashboard</span> </a> </li>
+                  <li><a href="dashboard.php"><em class="icon-dashboard"></em><span>Dashboard</span> </a> </li>
                   <li> <a href ="add.php"><em class ="icon-dashboard"></em><span>Add Motion</span></a></li>
                   <li><a href="vote.php"><em class ="icon-dashboard"></em><span>Vote</span></a></li>
                   <li><a href="discussions.php"><em class ="icon-dashboard"></em><span>Discussions</span></a></li>
 		  <li><a href="userprefs.php"><em class ="icon-dashboard"></em><span>Prefences</span></a></li>
-		<li><a href="users.php"><em class="icon-dashboard"></em><span>Users</span></a></li>
+		<li class="active"><a href="users.php"><em class="icon-dashboard"></em><span>Users</span></a></li>
                   <li><a href="logout.php"><em class="icon-dashboard"></em><span>Logout</span></a> </li>
                </ul>
             </div>
@@ -105,7 +105,8 @@
                <strong>ALERT: </strong>This message is as of October 17, 2018. Please be advised this site will be moved to a new server in the next week
                   </div>-->
             <div class="container">
-               <div class="row">
+	       <div class="row">
+			<h1>Current Users</h1>
                   <table border="1"  id="example" class="table table-striped table-bordered" style="width:100%">
                      <thead>
                         <tr>
