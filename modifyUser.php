@@ -129,7 +129,7 @@ else
   <label class="col-md-4 control-label" for="email">Email Address</label>  
   <div class="col-md-4">
   <input id="email" name="email" type="text" placeholder="E-mail Address" class="form-control input-md" required="">
-  <span class="help-block">Enter user's e-mail address</span>  
+  <span class="help-block">Enter user\'s e-mail address</span>  
   </div>
 </div>
 
