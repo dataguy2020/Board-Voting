@@ -94,7 +94,7 @@ if (isset($_POST['usersid'])) {
     $usersid = $_POST['usersid'];
     echo "The userid is $usersid";
 }
-if (!isset($_POST['usersid'])) && (isset ($_POST['addUser'])) && $_POST['addUser'] == "addUser")
+if (!isset($_POST['usersid'])) && (isset ($_POST['addUser'])) && $_POST['addUser'] == "addUser"))
 {
 	echo '<form class="form-horizontal">
 <fieldset>
