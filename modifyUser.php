@@ -97,7 +97,7 @@ if ((!isset($_POST['usersid'])) && (isset ($_POST['addUser'])) && $_POST['addUse
 {
 ?>
 
-<form class="form-horizontal">
+<form class="form-horizontal" id="addUser1" id="addUser1" method="post" action="modifyUser.php">
 <fieldset>
 
 <!-- Form Name -->
