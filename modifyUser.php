@@ -100,7 +100,68 @@ if ((isset ($_POST['addUser'])) && $_POST['addUser'] == "addUser")
 }
 else
 {
-	echo "Modifying user";
+	echo '<form class="form-horizontal">
+<fieldset>
+
+<!-- Form Name -->
+<legend>Add a User</legend>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="fname">First Name</label>  
+  <div class="col-md-4">
+  <input id="fname" name="fname" type="text" placeholder="First Name" class="form-control input-md" required="">
+  <span class="help-block">Please type in the first name of the user</span>  
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="lname">Last Name</label>  
+  <div class="col-md-4">
+  <input id="lname" name="lname" type="text" placeholder="Last Name" class="form-control input-md" required="">
+  <span class="help-block">Please type in the last name of the user</span>  
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="email">Email Address</label>  
+  <div class="col-md-4">
+  <input id="email" name="email" type="text" placeholder="E-mail Address" class="form-control input-md" required="">
+  <span class="help-block">Enter user's e-mail address</span>  
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="username">Username</label>  
+  <div class="col-md-4">
+  <input id="username" name="username" type="text" placeholder="username" class="form-control input-md" required="">
+  <span class="help-block">Please type in the desired username</span>  
+  </div>
+</div>
+
+<!-- Password input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="passcodeVerify">Verify Password</label>
+  <div class="col-md-4">
+    <input id="passcodeVerify" name="passcodeVerify" type="password" placeholder="Verify Password" class="form-control input-md" required="">
+    <span class="help-block">help</span>
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="passcode">Password</label>  
+  <div class="col-md-4">
+  <input id="passcode" name="passcode" type="text" placeholder="Password" class="form-control input-md" required="">
+  <span class="help-block">Enter Password</span>  
+  </div>
+</div>
+
+</fieldset>
+</form>';
 }
 ?>
                 <!-- /span6 -->
