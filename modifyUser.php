@@ -96,68 +96,69 @@ if ((!isset($_POST['usersid'])) && (isset ($_POST['addUser'])) && $_POST['addUse
 {
 ?>
 
-<form class="form-horizontal">
-<fieldset>
+  <div class="card-body px-lg-5 pt-0">
 
-<!-- Form Name -->
-<legend>Add a User</legend>
+        <form class="md-form" style="color: #757575;">
 
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="fname">First Name</label>  
-  <div class="col-md-4">
-  <input id="fname" name="fname" type="text" placeholder="First Name" class="form-control input-md" required="">
-  <span class="help-block">Please type in the first name of the user</span>  
-  </div>
+                    <input type="text" id="materialRegisterFormFirstName" class="form-control">
+                    <label for="materialRegisterFormFirstName">First name</label>
+
+                    <input type="email" id="materialRegisterFormLastName" class="form-control">
+                    <label for="materialRegisterFormLastName">Last name</label>
+
+                    <input type="email" id="materialRegisterFormEmail" class="form-control">
+                    <label for="materialRegisterFormEmail">E-mail</label>
+
+                    <input type="password" id="materialRegisterFormPassword" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock">
+                    <label for="materialRegisterFormPassword">Password</label>
+
+                    <small id="materialRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+                        At least 8 characters and 1 digit
+                    </small>
+
+                    <input type="password" id="materialRegisterFormPhone" class="form-control" aria-describedby="materialRegisterFormPhoneHelpBlock">
+                    <label for="materialRegisterFormPhone">Phone number</label>
+
+                    <small id="materialRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">
+                        Optional - for two step authentication
+                    </small>
+
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="materialRegisterFormNewsletter">
+                        <label class="form-check-label" for="materialRegisterFormNewsletter">Subscribe to our newsletter</label>
+                    </div>
+
+
+            <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Sign in</button>
+
+            <div class="text-center">
+                <p>or sign up with:</p>
+
+                <a type="button" class="btn-floating btn-fb btn-sm">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a type="button" class="btn-floating btn-tw btn-sm">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a type="button" class="btn-floating btn-li btn-sm">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a type="button" class="btn-floating btn-git btn-sm">
+                    <i class="fab fa-github"></i>
+                </a>
+
+                <hr>
+
+                <p>By clicking
+                    <em>Sign up</em> you agree to our
+                    <a href="" target="_blank">terms of service</a> and
+                    <a href="" target="_blank">terms of service</a>. </p>
+            </div>
+
+        </form>
+    </div>
 </div>
 
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="lname">Last Name</label>  
-  <div class="col-md-4">
-  <input id="lname" name="lname" type="text" placeholder="Last Name" class="form-control input-md" required="">
-  <span class="help-block">Please type in the last name of the user</span>  
-  </div>
-</div>
-
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="email">Email Address</label>  
-  <div class="col-md-4">
-  <input id="email" name="email" type="text" placeholder="E-mail Address" class="form-control input-md" required="">
-  <span class="help-block">Enter user\'s e-mail address</span>  
-  </div>
-</div>
-
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="username">Username</label>  
-  <div class="col-md-4">
-  <input id="username" name="username" type="text" placeholder="username" class="form-control input-md" required="">
-  <span class="help-block">Please type in the desired username</span>  
-  </div>
-</div>
-
-<!-- Password input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="passcodeVerify">Verify Password</label>
-  <div class="col-md-4">
-    <input id="passcodeVerify" name="passcodeVerify" type="password" placeholder="Verify Password" class="form-control input-md" required="">
-    <span class="help-block">help</span>
-  </div>
-</div>
-
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="passcode">Password</label>  
-  <div class="col-md-4">
-  <input id="passcode" name="passcode" type="text" placeholder="Password" class="form-control input-md" required="">
-  <span class="help-block">Enter Password</span>  
-  </div>
-</div>
-
-</fieldset>
-</form>
 
 <?php
 }
