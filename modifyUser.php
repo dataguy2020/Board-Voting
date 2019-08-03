@@ -95,9 +95,17 @@ if (isset($_POST['usersid'])) {
     echo "The userid is $usersid";
 }
 
-else {
-    echo "The variable is not set";
+if ((isset ($_POST['addUser'])) && $_POST['addUser'] == "addUser")
+{
+	echo "Adding user";
 }
+
+else
+{
+	echo "Modifying user";
+}
+
+
 ?>
                 <!-- /span6 -->
                   <!-- /span6 --> 
