@@ -160,14 +160,7 @@ if ((!isset($_POST['usersid'])) && (isset ($_POST['addUser'])) && $_POST['addUse
   </div>
 </div>
 <br />
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="passcode">Password</label>  
-  <div class="col-md-4">
-  <input id="passcode" name="passcode" type="password" placeholder="Password" class="form-control input-md" required="">
-  <span class="help-block">Enter Password</span>  
-  </div>
-</div>
+
 <br />
     <br />
     <input type="submit" value="Send Request"> <input type="reset" value="Reset Form">
