@@ -196,10 +196,46 @@ if ((isset($_POST['addingUser'])) && ($_POST['addingUser'] == "addingNewUser"))
 	}
 	else
 	{
-		if (($first_name != "") && ($last_name != "") && ($email_address != "") && ($username != ""))
+		if ( ($first_name != "") && ($last_name != "") && ($email_address != "") && ($username != "") && ($passcode != "") )
 		{
-		
+			$uppercase = preg_match('@[A-Z]@', $passcode);
+			$lowercase = preg_match('@[a-z]@', $passcode);
+			$number    = preg_match('@[0-9]@', $passcode);
+			$specialChars = preg_match('@[^\w]@', $passcode);
 			
+			if(!$uppercase || !$lowercase || !$number || !$specialChars || strlen($passcode) < 8) 
+			{
+				$errors .= '<br />Password should be at least 8 characters in length and should include at least one upper case 
+				letter, one number, and one special character.';
+			}
+			else
+			{
+    				 if (!filter_var($email_address, FILTER_VALIDATE_EMAIL))
+				 {
+					 $errors .= "<br />Invalid E-mail Format";
+				 }
+				
+				else
+				{
+					$temppw = 0;
+					$enabled = 1;
+					$saltedpasscode = sha1($passcode);
+					include_once ('include/db-config.php');
+					$addUser=$db_con->prepare("INSERT INTO users (username,password,first_name,last_name,email,enabled,temppw) 
+									VALUES(:username, :passcode, :first_name, :last_name, :email, :enabled, :temppw)");
+					$addUser->bindParam(':username',$username);
+					$addUser->bindParam(':passcode',$saltedpasscode);
+					$addUser->bindParam(':first_name',$first_name);
+					$addUser->bindParam(':last_name',$last_name);
+					$addUser->bindParam(':email',$email_address);
+					$addUser->bindParam(':enabled',$enabled);
+					$addUser->bindParam(':temppw',$temppw);
+					$addUser->execute();
+					$addUser->closeCursor();
+					echo "Added Discussion Text";
+
+				}
+			}
 
 		}
 		else
