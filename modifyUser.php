@@ -163,6 +163,7 @@ if ((!isset($_POST['usersid'])) && (isset ($_POST['addUser'])) && $_POST['addUse
 
 <br />
     <br />
+	<input type="hidden" name="addingUser" id="addingUser" value="addingNewUser">
     <input type="submit" value="Send Request"> <input type="reset" value="Reset Form">
 </fieldset>
 </form>
@@ -170,6 +171,19 @@ if ((!isset($_POST['usersid'])) && (isset ($_POST['addUser'])) && $_POST['addUse
 <?php
 }
 ?>
+
+<?php
+
+if ((isset($_POST['addingUser'])) && ($_POST['addingUser'] == "addingNewUser"))
+{
+	echo "Validating data";
+
+}
+
+?>
+
+
+
                 <!-- /span6 -->
                   <!-- /span6 --> 
                </div>
