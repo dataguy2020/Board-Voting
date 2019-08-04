@@ -111,7 +111,7 @@ if ((!isset($_POST['usersid'])) && (isset ($_POST['addUser'])) && $_POST['addUse
   <span class="help-block">Please type in the first name of the user</span>  
   </div>
 </div>
-
+<br />
 <!-- Text input-->
 <div class="form-group">
   <label class="col-md-4 control-label" for="lname">Last Name</label>  
@@ -126,7 +126,7 @@ if ((!isset($_POST['usersid'])) && (isset ($_POST['addUser'])) && $_POST['addUse
   <label class="col-md-4 control-label" for="email">Email Address</label>  
   <div class="col-md-4">
   <input id="email" name="email" type="text" placeholder="E-mail Address" class="form-control input-md" required="">
-  <span class="help-block">Enter user\'s e-mail address</span>  
+  <span class="help-block">Enter user's e-mail address</span>  
   </div>
 </div>
 <br />
@@ -156,7 +156,7 @@ if ((!isset($_POST['usersid'])) && (isset ($_POST['addUser'])) && $_POST['addUse
   <label class="col-md-4 control-label" for="passcodeVerify">Verify Password</label>
   <div class="col-md-4">
     <input id="passcodeVerify" name="passcodeVerify" type="password" placeholder="Verify Password" class="form-control input-md" required="">
-    <span class="help-block">help</span>
+    <span class="help-block">Please verify the password</span>
   </div>
 </div>
 <br />
