@@ -198,7 +198,9 @@ if ((isset($_POST['addingUser'])) && ($_POST['addingUser'] == "addingNewUser"))
 	{
 		if (($first_name != "") && ($last_name != "") && ($email_address != "") && ($username != ""))
 		{
-			echo "Doing More";
+		
+			
+
 		}
 		else
 		{
