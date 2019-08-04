@@ -182,14 +182,7 @@ if ((isset($_POST['addingUser'])) && ($_POST['addingUser'] == "addingNewUser"))
 	$username = $_POST['username'];
 	$passcode = $_POST['passcode'];
 	$verify = $_POST['passcodeVerify'];
-	$errors = "";
-
-	//DEBUG BEGIN
-	echo "Password is '$passcode'";
-	echo "<br />Verify is '$verify'";
-	echo "<br />";
-	//DEBUG END
-	
+	$errors = "";	
 	if (($passcode != $verify))
 	{
 		$errors .= "Password and verify password do not match";
@@ -232,7 +225,7 @@ if ((isset($_POST['addingUser'])) && ($_POST['addingUser'] == "addingNewUser"))
 					$addUser->bindParam(':temppw',$temppw);
 					$addUser->execute();
 					$addUser->closeCursor();
-					echo "Added Discussion Text";
+					echo "Added User" . $username . "to the database";
 
 				}
 			}
