@@ -176,7 +176,41 @@ if ((!isset($_POST['usersid'])) && (isset ($_POST['addUser'])) && $_POST['addUse
 
 if ((isset($_POST['addingUser'])) && ($_POST['addingUser'] == "addingNewUser"))
 {
-	echo "Validating data";
+	$first_name = $_POST['fname'];
+	$last_name = $_POST['lname'];
+	$email_address = $_POST['email'];
+	$username = $_POST['username'];
+	$passcode = $_POST['passcode'];
+	$verify = $_POST['passcodeVerify'];
+	$errors = "";
+
+	//DEBUG BEGIN
+	echo "Password is '$passcode'";
+	echo "<br />Verify is '$verify'";
+	echo "<br />";
+	//DEBUG END
+	
+	if (($passcode != $verify))
+	{
+		$errors .= "Password and verify password do not match";
+	}
+	else
+	{
+		if (($first_name != "") && ($last_name != "") && ($email_address != "") && ($username != ""))
+		{
+			echo "Doing More";
+		}
+		else
+		{
+			$errors .= "<br />Necessary entries were blank";
+		}
+	}
+
+	if ($errors != "")
+	{
+		echo "There were errors in your submission:<br />";
+		echo $errors;
+	}
 
 }
 
