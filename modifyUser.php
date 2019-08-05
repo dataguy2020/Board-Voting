@@ -241,7 +241,7 @@ if ((isset($_POST['addingUser'])) && ($_POST['addingUser'] == "addingNewUser"))
 					$addUser->bindParam(':temppw',$temppw);
 					$addUser->execute();
 					$addUser->closeCursor();
-					echo "Added User" . $username . "to the database";
+					echo "Added User " . $username . " to the database";
 
 				}
 			}
