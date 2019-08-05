@@ -90,7 +90,8 @@ $userid = $_SESSION['user_id'];
        <div class="row">
         <?php
 	       $usersid=$_POST['usersid'];
-if (isset($usersid) {
+if (isset($usersid))
+{
     $usersid = htmlspecialchars($usersid);
     echo "The userid is $usersid";
 }
