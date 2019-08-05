@@ -96,7 +96,7 @@ if (isset($usersid))
     echo "The userid is $usersid";
 }
     $addUser=$_POST['addUser'];
-if (((!isset($usersid)) && (isset ($addUser)) && ($addUser == "addUser"))
+if ((!isset($usersid)) && (isset ($addUser)) && ($addUser == "addUser"))
 {
 ?>
 
