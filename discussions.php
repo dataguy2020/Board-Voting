@@ -182,7 +182,7 @@ if (!empty($_POST)) {
 else {
 ?>
   <p>Please choose a motion to vote on. Only one motion can be voted on at a time</p>
-        <table border="1"id="dt-basic-checkbox" class="table table-striped table-bordered" cellspacing="0" width="100%">
+        <table border="1"id="dt-basic-checkbox" class="table table-striped table-bordered">
                <thead>
      <tr>
                         <th>Motion ID</th>
