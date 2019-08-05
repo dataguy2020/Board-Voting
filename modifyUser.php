@@ -181,11 +181,6 @@ if ((!isset($_POST['usersid'])) && (isset ($_POST['addUser'])) && $_POST['addUse
 
 <?php
 
-	       echo "Start Debugging";
-	       print_r($_POST);
-	       echo "End Debuggin";
-	       
-
 if ((isset($_POST['addingUser'])) && ($_POST['addingUser'] == "addingNewUser"))
 {
 	$first_name = $_POST['fname'];
@@ -223,7 +218,16 @@ if ((isset($_POST['addingUser'])) && ($_POST['addingUser'] == "addingNewUser"))
 				else
 				{
 					$temppw = 0;
-					$enabled = 1;
+					
+					if (isset($_POST['enableAccount']))
+					{
+						$enabled = 1;
+					}
+					else
+					{
+						$enabled = 0;
+					}
+						  
 					$saltedpasscode = sha1($passcode);
 					include_once ('include/db-config.php');
 					$addUser=$db_con->prepare("INSERT INTO users (username,password,first_name,last_name,email,enabled,temppw) 
