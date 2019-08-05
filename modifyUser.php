@@ -164,7 +164,7 @@ if ((!isset($_POST['usersid'])) && (isset ($_POST['addUser'])) && $_POST['addUse
 <div class="form-group">
   <label class="col-md-4 control-label" for="passcodeVerify">Enable Account?</label>
   <div class="col-md-4">
-    <input id="enableAccount" name="enableAccount" type="checkbox" class="form-control input-md" required="" value="enableAccount">
+    <input id="enableAccount" name="enableAccount" type="checkbox" class="form-control input-md" value="enableAccount">
   </div>
 </div>
 
