@@ -89,11 +89,13 @@ $userid = $_SESSION['user_id'];
             <div class="container">
        <div class="row">
         <?php
-if (isset($_POST['usersid'])) {
-    $usersid = htmlspecialchars($_POST['usersid']);
+	       $usersid=$_POST['usersid'];
+if (isset($usersid) {
+    $usersid = htmlspecialchars($usersid);
     echo "The userid is $usersid";
 }
-if ((!isset($_POST['usersid'])) && (isset ($_POST['addUser'])) && $_POST['addUser'] == "addUser")
+    $addUser=$_POST['addUser'];
+if (((!isset($usersid)) && (isset ($addUser)) && ($addUser == "addUser"))
 {
 ?>
 
@@ -190,7 +192,7 @@ if ((isset($_POST['addingUser'])) && ($_POST['addingUser'] == "addingNewUser"))
 	$passcode = $_POST['passcode'];
 	$verify = $_POST['passcodeVerify'];
 	$errors = "";	
-	if (($passcode != $verify))
+	if ($passcode != $verify)
 	{
 		$errors .= "Password and verify password do not match";
 	}
