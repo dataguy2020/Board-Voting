@@ -546,7 +546,7 @@ elseif (isset($_POST['Deferred'])) {
 ?>
    <p>Please choose a motion to vote on. Only one motion can be voted
         on at a time</p>
-        <table border="1" id="openMotions" name="openMotions" class="table table-striped table-bordered" cellspacing="0" width="100%">
+        <table border="1" id="openMotions" name="openMotions" class="table table-striped table-bordered" cellspacing="0">
                 <thead><tr>
                         <th>Motion ID</th>
                         <th>Motion Name</th>
