@@ -181,6 +181,11 @@ if ((!isset($_POST['usersid'])) && (isset ($_POST['addUser'])) && $_POST['addUse
 
 <?php
 
+	       echo "Start Debugging";
+	       print_r($_POST);
+	       echo "End Debuggin";
+	       
+
 if ((isset($_POST['addingUser'])) && ($_POST['addingUser'] == "addingNewUser"))
 {
 	$first_name = $_POST['fname'];
