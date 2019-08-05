@@ -186,7 +186,7 @@ if ((isset($_POST['addingUser'])) && ($_POST['addingUser'] == "addingNewUser"))
 	$first_name = $_POST['fname'];
 	$last_name = $_POST['lname'];
 	$email_address = $_POST['email'];
-	$username = $_POST['username'];
+	$username = htmlspecialchars($_POST['username']);
 	$passcode = $_POST['passcode'];
 	$verify = $_POST['passcodeVerify'];
 	$errors = "";	
