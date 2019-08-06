@@ -48,6 +48,8 @@ if (empty($_SESSION['user_id'])) {
       <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
       <?php
 $userid = $_SESSION['user_id'];
+include_once('include/db-config.php');
+
 ?>
     <div class="navbar navbar-fixed-top">
          <div class="navbar-inner">
@@ -92,8 +94,16 @@ $userid = $_SESSION['user_id'];
 	       $usersid=$_POST['usersid'];
 if (isset($usersid))
 {
-    $usersid = htmlspecialchars($usersid);
-    echo "The userid is $usersid";
+    $modifyusersid = htmlspecialchars($usersid);
+    #DEBUG START
+    echo "The userid is $modifyusersid";
+    #DEBUG END
+    
+    $modifyUser=$db_con->prepare("SELECT * FROM users WHERE users_id=:usersid");
+    $modifyUser->bindParam(':usersid',$modifyusersid);
+    $modifyUser->execute();
+
+
 }
     $addUser=$_POST['addUser'];
 if ((!isset($usersid)) && (isset ($addUser)) && ($addUser == "addUser"))
