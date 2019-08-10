@@ -112,8 +112,12 @@ if (isset($usersid))
 	       <form action="UpdateUser.php" method="post">
 		       <fieldset>
 			       <Legend>Modify User ID<?php echo "$modifyusersid" ?></lengend>
-			       <p><label>First Name</label><inut type="text" readonly id="modifyuserid" name="modifyuserid" 
-								 value="<?php echo "$modifyusersid" ?>"></p>
+			       <p><label>First Name</label>
+				       <inut type="text" readonly 
+					     id="modifyuserid" 
+					     name="modifyuserid"
+					     value="<?php echo '$modifyusersid' ?>">
+					       </p>
 		       </fieldset>
 	       </form>
 	     <?php
