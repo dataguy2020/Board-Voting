@@ -95,18 +95,25 @@ include_once('include/db-config.php');
 if (isset($usersid))
 {
     $modifyusersid = htmlspecialchars($usersid);
-    #DEBUG START
-    echo "The userid is $modifyusersid";
-    #DEBUG END
-    
+   
     $modifyUser=$db_con->prepare("SELECT * FROM users WHERE users_id=:usersid");
     $modifyUser->bindParam(':usersid',$modifyusersid);
     $modifyUser->execute();
 	
+	while ( $row = $modifyUser->fetch(PDO::FETCH_ASSOC))
+	{
+		$modifyusersid=$row['users_id'];
+		$username=$row['username'];
+		$firstName=$row['first_name'];
+		$lastName=$row['last_name'];
+		$emailAddress=$row['email'];
+		$enabled=$row['enabled'];
 ?>
 	       <form action="UpdateUser.php" method="post">
 		       <fieldset>
 			       <Legend>Modify User ID<?php echo "$modifyusersid" ?></lengend>
+			       <p><label>First Name</label><inut type="text" readonly id="modifyuserid" name="modifyuserid" 
+								 value="<?php echo "$modifyusersid" ?>"></p>
 		       </fieldset>
 	       </form>
 	     <?php
