@@ -89,6 +89,45 @@ include_once('include/db-config.php');
             <div class="container">
        <div class="row">
 
+           <?php
+           
+           $errorMsg="";
+           
+           if (!isset($_POST['updateUsersPassword']))
+           {
+               $modifyUsersID=$_POST['modifyUsersID'];
+               $modifyUsername=$_POST['modifyUserName'];
+               $modifyFirstName=$_POST['modifyFirstName'];
+               $modifyLastName=$_POST['modifyLastName'];
+               $modifyEmail=$_POST['modifyEmail'];
+               
+               if ($_POST['modifyEnabled'] == "Yes")
+               {
+                   $enabled = "1";
+               }
+               else
+               {
+                   $enabled = "0";  
+               }
+               
+               $updateUser=$db_con->prepare(
+                   "UPDATE users set username=:username, first_name=:firstName, last_name=:lastName, email=:email, enabled=:enabled
+                   where users_id=:modifyUsersID");
+               $updateUser->execute(array(':firstName'=>$modifyFirstName,':lastName'=>$modifyLastName, ':email'=>$modifyEmail, ':enabled'=>$enabled,':$modifyEmail'=>$modifyUsersID));
+                  #UPDATE `users` SET `first_name` = 'Test123', `last_name` = 'User123', `email` = 'test123@test.com' 
+                  # WHERE `users`.`users_id` = 21;
+               echo "Updated User ID $modifyUsersID";
+
+           }
+           else
+           {
+                $password = $_POST['modifyUserPassword'];
+                $verifypass = $_POST['modifyUserVerifyPassword'];
+               
+           }
+           
+           
+           ?>
 
 
                 <!-- /span6 -->
