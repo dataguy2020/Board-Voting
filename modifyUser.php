@@ -108,20 +108,41 @@ if (isset($usersid))
 		$lastName=$row['last_name'];
 		$emailAddress=$row['email'];
 		$enabled=$row['enabled'];
+
+		if ($enabled == "1")
+		{
+			$enabled="Yes";
+		}
+		else 
+		{
+			$enabled="No";
+		}
 ?>
 	       <form action="UpdateUser.php" method="post">
 		       <fieldset>
-			       <Legend>Modify User ID<?php echo "$modifyusersid" ?></lengend>
-			       <p><label>First Name</label>
-				       <inut type="text" readonly 
-					     id="modifyuserid" 
-					     name="modifyuserid"
-					     value="<?php echo '$modifyusersid' ?>">
-					       </p>
+			       <legend>Modify User ID <?php echo "$modifyusersid" ?></legend>
+			<p><label>User's ID: </label><input type="text" name="modifyUsersID" id="modifyUsersID" readonly value="<?php echo $modifyusersid; ?>"></p>
+			<p><label>Username: </label><input type="text" name="modifyUserName" id="modifyUserName" value="<?php echo $username; ?>"></p>
+			<p><label>First Name: </label><input type="text" name="modifyFirstName" id="modifyFirstName" value="<?php echo $firstName ?>"></p>
+			<p><label>Last Name: </label><input type="text" name="modifyLastName" id="modifyLastName" value="<?php echo $lastName ?>"></p>
+			<p><label>Email: </label><input type="text" name="modifyEmail" id="modifyEmail" value="<?php echo $emailAddress ?>"></p>
+			<p><label>Enabled: </label><input type="text" name="modifyEnabled" id="modifyEnabled" value="<?php echo $enabled ?>"></p>
+			<input type="submit" value="Submit User Update"> <input type="reset">
 		       </fieldset>
 	       </form>
-	     <?php
 
+		<form action="UpdateUser.php" method="post">
+		<fieldset>
+		<legend>Update password for User ID <?php echo "$modifyusersid" ?></legend>
+		<p><label>Password: </label><input type="password" name="modifyUserPassword" id="modifyUserPassword"></p>
+		<p><label>Verify: </label><input type="password" name="modifyUserVerifyPassword" id="modifyUserVerifyPassword"></p>
+		<input type="hidden" value="<?php echo $modifyusersid ?>" name="modifyUsersID" id="modifyUsersID">
+		<input type="hidden" name="updateUsersPassword" id="updateUsersPassword">
+		<input type="submit" value="Send Password Update"> <input type="reset">
+		</fieldset>
+		</form>
+	<?php
+	}
 
 }
     $addUser=$_POST['addUser'];
