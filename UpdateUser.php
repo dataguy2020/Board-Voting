@@ -121,9 +121,20 @@ include_once('include/db-config.php');
            }
            else
            {
-                $password = $_POST['modifyUserPassword'];
+                $passcode = $_POST['modifyUserPassword'];
                 $verifypass = $_POST['modifyUserVerifyPassword'];
                
+               if ($passcode == $verifypass)
+               {
+                   
+               }
+               else
+               {
+                   $error .= "Your password and the verify password do not match."
+               }
+               
+               if ($error != "")
+             
            }
            
            
