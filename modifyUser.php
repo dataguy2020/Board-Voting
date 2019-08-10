@@ -102,6 +102,14 @@ if (isset($usersid))
     $modifyUser=$db_con->prepare("SELECT * FROM users WHERE users_id=:usersid");
     $modifyUser->bindParam(':usersid',$modifyusersid);
     $modifyUser->execute();
+	
+?>
+	       <form action="UpdateUser.php" method="post">
+		       <fieldset>
+			       <Legend>Modify User ID<?php echo "$modifyusersid" ?></lengend>
+		       </fieldset>
+	       </form>
+	     <?php
 
 
 }
