@@ -125,7 +125,7 @@ if (!isset($_POST['updateUsersPassword'])) {
             $saltedPasscode = sha1($passcode);
             $updateUsersPasscode = $db_con->prepare("UPDATE users set password =:passcode where users_id =:modifyUsersID");
             $updateUsersPasscode->bindParam(':passcode', $saltedPasscode);
-            $updateUsersPasscode->bindParam(':modifyUsersID,$modifyUsersID);
+            $updateUsersPasscode->bindParam(':modifyUsersID',$modifyUsersID);
                         $updateUsersPasscode->execute();
                        
                         echo "Password updated for the specified users";
