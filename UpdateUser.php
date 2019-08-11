@@ -47,7 +47,7 @@ if (empty($_SESSION['user_id'])) {
       <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
       <?php
 $userid = $_SESSION['user_id'];
-include_once('include/db-config.php');
+include_once ('include/db-config.php');
 ?>
     <div class="navbar navbar-fixed-top">
          <div class="navbar-inner">
@@ -90,50 +90,59 @@ include_once('include/db-config.php');
        <div class="row">
 
            <?php
-           
-           $errorMsg="";
-           
-           if (!isset($_POST['updateUsersPassword']))
-           {
-               $modifyUsersID=$_POST['modifyUsersID'];
-               $modifyUsername=$_POST['modifyUserName'];
-               $modifyFirstName=$_POST['modifyFirstName'];
-               $modifyLastName=$_POST['modifyLastName'];
-               $modifyEmail=$_POST['modifyEmail'];
-               
-               if ($_POST['modifyEnabled'] == "Yes")
-               {
-                   $enabled = "1";
-               }
-               else
-               {
-                   $enabled = "0";  
-               }
-               
-               $updateUser=$db_con->prepare(
-                   "UPDATE users set username=:username, first_name=:firstName, last_name=:lastName, email=:email, enabled=:enabled
+$errorMsg = "";
+if (!isset($_POST['updateUsersPassword'])) {
+    $modifyUsersID = $_POST['modifyUsersID'];
+    $modifyUsername = $_POST['modifyUserName'];
+    $modifyFirstName = $_POST['modifyFirstName'];
+    $modifyLastName = $_POST['modifyLastName'];
+    $modifyEmail = $_POST['modifyEmail'];
+    if ($_POST['modifyEnabled'] == "Yes") {
+        $enabled = "1";
+    } else {
+        $enabled = "0";
+    }
+    $updateUser = $db_con->prepare("UPDATE users set username=:username, first_name=:firstName, last_name=:lastName, email=:email, enabled=:enabled
                    where users_id=:modifyUsersID");
-               $updateUser->execute(array(':firstName'=>$modifyFirstName,':lastName'=>$modifyLastName, ':email'=>$modifyEmail, ':enabled'=>$enabled,':$modifyEmail'=>$modifyUsersID));
-                  #UPDATE `users` SET `first_name` = 'Test123', `last_name` = 'User123', `email` = 'test123@test.com' 
-                  # WHERE `users`.`users_id` = 21;
-               echo "Updated User ID $modifyUsersID";
-
-           }
-           else
-           {
-                $passcode = $_POST['modifyUserPassword'];
-                $verifypass = $_POST['modifyUserVerifyPassword'];
-               
-               if ($passcode == $verifypass)
-               {
-                   
+    $updateUser->execute(array(':firstName' => $modifyFirstName, ':lastName' => $modifyLastName, ':email' => $modifyEmail, ':enabled' => $enabled, ':$modifyEmail' => $modifyUsersID));
+    #UPDATE `users` SET `first_name` = 'Test123', `last_name` = 'User123', `email` = 'test123@test.com'
+    # WHERE `users`.`users_id` = 21;
+    echo "Updated User ID $modifyUsersID";
+} else {
+    $passcode = $_POST['modifyUserPassword'];
+    $verifypass = $_POST['modifyUserVerifyPassword'];
+    if ($passcode == $verifypass) {
+        $uppercase = preg_match('@[A-Z]@', $passcode);
+        $lowercase = preg_match('@[a-z]@', $passcode);
+        $number = preg_match('@[0-9]@', $passcode);
+        $specialChars = preg_match('@[^\w]@', $passcode);
+        if (!$uppercase || !$lowercase || !$number || !$specialChars || strlen($passcode) < 8) {
+            $error.= '<br />Password should be at least 8 characters in length and should include at least one upper case 
+                        letter, one number, and one special character.';
+        } else {
+            $modifyUsersID = $_POST['modifyUsersID'];
+            $passcode = $_POST['modifyUserPassword'];
+            $saltedPasscode = sha1($passcode);
+            $updateUsersPasscode = $db_con->prepare("UPDATE users set password =:passcode where users_id =:modifyUsersID");
+            $updateUsersPasscode->bindParam(':passcode', $saltedPasscode);
+            $updateUsersPasscode->bindParam(':modifyUsersID,$modifyUsersID);
+                        $updateUsersPasscode->execute();
+                       
+                        echo "Password updated for the specified users";
+                       
+                       
+                   }
                }
                else
                {
-                   $error .= "Your password and the verify password do not match."
+                   $error .= "<br />Your password and the verify password do not match.";
                }
                
                if ($error != "")
+               {
+                   echo "There were errors:<br />";
+                   echo "$error";
+               }
              
            }
            
