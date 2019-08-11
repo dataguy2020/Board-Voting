@@ -1,15 +1,14 @@
 <?php
-   session_start();
-   if(empty($_SESSION['user_id']))
-   {
-   header('location: index.php');	
-   	}
-   ?>
+session_start();
+if (empty($_SESSION['user_id'])) {
+    header('location: index.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
    <head>
       <meta charset="utf-8">
-      <title>Main Dashboard</title>
+      <title>Admin Users</title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
       <meta name="apple-mobile-web-app-capable" content="yes">
       <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -43,7 +42,7 @@
       </style>
       <script>
          $(document).ready(function() {
-         $('#example').DataTable(
+         $('#editUsers').DataTable(
              
               {     
            "aLengthMenu": [[5, 10, 25, -1], [5, 10, 25, "All"]],
@@ -60,14 +59,29 @@
          }
          }
       </script>
+       <script>
+       $(document).ready(function() {
+    $('#currentUsers').DataTable( {
+        "dom": '<"toolbar">frtip'
+    } );
+ 
+    $("div.toolbar").html('<strong>Current Users</strong>');
+} );
+       </script>
+    <style>
+        .toolbar {
+    float: left;
+}
+    </style>
    </head>
    <body>
-      <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-      <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+       <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+          <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+      <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
       <?php
-         $userid=$_SESSION['user_id'];
-         ?>
-      <div class="navbar navbar-fixed-top">
+$userid = $_SESSION['user_id'];
+?>
+     <div class="navbar navbar-fixed-top">
          <div class="navbar-inner">
             <div class="container">
                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span
@@ -83,12 +97,12 @@
          <div class="subnavbar-inner">
             <div class="container">
                <ul class="mainnav">
-                  <li class="active"><a href="dashboard.php"><em class="icon-dashboard"></em><span>Dashboard</span> </a> </li>
+                  <li><a href="dashboard.php"><em class="icon-dashboard"></em><span>Dashboard</span> </a> </li>
                   <li> <a href ="add.php"><em class ="icon-dashboard"></em><span>Add Motion</span></a></li>
                   <li><a href="vote.php"><em class ="icon-dashboard"></em><span>Vote</span></a></li>
                   <li><a href="discussions.php"><em class ="icon-dashboard"></em><span>Discussions</span></a></li>
-		  <li><a href="userprefs.php"><em class ="icon-dashboard"></em><span>Prefences</span></a></li>
-		<li><a href="users.php"><em class="icon-dashboard"></em><span>Users</span></a></li>
+          <li><a href="userprefs.php"><em class ="icon-dashboard"></em><span>Prefences</span></a></li>
+        <li class="active"><a href="users.php"><em class="icon-dashboard"></em><span>Users</span></a></li>
                   <li><a href="logout.php"><em class="icon-dashboard"></em><span>Logout</span></a> </li>
                </ul>
             </div>
@@ -105,64 +119,93 @@
                <strong>ALERT: </strong>This message is as of October 17, 2018. Please be advised this site will be moved to a new server in the next week
                   </div>-->
             <div class="container">
-               <div class="row">
-                  <table border="1"  id="example" class="table table-striped table-bordered" style="width:100%">
+	   <div class="row">
+		<div class="toolbar"><strong>Current Users</strong></div>
+                  <table id="currentUsers" name="currentUsers" border="1"  id="example" class="table table-striped table-bordered" style="width:100%">
                      <thead>
                         <tr>
-                           <th>Date Added</th>
-                           <th>Session</th>
-                           <th>Motion Name</th>
-                           <th>Motion Text</th>
-                           <th>Status</th>
-                           <th>Report</th>
+                           <th>First Name</th>
+                           <th>Last Name</th>
+                           <th>User Name</th>
+               <th>E-mail Address</th>
+               <th>Enabled</th>
+               <th>Edit</th>
                         </tr>
                      </thead>
                      <tbody>
+                         <tr>
+                             <td colspan="5" style="text-align: center; vertical-align: middle;">Do you want to add a new user?</td>
+                             <td>
+				     <form id="addUser" id="addUser" method="post" action="modifyUser.php">
+					     <input id="addUser" name="addUser" type="hidden" value="addUser">
+					     <input type="Submit" name="Submit" value="Add User">
+				     </form>
+				 </td>
+                         </tr>
                         <?php
-                           include_once ('include/db-config.php');
-                           $motions=$db_con->prepare(
-                           	"select * from motions ORDER BY dateadded desc;");
-                           $motions->execute();
-                           while ( $row = $motions->fetch(PDO::FETCH_ASSOC))
-                           { ?>
-                        <form id="report" name="report" action="report.php" method="POST">
-                           <?php $motionid=$row['motion_id']; ?>
-                           <tr>
-                              <td><?php echo $row['dateadded']; ?> </td>
-                              <td><?php echo $row['Session']; ?> </td>
-                              <td><?php echo $row['motion_name']; ?> </td>
-                              <td><?php echo $row['motion_description']; ?> </td>
-                              <td><?php echo $row['motion_disposition']; ?> </td>
-                              <?php echo '<input type="hidden" id="motionid" name="motionid" value="' . $motionid . '">'; ?>
-                              <td><input type="Submit" name="Submit" value="Report"></td>
+include_once('include/db-config.php');
+$users = $db_con->prepare("select * from users;");
+$users->execute();
+while ($row = $users->fetch(PDO::FETCH_ASSOC)) {
+?>
+                       <form id="editUsers" name="editUsers" action="modifyUser.php" method="POST">
+                           <?php
+    $usersid = $row['users_id'];
+?>
+                          <tr>
+                              <td><?php
+    echo $row['first_name'];
+?> </td>
+                              <td><?php
+    echo $row['last_name'];
+?> </td>
+                              <td><?php
+    echo $row['username'];
+?> </td>
+                  <td><?php
+    echo $row['email'];
+?> </td>
+<?php
+    $enabled = $row['enabled'];
+    if ($enabled == 1) {
+        $enabledText = "Yes";
+    } else {
+        $enabledText = "No";
+    }
+?>
+               <td><?php
+    echo $enabledText;
+?></td>
+                              <?php
+    echo '<input type="hidden" id="usersid" name="usersid" value="' . $usersid . '">';
+?>
+                             <td><input type="Submit" name="Submit" value="Edit"></td>
                            </tr>
                         </form>
-                        <?php }//end of while ?>
-                     </tbody>
+                        <?php
+} //end of while 
+?>
+                    </tbody>
                      <tfoot>
                         <tr>
-                           <th>Date Added</th>
-                           <th>Session</th>
-                           <th>Motion Name</th>
-                           <th>Motion Text</th>
-                           <th>Status</th>
-                           <th>Report</th>
+                           <th>First Name</th>
+                           <th>Second Name</th>
+                           <th>User Name</th>
+               <th>E-mail</th>
+               <th>Enabled</th>
+               <th>Edit user</th>
                         </tr>
                      </tfoot>
                   </table>
                   <br />
-                  <br />	
+                  <br />    
                   <br />
                   <br />
                   <br />
-                  <h3>Legend</h3>
-                  <p>Deferred: Deferred to be discussed at the next board meeting</p>
-                  <p>Approved: Approved as it will be ratified at the next board meeting</p>
-                  <p>Failed: Will be discussed at the next board meeting</p>
-                  <p>In Progress: Currently open for voting</p>
-                  <p>Revoked: Revoved by board meeting. Not open for voting anymore</p>
-                  <?php $motions->closeCursor(); ?>
-                  <!-- /span6 -->
+                  <?php
+$users->closeCursor();
+?>
+                 <!-- /span6 -->
                   <!-- /span6 --> 
                </div>
                <!-- /row --> 

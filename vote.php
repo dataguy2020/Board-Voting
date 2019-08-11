@@ -70,6 +70,7 @@ $userid = $_SESSION['user_id'];
     <li class="active"><a href="vote.php"><em class ="icon-dashboard"></em><span>Vote</span></a></li>
      <li><a href="discussions.php"><em class ="icon-dashboard"></em><span>Discussions</span></a></li>
     <li><a href="userprefs.php"><em class ="icon-dashboard"></em><span>Prefences</span></a></li>
+          <li><a href="users.php"><em class="icon-dashboard"></em><span>Users</span></a></li>
          <li><a href="logout.php"><em class="icon-dashboard"></em><span>Logout</span></a> </li>
 
       </ul>
@@ -546,7 +547,7 @@ elseif (isset($_POST['Deferred'])) {
 ?>
    <p>Please choose a motion to vote on. Only one motion can be voted
         on at a time</p>
-        <table border="1" id="openMotions" name="openMotions" class="table table-striped table-bordered" cellspacing="0" width="100%">
+        <table border="1" id="openMotions" name="openMotions" class="table table-striped table-bordered" cellspacing="0">
                 <thead><tr>
                         <th>Motion ID</th>
                         <th>Motion Name</th>

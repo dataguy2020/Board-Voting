@@ -62,6 +62,7 @@ font-weight:bold;
 	<li><a href="vote.php"><em class ="icon-dashboard"></em><span>Vote</span></a></li>
 	 <li><a href="discussions.php"><em class ="icon-dashboard"></em><span>Discussions</span></a></li>
 	<li class="active"><a href="userprefs.php"><em class="icon-dashboard"></em><span>Preferences</span>_</a></li>
+	<li><a href="users.php"><em class="icon-dashboard"></em><span>Users</span></a></li>
          <li><a href="logout.php"><em class="icon-dashboard"></em><span>Logout</span></a> </li>
 
       </ul>
