@@ -100,7 +100,7 @@ if (!isset($_POST['updateUsersPassword'])) {
     #DEBUG END
     
     $modifyUsersID = $_POST['modifyUsersID'];
-    $modifyUsername = $_POST['modifyUserName'];
+    $modifyUserName = $_POST['modifyUserName'];
     $modifyFirstName = $_POST['modifyFirstName'];
     $modifyLastName = $_POST['modifyLastName'];
     $modifyEmail = $_POST['modifyEmail'];
