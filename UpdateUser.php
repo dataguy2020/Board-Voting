@@ -92,8 +92,15 @@ include_once ('include/db-config.php');
            <?php
 $errorMsg = "";
 if (!isset($_POST['updateUsersPassword'])) {
+    
+    #DEBUG START
+    foreach ($_POST as $key => $entry){
+        print $key . ": " . $entry . "<br>";
+    }
+    #DEBUG END
+    
     $modifyUsersID = $_POST['modifyUsersID'];
-    $modifyUsername = $_POST['modifyUserName'];
+    $modifyUserName = $_POST['modifyUserName'];
     $modifyFirstName = $_POST['modifyFirstName'];
     $modifyLastName = $_POST['modifyLastName'];
     $modifyEmail = $_POST['modifyEmail'];
@@ -102,11 +109,17 @@ if (!isset($_POST['updateUsersPassword'])) {
     } else {
         $enabled = "0";
     }
-    $updateUser = $db_con->prepare("UPDATE users set username=:username, first_name=:firstName, last_name=:lastName, email=:email, enabled=:enabled
-                   where users_id=:modifyUsersID");
-    $updateUser->execute(array(':firstName' => $modifyFirstName, ':lastName' => $modifyLastName, ':email' => $modifyEmail, ':enabled' => $enabled, ':$modifyEmail' => $modifyUsersID));
-    #UPDATE `users` SET `first_name` = 'Test123', `last_name` = 'User123', `email` = 'test123@test.com'
-    # WHERE `users`.`users_id` = 21;
+    $updateUser = $db_con->prepare("UPDATE users set username=:username, first_name=:firstName, last_name=:lastName, email=:email, 
+                                    enabled=:enabled where users_id=:modifyUsersID");
+    
+    $updateUser->bindParam(':username',$modifyUserName);
+    $updateUser->bindParam(':firstName', $modifyFirstName);
+    $updateUser->bindParam(':lastName', $modifyLastName);
+    $updateUser->bindParam(':email', $modifyEmail);
+    $updateUser->bindParam(':enabled',$enabled);
+    $updateUser->bindParam(':modifyUsersID',$modifyUsersID);
+    $updateUser->execute();
+    
     echo "Updated User ID $modifyUsersID";
 } else {
     $passcode = $_POST['modifyUserPassword'];
