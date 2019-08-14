@@ -92,6 +92,13 @@ include_once ('include/db-config.php');
            <?php
 $errorMsg = "";
 if (!isset($_POST['updateUsersPassword'])) {
+    
+    #DEBUG START
+    foreach ($_POST as $key => $entry){
+        print $key . ": " . $entry . "<br>";
+    }
+    #DEBUG END
+    
     $modifyUsersID = $_POST['modifyUsersID'];
     $modifyUsername = $_POST['modifyUserName'];
     $modifyFirstName = $_POST['modifyFirstName'];
