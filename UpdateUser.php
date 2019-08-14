@@ -105,7 +105,7 @@ if (!isset($_POST['updateUsersPassword'])) {
     $updateUser = $db_con->prepare("UPDATE users set username=:username, first_name=:firstName, last_name=:lastName, email=:email, 
                                     enabled=:enabled where users_id=:modifyUsersID");
     
-    $UpdateUser->bindParam(':username',$modifyUserName);
+    $updateUser->bindParam(':username',$modifyUserName);
     $updateUser->bindParam(':firstName', $modifyFirstName);
     $updateUser->bindParam(':lastName', $modifyLastName);
     $updateUser->bindParam(':email', $modifyEmail);
