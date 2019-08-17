@@ -65,7 +65,7 @@ if (empty($_SESSION['user_id'])) {
         "dom": '<"toolbar">frtip'
     } );
  
-    $("div.toolbar").html('<strong>Current Users</strong>');
+    $("div.toolbar").html('<strong>Users</strong>');
 } );
        </script>
     <style>
