@@ -142,6 +142,13 @@
                         <input id="Last Name" name="Last Name" type="text" placeholder="Last Name" required="">
                      </div>
                   </div>
+                        <!-- Text input-->
+                  <div>
+                     <labelfor="textinput">E-mail Address</label>  
+                     <div>
+                        <input id="email" name="email" type="text" placeholder="email" required="">
+                     </div>
+                  </div>
                   <!-- Select Basic -->
                   <div>
                      <label for="Enabled">Enabled</label>
