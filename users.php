@@ -120,7 +120,7 @@ $userid = $_SESSION['user_id'];
                   </div>-->
             <div class="container">
 	   <div class="row">
-		<div class="toolbar"><strong>Users</strong> | <strong>Management</strong></div>
+		<div class="toolbar"><strong>Users</strong> | <strong><a href="management.php">Management</a></strong></div>
                   <table id="currentUsers" name="currentUsers" border="1"  id="example" class="table table-striped table-bordered" style="width:100%">
                      <thead>
                         <tr>
@@ -189,7 +189,7 @@ while ($row = $users->fetch(PDO::FETCH_ASSOC)) {
                      <tfoot>
                         <tr>
                            <th>First Name</th>
-                           <th>Second Name</th>
+                           <th>Last Name</th>
                            <th>User Name</th>
                <th>E-mail</th>
                <th>Enabled</th>

@@ -120,7 +120,7 @@ $userid = $_SESSION['user_id'];
                   </div>-->
             <div class="container">
 	   <div class="row">
-		<div class="toolbar"><strong>Current Users</strong></div>
+		<div class="toolbar"><strong><a href="users.php">Users</a>|Management</strong></div>
                   <table id="currentUsers" name="currentUsers" border="1"  id="example" class="table table-striped table-bordered" style="width:100%">
                      <thead>
                         <tr>
@@ -135,7 +135,7 @@ $userid = $_SESSION['user_id'];
                          <tr>
                              <td colspan="4" style="text-align: center; vertical-align: middle;">Do you want to add a new management user?</td>
                              <td>
-				     <form id="addUser" id="addUser" method="post" action="modifyUser.php">
+				     <form id="addUser" id="addUser" method="post" action="modifyManagement.php">
 					     <input id="addManagement" name="addManagement" type="hidden" value="addManagement">
 					     <input type="Submit" name="Submit" value="Add User">
 				     </form>
