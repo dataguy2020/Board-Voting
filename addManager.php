@@ -127,12 +127,16 @@
                       $enabled = $_POST['Enabled'];
                       $errors = "";
                       if (($firstName != "") && ($lastName!="") && ($email != ""))
-                      {
-                        if (strlen($firstName) > 5 && strlen($lastName) > 10)
+		      {
+			      echo strlen($firstName);
+			      echo "<br />";
+			      echo strlen($lastName);
+			      echo "<br />";
+                        if (strlen($firstName) >= 5 && strlen($lastName) >= 5)
                         {
-                          if (!filter_var($email_address, FILTER_VALIDATE_EMAIL))
+                          if (!filter_var($email, FILTER_VALIDATE_EMAIL))
                           {
-                            $errors .= "There was an issue with your password<br />";
+                            $errors .= "There was an issue with your e-mail Address<br />";
                             }
                             else
                             {
@@ -142,7 +146,7 @@
                               $addManagement->bindParam(':firstName',$firstName);
                               $addManagement->bindParam(':lastName',$lastName);
                               $addManagement->bindParam(':email', $email);
-                              $addManagement->bindParam(':fenabled',$enabled);
+                              $addManagement->bindParam(':enabled',$enabled);
                               
                               $addManagement->execute();
                               $addManagement->closeCursor();
@@ -150,7 +154,12 @@
 
                             }
 
-                        }
+			}
+
+			else
+			{
+				$errors .= "Your first Name or last name is not at least 5 characters";
+			}
                       }
 
                       else 
