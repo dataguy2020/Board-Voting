@@ -139,7 +139,7 @@
                   <div>
                      <label for="Last Name">Last Name</label>  
                      <div>
-                        <input id="Last Name" name="Last Name" type="text" placeholder="Last Name" required="">
+                        <input id="lastName" name="lastName" type="text" placeholder="Last Name" required="">
                      </div>
                   </div>
                         <!-- Text input-->
