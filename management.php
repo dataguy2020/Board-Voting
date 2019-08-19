@@ -126,7 +126,6 @@ $userid = $_SESSION['user_id'];
                         <tr>
                            <th>First Name</th>
                            <th>Last Name</th>
-                           <th>User Name</th>
                <th>E-mail Address</th>
                <th>Enabled</th>
                <th>Edit</th>
@@ -134,23 +133,23 @@ $userid = $_SESSION['user_id'];
                      </thead>
                      <tbody>
                          <tr>
-                             <td colspan="5" style="text-align: center; vertical-align: middle;">Do you want to add a new user?</td>
+                             <td colspan="5" style="text-align: center; vertical-align: middle;">Do you want to add a new management user?</td>
                              <td>
 				     <form id="addUser" id="addUser" method="post" action="modifyUser.php">
-					     <input id="addUser" name="addUser" type="hidden" value="addUser">
+					     <input id="addManagement" name="addManagement" type="hidden" value="addManagement">
 					     <input type="Submit" name="Submit" value="Add User">
 				     </form>
 				 </td>
                          </tr>
                         <?php
 include_once('include/db-config.php');
-$users = $db_con->prepare("select * from users;");
+$users = $db_con->prepare("select * from management;");
 $users->execute();
 while ($row = $users->fetch(PDO::FETCH_ASSOC)) {
 ?>
-                       <form id="editUsers" name="editUsers" action="modifyUser.php" method="POST">
+                       <form id="editUsers" name="editUsers" action="modifyManagement.php" method="POST">
                            <?php
-    $usersid = $row['users_id'];
+    $usersid = $row['managementID'];
 ?>
                           <tr>
                               <td><?php
@@ -159,14 +158,12 @@ while ($row = $users->fetch(PDO::FETCH_ASSOC)) {
                               <td><?php
     echo $row['last_name'];
 ?> </td>
-                              <td><?php
-    echo $row['username'];
-?> </td>
+                              
                   <td><?php
     echo $row['email'];
 ?> </td>
 <?php
-    $enabled = $row['enabled'];
+    $enabled = $row['fenabled'];
     if ($enabled == 1) {
         $enabledText = "Yes";
     } else {
@@ -189,8 +186,7 @@ while ($row = $users->fetch(PDO::FETCH_ASSOC)) {
                      <tfoot>
                         <tr>
                            <th>First Name</th>
-                           <th>Second Name</th>
-                           <th>User Name</th>
+                           <th>Last Name</th>
                <th>E-mail</th>
                <th>Enabled</th>
                <th>Edit user</th>
