@@ -133,7 +133,7 @@ $userid = $_SESSION['user_id'];
                      </thead>
                      <tbody>
                          <tr>
-                             <td colspan="5" style="text-align: center; vertical-align: middle;">Do you want to add a new management user?</td>
+                             <td colspan="4" style="text-align: center; vertical-align: middle;">Do you want to add a new management user?</td>
                              <td>
 				     <form id="addUser" id="addUser" method="post" action="modifyUser.php">
 					     <input id="addManagement" name="addManagement" type="hidden" value="addManagement">
