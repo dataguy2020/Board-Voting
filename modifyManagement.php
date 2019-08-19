@@ -1,9 +1,9 @@
 <?php
-session_start();
-if (empty($_SESSION['user_id'])) {
-    header('location: index.php');
-}
-?>
+   session_start();
+   if (empty($_SESSION['user_id'])) {
+       header('location: index.php');
+   }
+   ?>
 <!DOCTYPE html>
 <html lang="en">
    <head>
@@ -26,7 +26,7 @@ if (empty($_SESSION['user_id'])) {
       <style>
          table{
          width:100%;
-             border-collapse: separate;
+         border-collapse: separate;
          }
          #example_filter{
          float:right;
@@ -59,29 +59,29 @@ if (empty($_SESSION['user_id'])) {
          }
          }
       </script>
-       <script>
-       $(document).ready(function() {
-    $('#currentUsers').DataTable( {
-        "dom": '<"toolbar">frtip'
-    } );
- 
-    $("div.toolbar").html('<strong>Users</strong>');
-} );
-       </script>
-    <style>
-        .toolbar {
-    float: left;
-}
-    </style>
+      <script>
+         $(document).ready(function() {
+         $('#currentUsers').DataTable( {
+          "dom": '<"toolbar">frtip'
+         } );
+         
+         $("div.toolbar").html('<strong>Users</strong>');
+         } );
+      </script>
+      <style>
+         .toolbar {
+         float: left;
+         }
+      </style>
    </head>
    <body>
-       <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-          <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+      <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+      <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
       <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
       <?php
-$userid = $_SESSION['user_id'];
-?>
-     <div class="navbar navbar-fixed-top">
+         $userid = $_SESSION['user_id'];
+         ?>
+      <div class="navbar navbar-fixed-top">
          <div class="navbar-inner">
             <div class="container">
                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span
@@ -101,8 +101,8 @@ $userid = $_SESSION['user_id'];
                   <li> <a href ="add.php"><em class ="icon-dashboard"></em><span>Add Motion</span></a></li>
                   <li><a href="vote.php"><em class ="icon-dashboard"></em><span>Vote</span></a></li>
                   <li><a href="discussions.php"><em class ="icon-dashboard"></em><span>Discussions</span></a></li>
-          <li><a href="userprefs.php"><em class ="icon-dashboard"></em><span>Prefences</span></a></li>
-        <li class="active"><a href="users.php"><em class="icon-dashboard"></em><span>Users</span></a></li>
+                  <li><a href="userprefs.php"><em class ="icon-dashboard"></em><span>Prefences</span></a></li>
+                  <li class="active"><a href="users.php"><em class="icon-dashboard"></em><span>Users</span></a></li>
                   <li><a href="logout.php"><em class="icon-dashboard"></em><span>Logout</span></a> </li>
                </ul>
             </div>
@@ -119,26 +119,54 @@ $userid = $_SESSION['user_id'];
                <strong>ALERT: </strong>This message is as of October 17, 2018. Please be advised this site will be moved to a new server in the next week
                   </div>-->
             <div class="container">
-	   <div class="row">
-			   
-		   <?php
-		   	if (isset($_POST['addManagement']))
-			{
-				echo "Adding User";
-			}
-		   
-		   	if (isset($_POST['usersid']))
-			{
-				echo "Modifying user";
-			}
-		   
-		   
-		   
-		   
-		   ?>
-  
-  
-                 <!-- /span6 -->
+               <div class="row">
+                  <?php
+                     if (isset($_POST['addManagement']))
+                     {
+                     ?>
+                  <form action="addManager.php" id="addManager" name="addManager" method="post">
+                  <fieldset>
+                  <!-- Form Name -->
+                  <legend>Add a New Manager</legend>
+                  <!-- Text input-->
+                  <div class="form-group">
+                     <label class="col-md-4 control-label" for="textinput">First Name</label>  
+                     <div class="col-md-4">
+                        <input id="textinput" name="textinput" type="text" placeholder="First name" class="form-control input-md" required="">
+                        <span class="help-block">First name</span>  
+                     </div>
+                  </div>
+                  <!-- Text input-->
+                  <div class="form-group">
+                     <label class="col-md-4 control-label" for="Last Name">Last Name</label>  
+                     <div class="col-md-4">
+                        <input id="Last Name" name="Last Name" type="text" placeholder="Last Name" class="form-control input-md" required="">
+                        <span class="help-block">Last Name</span>  
+                     </div>
+                  </div>
+                  <!-- Select Basic -->
+                  <div class="form-group">
+                     <label class="col-md-4 control-label" for="Enabled">Enabled</label>
+                     <div class="col-md-4">
+                        <select id="Enabled" name="Enabled" class="form-control">
+                           <option value="1">Yes</option>
+                           <option value="2">No</option>
+                        </select>
+                     </div>
+                  </div>
+                  <?php
+                     }
+                       
+                       	if (isset($_POST['usersid']))
+                     {
+                     	echo "Modifying user";
+                     }
+                       
+                       
+                       
+                       
+                       ?>
+                  <!-- /span6 -->
                   <!-- /span6 --> 
                </div>
                <!-- /row --> 
