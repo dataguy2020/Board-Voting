@@ -130,9 +130,9 @@
                   <legend>Add a New Manager</legend>
                   <!-- Text input-->
                   <div>
-                     <labelfor="textinput">First Name</label>  
+                     <labelfor="firstName">First Name</label>  
                      <div>
-                        <input id="textinput" name="textinput" type="text" placeholder="First name" required="">
+                        <input id="firstName" name="firstName" type="text" placeholder="First name" required="">
                      </div>
                   </div>
                   <!-- Text input-->
@@ -144,7 +144,7 @@
                   </div>
                         <!-- Text input-->
                   <div>
-                     <labelfor="textinput">E-mail Address</label>  
+                     <label for="email">E-mail Address</label>  
                      <div>
                         <input id="email" name="email" type="text" placeholder="email" required="">
                      </div>
