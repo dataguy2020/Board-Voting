@@ -159,6 +159,7 @@
                         </select>
                      </div>
                   </div>
+                     <br /><br />
                      <input type="submit" value="Send Request"> <input type="reset" value="Reset">
                      </form>
                   <?php
