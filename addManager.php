@@ -124,7 +124,7 @@
                       $firstName = $_POST['firstName'];
                       $lastName = $_POST['lastName'];
                       $email = $_POST['email'];
-                      $enabled = $POST['Enabled'];
+                      $enabled = $_POST['Enabled'];
                       $errors = "";
                       if (($firstName != "") && ($lastName!="") && ($email != ""))
                       {
