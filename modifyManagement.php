@@ -120,14 +120,16 @@ $userid = $_SESSION['user_id'];
                   </div>-->
             <div class="container">
 	   <div class="row">
-	
-  
-  <p>This is a test</p>
-		   
+			   
 		   <?php
 		   	if (isset($_POST['addManagement']))
 			{
 				echo "Adding User";
+			}
+		   
+		   	if (isset($_POST['usersid']))
+			{
+				echo "Modifying user";
 			}
 		   
 		   
