@@ -129,31 +129,32 @@
                   <!-- Form Name -->
                   <legend>Add a New Manager</legend>
                   <!-- Text input-->
-                  <div class="form-group">
-                     <label class="col-md-4 control-label" for="textinput">First Name</label>  
-                     <div class="col-md-4">
-                        <input id="textinput" name="textinput" type="text" placeholder="First name" class="form-control input-md" required="">
-                        <span class="help-block">First name</span>  
+                  <div>
+                     <labelfor="textinput">First Name</label>  
+                     <div>
+                        <input id="textinput" name="textinput" type="text" placeholder="First name" required="">
+                        <span>First name</span>  
                      </div>
                   </div>
                   <!-- Text input-->
-                  <div class="form-group">
-                     <label class="col-md-4 control-label" for="Last Name">Last Name</label>  
-                     <div class="col-md-4">
-                        <input id="Last Name" name="Last Name" type="text" placeholder="Last Name" class="form-control input-md" required="">
-                        <span class="help-block">Last Name</span>  
+                  <div>
+                     <label for="Last Name">Last Name</label>  
+                     <div>
+                        <input id="Last Name" name="Last Name" type="text" placeholder="Last Name" required="">
+                        <span>Last Name</span>  
                      </div>
                   </div>
                   <!-- Select Basic -->
-                  <div class="form-group">
-                     <label class="col-md-4 control-label" for="Enabled">Enabled</label>
-                     <div class="col-md-4">
+                  <div>
+                     <label for="Enabled">Enabled</label>
+                     <div>
                         <select id="Enabled" name="Enabled" class="form-control">
                            <option value="1">Yes</option>
                            <option value="2">No</option>
                         </select>
                      </div>
                   </div>
+                     </form>
                   <?php
                      }
                        
