@@ -133,7 +133,6 @@
                      <labelfor="textinput">First Name</label>  
                      <div>
                         <input id="textinput" name="textinput" type="text" placeholder="First name" required="">
-                        <span>First name</span>  
                      </div>
                   </div>
                   <!-- Text input-->
@@ -141,7 +140,6 @@
                      <label for="Last Name">Last Name</label>  
                      <div>
                         <input id="Last Name" name="Last Name" type="text" placeholder="Last Name" required="">
-                        <span>Last Name</span>  
                      </div>
                   </div>
                   <!-- Select Basic -->
