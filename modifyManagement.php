@@ -123,6 +123,17 @@ $userid = $_SESSION['user_id'];
 	
   
   <p>This is a test</p>
+		   
+		   <?php
+		   	if (isset($_POST['addManagement']))
+			{
+				echo "Adding User";
+			}
+		   
+		   
+		   
+		   
+		   ?>
   
   
                  <!-- /span6 -->
