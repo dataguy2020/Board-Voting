@@ -177,36 +177,36 @@
 
 <!-- Text input-->
 <div>
-  <label for="textinput">First Name</label>  
+  <label for="firstName">First Name</label>  
   <div >
-  <input id="textinput" name="textinput" type="text" placeholder="First Name" required="">
+  <input id="firstName" name="firstName" type="text" placeholder="First Name" required="">
     
   </div>
 </div>
 
 <!-- Text input-->
-<div class="form-group">
-  <label for="textinput">Last Name</label>  
+<div>
+  <label for="lastName">Last Name</label>  
   <div>
-  <input id="textinput" name="textinput" type="text" placeholder="Last Name" required="">
+  <input id="lastName" name="lastName" type="text" placeholder="Last Name" required="">
     
   </div>
 </div>
 
 <!-- Text input-->
-<div class="form-group">
-  <labefor="textinput">E-mail</label>  
+<div>
+  <labe for="email">E-mail</label>  
   <div>
-  <input id="textinput" name="textinput" type="text" placeholder="E-mail Address"required="">
+  <input id="email" name="email" type="text" placeholder="E-mail Address"required="">
     
   </div>
 </div>
 
 <!-- Select Basic -->
 <div>
-  <labelfor="selectbasic">Enabled</label>
+  <label for="enabled">Enabled</label>
   <div>
-    <select id="selectbasic" name="selectbasic">
+    <select id="enabled" name="enabled">
       <option value="1">Yes</option>
       <option value="2">No</option>
     </select>
