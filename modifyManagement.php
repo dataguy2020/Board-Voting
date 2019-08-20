@@ -178,12 +178,13 @@
 <!-- Text input-->
 <div>
   <label for="firstName">First Name</label>  
-  <div >
+  <div>
   <input id="firstName" name="firstName" type="text" placeholder="First Name" required="">
     
   </div>
 </div>
-
+                                                                                      
+                                                                                      
 <!-- Text input-->
 <div>
   <label for="lastName">Last Name</label>  
