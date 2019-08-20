@@ -169,53 +169,44 @@
                      {
                      	?>
                      
-                     <form class="form-horizontal" name="EditManagement" id="EditManagement" action="editManagement.php>
-<fieldset>
-
-<!-- Form Name -->
-<legend>Edit Management Staff</legend>
-
-<!-- Text input-->
-<div>
-  <label for="firstName">First Name</label>  
-  <div>
-  <input id="firstName" name="firstName" type="text" placeholder="First Name" required="">
-    
-  </div>
-</div>
-                                                                                      
-                                                                                      
-<!-- Text input-->
-<div>
-  <label for="lastName">Last Name</label>  
-  <div>
-  <input id="lastName" name="lastName" type="text" placeholder="Last Name" required="">
-    
-  </div>
-</div>
-
-<!-- Text input-->
-<div>
-  <labe for="email">E-mail</label>  
-  <div>
-  <input id="email" name="email" type="text" placeholder="E-mail Address"required="">
-    
-  </div>
-</div>
-
-<!-- Select Basic -->
-<div>
-  <label for="enabled">Enabled</label>
-  <div>
-    <select id="enabled" name="enabled">
-      <option value="1">Yes</option>
-      <option value="2">No</option>
-    </select>
-  </div>
-</div>
-
-</fieldset>
-</form>
+                     <form action="EditManager.php" id="EditManager" name="EditManager" method="post">
+                  <fieldset>
+                  <!-- Form Name -->
+                  <legend>Add a New Manager</legend>
+                  <!-- Text input-->
+                  <div>
+                     <labelfor="firstName">First Name</label>  
+                     <div>
+                        <input id="firstName" name="firstName" type="text" placeholder="First name" required="">
+                     </div>
+                  </div>
+                  <!-- Text input-->
+                  <div>
+                     <label for="Last Name">Last Name</label>  
+                     <div>
+                        <input id="lastName" name="lastName" type="text" placeholder="Last Name" required="">
+                     </div>
+                  </div>
+                        <!-- Text input-->
+                  <div>
+                     <label for="email">E-mail Address</label>  
+                     <div>
+                        <input id="email" name="email" type="text" placeholder="email" required="">
+                     </div>
+                  </div>
+                  <!-- Select Basic -->
+                  <div>
+                     <label for="Enabled">Enabled</label>
+                     <div>
+                        <select id="Enabled" name="Enabled" class="form-control">
+                           <option value="1">Yes</option>
+                           <option value="2">No</option>
+                        </select>
+                     </div>
+                  </div>
+                     <br /><br />
+                     <input type="submit" value="Send Request"> <input type="reset" value="Reset">
+                     </form>
 
                      <?php
                      }
