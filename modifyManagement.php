@@ -172,7 +172,7 @@
                      <form action="EditManager.php" id="EditManager" name="EditManager" method="post">
                   <fieldset>
                   <!-- Form Name -->
-                  <legend>Add a New Manager</legend>
+                  <legend>Edit Manager</legend>
                   <!-- Text input-->
                   <div>
                      <labelfor="firstName">First Name</label>  
