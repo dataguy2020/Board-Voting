@@ -123,7 +123,7 @@
                   <?php
                      if (isset($_POST['addManagement']))
                      {
-                        echo "User ID" . $_POST['usersid'];
+                    
                      ?>
                   <form action="addManager.php" id="addManager" name="addManager" method="post">
                   <fieldset>
@@ -168,6 +168,7 @@
                        
                        	if (isset($_POST['usersid']))
                      {
+                           echo "Users ID" . $_POST['usersid'];
                      	?>
                      
                      <form action="EditManager.php" id="EditManager" name="EditManager" method="post">
