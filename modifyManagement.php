@@ -167,7 +167,56 @@
                        
                        	if (isset($_POST['usersid']))
                      {
-                     	echo "Modifying user";
+                     	?>
+                     
+                     <form class="form-horizontal">
+<fieldset>
+
+<!-- Form Name -->
+<legend>Edit Management Staff</legend>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">First Name</label>  
+  <div class="col-md-4">
+  <input id="textinput" name="textinput" type="text" placeholder="First Name" class="form-control input-md" required="">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Last Name</label>  
+  <div class="col-md-4">
+  <input id="textinput" name="textinput" type="text" placeholder="Last Name" class="form-control input-md" required="">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">E-mail</label>  
+  <div class="col-md-4">
+  <input id="textinput" name="textinput" type="text" placeholder="E-mail Address" class="form-control input-md" required="">
+    
+  </div>
+</div>
+
+<!-- Select Basic -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="selectbasic">Enabled</label>
+  <div class="col-md-4">
+    <select id="selectbasic" name="selectbasic" class="form-control">
+      <option value="1">Yes</option>
+      <option value="2">NO</option>
+    </select>
+  </div>
+</div>
+
+</fieldset>
+</form>
+
+                     <?php
                      }
                        
                        
