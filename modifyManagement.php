@@ -180,7 +180,7 @@
                              $lastName=$row['last_name'];
                              $email=$row['email'];
                              $enabled=$row['fenabled'];
-                          }//end of while
+                          
                      	?>
                      
                      <form action="EditManager.php" id="EditManager" name="EditManager" method="post">
@@ -223,6 +223,7 @@
                      </form>
 
                      <?php
+                          }
                      }
                        
                        
