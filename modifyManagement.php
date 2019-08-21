@@ -240,9 +240,10 @@
                              {
                                 $otherEnabledText="No";
                                 $enabled="0";
+                                echo "<option value='$enabled'>Other - $otherEnabledText</option>";
                              }
                              
-                             echo "<option value='$enabled'>Other - $otherEnabledText</option>";
+                             
                            ?>
                         </select>
                      </div>
