@@ -170,7 +170,7 @@
                        	if (isset($_POST['usersid']))
                      {
                           $userid=$_POST['usersid'];
-                          $modifyMgt=$db_con->prepare("SELECT * FROM management WHERE managementID=:$userid");
+                          $modifyMgt=$db_con->prepare("SELECT * FROM management WHERE managementID=:userid");
                           $modifyMgt->bindParam(':userid',$userid);
                           $modifyMgt->execute();
                            
@@ -191,7 +191,8 @@
                   <div>
                      <labelfor="firstName">First Name</label>  
                      <div>
-                        <input id="firstName" name="firstName" type="text" placeholder="First name" required="" value="<?php echo $firstName; ?>">
+                        <input id="firstName" name="firstName" type="text" placeholder="First name" required="" 
+                               value="<?php echo $firstName; ?>">
                      </div>
                   </div>
                   <!-- Text input-->
