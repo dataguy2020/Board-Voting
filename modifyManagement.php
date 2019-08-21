@@ -227,6 +227,7 @@
                         <select id="Enabled" name="Enabled" class="form-control">
 
                            <?php
+                              echo "<optio value=""></option>";
                               echo "<option value='1'>Yes</option>";
                               echo "<option value='0'>No</option>";
                          
