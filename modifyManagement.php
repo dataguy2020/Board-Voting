@@ -170,7 +170,7 @@
                        	if (isset($_POST['usersid']))
                      {
                           $userid=$_POST['usersid'];
-                          $modifyMgt=$db_con->prepare("SELECT * FROM management WHERE managementID=:'$userid'");
+                          $modifyMgt=$db_con->prepare("SELECT * FROM management WHERE managementID=:$userid");
                           $modifyMgt->bindParam(':userid',$userid);
                           $modifyMgt->execute();
                            
