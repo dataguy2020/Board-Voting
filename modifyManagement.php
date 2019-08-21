@@ -168,7 +168,18 @@
                        
                        	if (isset($_POST['usersid']))
                      {
-                           echo "Users ID" . $_POST['usersid'];
+                          $userid=$_POST['usersid'];
+                          $modifyMgt=$db_con->prepare("SELECT * FROM management WHERE managementID=:$userid");
+                          $modifyMgt->bindParam(':userid',$userid);
+                          $modifyMgt->execute();
+                           
+                          while ( $row = $modifyMgt->fetch(PDO::FETCH_ASSOC))
+                          {
+                             $firstName=$row['first_name'];
+                             $lastName=$row['last_name'];
+                             $email=$row['email'];
+                             $enabled=$row['fenabled'];
+                          }//end of while
                      	?>
                      
                      <form action="EditManager.php" id="EditManager" name="EditManager" method="post">
