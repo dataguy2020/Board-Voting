@@ -180,6 +180,16 @@
                              $lastName=$row['last_name'];
                              $email=$row['email'];
                              $enabled=$row['fenabled'];
+                             
+                             if ($enabled==1)
+                             {
+                                $enabledText="Yes";
+                             }
+                             else
+                             {
+                                $enabledText="No";
+                             }
+                            
                           
                      	?>
                      
@@ -215,8 +225,25 @@
                      <label for="Enabled">Enabled</label>
                      <div>
                         <select id="Enabled" name="Enabled" class="form-control">
-                           <option value="1">Yes</option>
-                           <option value="2">No</option>
+
+                           <?php
+                             if ($enabled == 1)
+                             {
+                                echo "<option value="$enabled">$enabledText</option>";
+                             }
+                             
+                             if ($enabledText == "Yes")
+                             {
+                                 $otherEnabledText="No";
+                             }
+                             else
+                             {
+                                $otherEnabledText="No";
+                                $enabled="0"
+                             }
+                             
+                             echo "<option value="$enabled">$otherEnabledText"</option>";
+                           ?>
                         </select>
                      </div>
                   </div>
