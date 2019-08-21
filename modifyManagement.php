@@ -190,7 +190,7 @@
                   <div>
                      <labelfor="firstName">First Name</label>  
                      <div>
-                        <input id="firstName" name="firstName" type="text" placeholder="First name" required="">
+                        <input id="firstName" name="firstName" type="text" placeholder="First name" required="" value="<?php echo $firstName; ?>">
                      </div>
                   </div>
                   <!-- Text input-->
