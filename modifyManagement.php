@@ -239,7 +239,7 @@
                              else
                              {
                                 $otherEnabledText="No";
-                                $enabled="0"
+                                $enabled="0";
                              }
                              
                              echo '<option value="$enabled">$otherEnabledText</option>';
