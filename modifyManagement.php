@@ -165,7 +165,8 @@
                      </form>
                   <?php
                      }
-                       
+                       	include_once ('include/db-config.php');
+
                        	if (isset($_POST['usersid']))
                      {
                           $userid=$_POST['usersid'];
