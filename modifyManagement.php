@@ -227,23 +227,9 @@
                         <select id="Enabled" name="Enabled" class="form-control">
 
                            <?php
-                             if ($enabled == 1)
-                             {
-                                echo "<option value='$enabled'>$enabledText</option>";
-                             }
-                             
-                             if ($enabledText == "Yes")
-                             {
-                                 $otherEnabledText="No";
-                             }
-                             else
-                             {
-                                $otherEnabledText="No";
-                                $enabled="0";
-                                echo "<option value='$enabled'>Other - $otherEnabledText</option>";
-                             }
-                             
-                             
+                              echo "<option value='$enabled'>$enabledText</option>";
+                              echo "<option value='$enabled'>$otherEnabledText</option>";
+                         
                            ?>
                         </select>
                      </div>
