@@ -227,8 +227,8 @@
                         <select id="Enabled" name="Enabled" class="form-control">
 
                            <?php
-                              echo "<option value='$enabled'>$enabledText</option>";
-                              echo "<option value='$enabled'>$otherEnabledText</option>";
+                              echo "<option value='1'>Yes</option>";
+                              echo "<option value='0'>No</option>";
                          
                            ?>
                         </select>
