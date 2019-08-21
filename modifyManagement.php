@@ -229,7 +229,7 @@
                            <?php
                              if ($enabled == 1)
                              {
-                                echo "<option value="$enabled">$enabledText</option>";
+                                echo '<option value="$enabled">$enabledText</option>';
                              }
                              
                              if ($enabledText == "Yes")
@@ -242,7 +242,7 @@
                                 $enabled="0"
                              }
                              
-                             echo "<option value="$enabled">$otherEnabledText"</option>";
+                             echo '<option value="$enabled">$otherEnabledText</option>';
                            ?>
                         </select>
                      </div>
