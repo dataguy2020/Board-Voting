@@ -199,14 +199,15 @@
                   <div>
                      <label for="Last Name">Last Name</label>  
                      <div>
-                        <input id="lastName" name="lastName" type="text" placeholder="Last Name" required="">
+                        <input id="lastName" name="lastName" type="text" placeholder="Last Name" required="" 
+                               value="<?php echo $lastName; ?>">
                      </div>
                   </div>
                         <!-- Text input-->
                   <div>
                      <label for="email">E-mail Address</label>  
                      <div>
-                        <input id="email" name="email" type="text" placeholder="email" required="">
+                        <input id="email" name="email" type="text" placeholder="email" required="" value="<?php echo $email; ?>">
                      </div>
                   </div>
                   <!-- Select Basic -->
