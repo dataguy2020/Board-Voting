@@ -138,7 +138,7 @@
                   
                      else
                      {
-                        if (!filter_var($email_address, FILTER_VALIDATE_EMAIL))
+                        if (!filter_var($email, FILTER_VALIDATE_EMAIL))
                         {
                            $errors .= "<br />Invalid E-mail Format <br />";
                         }
