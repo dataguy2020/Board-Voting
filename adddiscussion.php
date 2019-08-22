@@ -60,7 +60,7 @@ header('location: index.php');
 					$body .= "<br />";
 					$body .= $emailDiscussions;
 				}//End of while
-
+					$body .= "Discussions can be viewed here:";
 				$body .= "</body>";
 				$body .= "</html>";
 			}
