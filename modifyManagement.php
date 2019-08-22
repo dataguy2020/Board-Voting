@@ -225,7 +225,7 @@
                      <label for="Enabled">Enabled</label>
                      <div>
                         <select id="Enabled" name="Enabled" class="form-control">
-                           <option value="Choose an Option">Choose an Option</option>
+                           <option value="2">Choose an Option</option>
                            <option value="1">Yes</option>
                            <option value="0">No</option>
                         </select>
