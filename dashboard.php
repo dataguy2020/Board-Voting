@@ -155,12 +155,7 @@
                   <br />
                   <br />
                   <br />
-                  <h3>Legend</h3><br />
-                  <p>Deferred: Deferred to be discussed at the next board meeting</p>
-                  <p>Approved: Approved as it will be ratified at the next board meeting</p>
-                  <p>Failed: Will be discussed at the next board meeting</p>
-                  <p>In Progress: Currently open for voting</p>
-                  <p>Revoked: Revoved by board meeting. Not open for voting anymore</p>
+                 
                   <?php $motions->closeCursor(); ?>
                   <!-- /span6 -->
                   <!-- /span6 --> 
@@ -170,6 +165,8 @@
             <!-- /container --> 
          </div>
          <!-- /main-inner --> 
+	      
+	      Test
       </div>
       <!-- /main -->
       <!-- /extra -->
