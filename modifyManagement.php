@@ -232,6 +232,7 @@
                      </div>
                   </div>
                      <br /><br />
+                     <input type="hidden" id="mgtID" name="mgtID" value="<?php echo $userid; ?>">
                      <input type="submit" value="Send Request"> <input type="reset" value="Reset">
                      </form>
 
