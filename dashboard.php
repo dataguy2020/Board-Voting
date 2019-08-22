@@ -155,7 +155,7 @@
                   <br />
                   <br />
                   <br />
-                  <h3>Legend</h3>
+                  <h3>Legend</h3><br />
                   <p>Deferred: Deferred to be discussed at the next board meeting</p>
                   <p>Approved: Approved as it will be ratified at the next board meeting</p>
                   <p>Failed: Will be discussed at the next board meeting</p>
