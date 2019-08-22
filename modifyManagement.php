@@ -225,13 +225,9 @@
                      <label for="Enabled">Enabled</label>
                      <div>
                         <select id="Enabled" name="Enabled" class="form-control">
-
-                           <?php
-                              echo "<optio value='Choose an Option'>Choose an Option</option>";
-                              echo "<option value='1'>Yes</option>";
-                              echo "<option value='0'>No</option>";
-                         
-                           ?>
+                           <option value="Choose an Option">Choose an Option</option>
+                           <option value="1">Yes</option>
+                           <option value="0">No</option>
                         </select>
                      </div>
                   </div>
