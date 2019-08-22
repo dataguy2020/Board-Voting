@@ -89,11 +89,6 @@ vertical-align: middle;
   		<strong>MESSAGE:</strong>This system will be going offline starting at 9:00p.m. on Friday September 29, 2017 until 12:00 a.m. on Saturday September 30, 2017
 	      </div>-->
 
-<?php
-   while (list($var,$value) = each ($_SERVER)) {
-      echo "$var => $value <br />";
-   }
-?>
 
 
 <script src="js/jquery-1.7.2.min.js"></script>
