@@ -60,7 +60,7 @@ header('location: index.php');
 					$body .= "<br />";
 					$body .= $emailDiscussions;
 				}//End of while
-				$body .= "<br /><br />"
+				$body .= "<br /><br />";
 				$body .= "Discussions can be viewed here:" . $_SERVER['SCRIPT_URI'] . "/discussions.php";
 				$body .= "</body>";
 				$body .= "</html>";
