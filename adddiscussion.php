@@ -61,7 +61,7 @@ header('location: index.php');
 					$body .= $emailDiscussions;
 				}//End of while
 				$body .= "<br /><br />";
-				$body .= "Discussions can be viewed here:" . $_SERVER['SCRIPT_URI'] . "/discussions.php";
+				$body .= "Discussions can be viewed here: https://" . $_SERVER['HTTP_HOST'] . "/discussions.php";
 				$body .= "</body>";
 				$body .= "</html>";
 			}
