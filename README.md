@@ -28,6 +28,10 @@ Ths is a system built for the Tanyard Springs Homeowners Association to handle e
 - Automatically e-mail to board members when motino was amended to verify their vote is still accurate
 - Ability to add a vote
 - Ability to modify a vote
+- Ability to disable user in GUI
+- Ability to add user in GUI
+- Ability to be able to add formatting in description (tables, colors, line breaks, etc) in motion description
+- Ability to modify user accesses in the GUI instead of database
 
 ----------------------
 ## Other Features
@@ -36,14 +40,9 @@ Ths is a system built for the Tanyard Springs Homeowners Association to handle e
 - Ability to modify password
 - Utilizes timing of local time zone instead of GMT
 
-
 ----------------------
 Future Features
 ----------------------
-- Ability to modify user accesses in the GUI instead of database
-- Ability to disable user in GUI
-- Ability to add user in GUI
 - Force user to log out when they do a password change
 - Fully implement Forgot Password Functionality
-- Ability to be able to add formatting in description (tables, colors, line breaks, etc) in motion description
 - Authenticate via LDAP
