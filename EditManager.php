@@ -167,7 +167,7 @@
                         $updateMgt->bindParam(':mgtID',$mgtID);
                         $updateMgt->execute();
                         
-                        echo "Updated managemnet user" . $firstName . " " . $lastName;
+                        echo "Updated managemnet user " . $firstName . " " . $lastName;
                      }
                  
                   
