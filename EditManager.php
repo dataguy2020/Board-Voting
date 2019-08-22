@@ -122,6 +122,58 @@
                <div class="row">
                  
       <!--- CONTENT  -->
+                  
+                  <?php
+                     include_once ('include/db-config.php');
+                     $mgtID=$_POST['mgtID'];
+                     $firstName=$_POST['firstName'];
+                     $lastName=$_POST['lastName'];
+                     $email=$_POST['email'];
+                     $enabled=$_POST['Enabled'];
+                     $errors="";
+                     if (($firstName == "") || ($lastName == "") || ($email == "") || ($enabled == 2))
+                     {
+                        $errors .= "You have fields that are blank<br />";
+                     }
+                  
+                     else
+                     {
+                        if (!filter_var($email_address, FILTER_VALIDATE_EMAIL))
+                        {
+                           $errors .= "<br />Invalid E-mail Format <br />";
+                        }
+                        if ( (strlen($firstName) < 5) || (strlen($lastName) < 2) )
+                        {
+                           $errors .= "Your first name and last name is not long enough";  
+                        }
+                        
+                     }
+                  
+                     if ($errors != "")
+                     {
+                        echo "There were errors in your submission";
+                        echo "<br />";
+                        echo $errors;
+                     }
+                  
+                     else
+                     {
+                        $updateMgt = $db_con->prepare("UPDATE management set first_name=:firstName,last_name=:lastName, 
+                                                      email=:email,fenabled=:enabled where managementID=:mgtID");
+                        $updateMgt->bindParam(':firstName',$firstName);
+                        $updateMgt->bindParam(':lastName',$lastName);
+                        $updateMgt->bindParam(':email', $email);
+                        $updateMgt->bindParam(':enabled',$enabled);
+                        $updateMgt->bindParam(':mgtID',$mgtID);
+                        $updateMgt->execute();
+                        
+                        echo "Updated managemnet user" . $firstName . " " . $lastName;
+                     }
+                 
+                  
+                  ?>               
+                  
+                  
                   <!-- /span6 -->
                   <!-- /span6 --> 
                </div>
