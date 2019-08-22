@@ -166,7 +166,12 @@
          </div>
          <!-- /main-inner --> 
 	      
-	      Test<br />Test
+	       <h3>Legend</h3><br />
+                  <p>Deferred: Deferred to be discussed at the next board meeting</p>
+                  <p>Approved: Approved as it will be ratified at the next board meeting</p>
+                  <p>Failed: Will be discussed at the next board meeting</p>
+                  <p>In Progress: Currently open for voting</p>
+                  <p>Revoked: Revoved by board meeting. Not open for voting anymore</p>
       </div>
       <!-- /main -->
       <!-- /extra -->
