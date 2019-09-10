@@ -85,21 +85,6 @@
 			}
 		}//end of function
 					
-			echo "DEBUG START";
-			echo "<table>";
-			foreach ($_POST as $key => $value)
-			{
-				echo "<tr>";
-					echo "<td>";
-						echo $key;
-					echo "</td>";
-				echo "</tr>";
-			}
-
-			echo "</table>";
-			echo "DEBUG END";
-			echo "<br />";
-			echo "<br />";
 			
 			$motionid=$_POST['motionid'];
 			$motionname=$_POST['motionname'];
