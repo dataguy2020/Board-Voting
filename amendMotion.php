@@ -83,9 +83,7 @@
 			{
 				print "<br />An error occured";	
 			}
-		}//end of function
-					
-			
+		}//end of function		
 			$motionid=$_POST['motionid'];
 			$motionname=$_POST['motionname'];
 			$newmotiondesc=$_POST['newmotiondesc'];
