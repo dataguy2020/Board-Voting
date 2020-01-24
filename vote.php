@@ -524,9 +524,9 @@ elseif (isset($_POST['Deferred'])) {
     $existingmotiondec = $motiondesc;
     echo '<form id="voting" name="voting" method="POST" action="amendMotion.php">
                 <input type="hidden" name="motionid" value="$motionid">
-        Motion Name: <input type="text" name="motionname" readonly id="motionname" value="$motionname">
+        Motion Name: <input type="text" name="motionname" readonly id="motionname" value="' . $motionname . '">
         <br />Existing Motion Text:' . $motiondesc . 
-        '<input type="hiddent" name="existingmotiondec" id="existingmotiondec" value="$existingmotiondec">
+        '<input type="hidden" name="existingmotiondec" id="existingmotiondec" value="' . $existingmotiondec .'">
         
         <br />Motion Text: <textarea name="newmotiondesc" id="newmotiondesc" style="width:1136px; height: 122px;"></textarea>
         
