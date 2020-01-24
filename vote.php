@@ -30,7 +30,7 @@ table {
 </style>
     <script>
    $(document).ready(function () {
-$('#openMOtions').DataTable();
+$('#openMotions').DataTable();
 $('.dataTables_length').addClass('bs-select');
 });
     </script>
@@ -526,7 +526,7 @@ elseif (isset($_POST['Deferred'])) {
                 <input type="hidden" name="motionid" value="$motionid">
         Motion Name: <input type="text" name="motionname" readonly id="motionname" value="' . $motionname . '">
         <br />Existing Motion Text:' . $motiondesc . 
-        '<input type="hidden" name="existingmotiondec" id="existingmotiondec" value="' . $existingmotiondec .'">
+        '<input type="hidden" name="existingmotiondec" id="existingmotiondec" value="$existingmotiondec">
         
         <br />Motion Text: <textarea name="newmotiondesc" id="newmotiondesc" style="width:1136px; height: 122px;"></textarea>
         
