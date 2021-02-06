@@ -1,0 +1,7 @@
+organization=mikebrowntsbod
+projectKey=Board-Voting
+serverUrl=https://sonarcloud.io
+serverVersion=8.0.0.17032
+dashboardUrl=https://sonarcloud.io/dashboard?id=Board-Voting
+ceTaskId=AXd3qfGHSSTh0rqwnWZo
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AXd3qfGHSSTh0rqwnWZo
